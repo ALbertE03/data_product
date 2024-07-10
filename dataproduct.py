@@ -1,5 +1,8 @@
 import streamlit as st
-from graficas_plotly import exportaciones, fish
+from graficas_plotly import *
+
+# estos están para más adelante
+# from graficas_plotly import exportaciones, fish
 
 st.title("¿Le gusta comer alimentos de mar?")
 opciones = st.selectbox(
@@ -8,6 +11,7 @@ opciones = st.selectbox(
         "",
         "Pargo",
         "Cherna",
+        "Túnidos",
         "Bonito",
         "Biajaiba",
         "Machuelo",
@@ -28,40 +32,44 @@ opciones = st.selectbox(
 )
 
 if opciones == "Pargo":
-    pass
+    st.plotly_chart(pargo)
 if opciones == "Cherna":
-    pass
+    st.plotly_chart(Cherna)
+if opciones == "Túnidos":
+    st.plotly_chart(tunidos)
 if opciones == "Bonito":
-    pass
+    st.plotly_chart(bonitos)
 if opciones == "Biajaiba":
-    pass
+    st.plotly_chart(biajaiba)
 if opciones == "Machuelo":
-    pass
+    st.plotly_chart(machuelo)
 if opciones == "Rabirubia":
-    pass
+    st.plotly_chart(rabirubia)
 if opciones == "Raya":
-    pass
+    st.plotly_chart(raya)
 if opciones == "Carpa":
-    pass
+    st.plotly_chart(carpa)
 if opciones == "Tenca":
-    pass
+    st.plotly_chart(tenca)
 if opciones == "Tilapia":
-    pass
+    st.plotly_chart(tilapia)
 if opciones == "Claria":
-    pass
+    st.plotly_chart(claria)
 if opciones == "Cobo":
-    pass
+    st.plotly_chart(cobo)
 if opciones == "Ostión":
-    pass
+    st.plotly_chart(ostion)
 if opciones == "Almeja":
-    pass
+    st.plotly_chart(almeja)
 if opciones == "Langosta":
-    pass
+    st.plotly_chart(langosta)
 if opciones == "Camaron de mar":
-    pass
+    st.plotly_chart(camaron_de_mar)
 if opciones == "Camaronicultura":
-    pass
+    st.plotly_chart(camaronicultura)
 if opciones == "Morallas":
-    pass
-st.plotly_chart(exportaciones)
-st.plotly_chart(fish)
+    st.plotly_chart(moralla)
+
+
+# st.plotly_chart(exportaciones)
+# st.plotly_chart(fish)

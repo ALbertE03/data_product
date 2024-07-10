@@ -50,29 +50,26 @@ peces.index = [
 ]
 peces = peces.T
 fish = px.line(peces, title="capturas de peces en toneladas")
-
-"""pib = pd.read_json("./data/pib_const.json")
-pib = pib.drop([0]).drop([1])
-pib.columns = [x for x in range(1996, 2023)]
-pib.index = [
-    "Agricultura, ganadería y silvicultura ",
-    " Pesca",
-    " Explotación de minas y canteras",
-    " Industria azucarera",
-    "Industrias manufactureras (excepto Industria  azucarera)",
-    " Suministro de electricidad, gas y agua",
-    " Construcción",
-    " Comercio; reparación de efectos personales",
-    " Hoteles y restaurantes",
-    "Transportes, almacenamiento y comunicaciones",
-    " Intermediación financiera",
-    " Servicios empresariales, actividades inmobiliarias  y de alquiler",
-    " Administración pública, defensa; seguridad social",
-    " Ciencia e innovación tecnológica",
-    " Educación",
-    " Salud pública y asistencia social",
-    " Cultura y deporte",
-    "Otras actividades de servicios comunales, de asociaciones y personales",
-    " Derechos de importación",
-]
-print(pib.head(5))"""
+pargo = px.line(peces["Pargo"], title="Capturas de Pargo en Toneladas")
+Cherna = px.line(peces["Cherna"], title="Capturas de Cherna en Toneladas")
+tunidos = px.line(peces["Túnidos"], title="Capturas de Túnidos en Toneladas")
+bonitos = px.line(peces["Bonito"], title="Capturas de Bonito en Toneladas")
+biajaiba = px.line(peces["Biajaiba"], title="Capturas de Biajaiba en Toneladas")
+machuelo = px.line(peces["Machuelo"], title="Capturas de Machuelo en Toneladas")
+rabirubia = px.line(peces["Rabirubia"], title="Capturas de Rabirubia en Toneladas")
+raya = px.line(peces["Raya"], title="Capturas de Raya en Toneladas")
+carpa = px.line(peces["Carpa"], title="Capturas de Carpa en Toneladas")
+tenca = px.line(peces["Tenca"], title="Capturas de Tenca en Toneladas")
+tilapia = px.line(peces["Tilapia"], title="Capturas de Tilapia en Toneladas")
+claria = px.line(peces["Claria"], title="Capturas de Claria en Toneladas")
+cobo = px.line(peces["Cobo"], title="Capturas de Cobo en Toneladas")
+ostion = px.line(peces["Ostión"], title="Capturas de Ostión en Toneladas")
+almeja = px.line(peces["Almeja"], title="Capturas de Almeja en Toneladas")
+langosta = px.line(peces["Langosta"], title="Capturas de Langosta en Toneladas")
+camaron_de_mar = px.line(
+    peces["Camarón de Mar"], title="Capturas de Camarón de Mar en Toneladas"
+)
+camaronicultura = px.line(
+    peces["Camaronicultura"], title="Capturas de Camaronicultura en Toneladas"
+)
+moralla = px.line(peces["Moralla"], title="Capturas de Moralla en Toneladas")
