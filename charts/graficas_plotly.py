@@ -23,8 +23,9 @@ data = pd.DataFrame(
     }
 )
 exportaciones = px.line(data, title="exportaciones de productos en millones de pesos")
-peces = pd.read_json("./data/grupos_de_especies.json")
 
+#peces
+peces = pd.read_json("./data/grupos_de_especies.json")
 peces.columns = [x for x in range(2001, 2023)]
 peces = peces.drop([0]).drop([1]).drop([2])
 peces.index = [

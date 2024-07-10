@@ -1,6 +1,7 @@
 import streamlit as st
 from charts.graficas_plotly import *
-
+import plotly.graph_objects as go
+import plotly.io as pio
 
 def principal():
     st.title("¿Le gusta comer alimentos de mar?")
@@ -69,13 +70,46 @@ def principal():
     if opciones == "Morallas":
         st.plotly_chart(moralla)
 
-def pagina2():
+def economico():
     pass
 
+def mapas():
+    st.title("Empresas de Pesca en Cuba")
+    option=st.selectbox("",['EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])
+    fig = go.Figure(go.Scattermapbox(lat=[20.329436],lon=[-77.153311],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
+    fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
+    pio.write_html(fig,file="mapa.html")
+
+    if option == "EpiGram":
+        st.subheader("EpiGram")
+        with open("mapa.html",'r') as f:
+            html =f.read()
+        st.components.v1.html(html,height=500)
+
+    if option == "PESCAGRAM":
+        st.subheader("PESCAGRAM")
+        
+
+    if option == "EPICAI":
+        st.subheader("EPICAI")
+        
+    
+    if option == "EPICIEN":
+        st.subheader("EPICIEN")
+        
+    
+    if option == "Pesca Caribe":
+        st.subheader("Pesca Caribe")
+        
+
+    if option == "GEIP":
+        st.subheader("Grupo Empresarial de La Industria Pesquera (GEIP)")
+        
 
 pages = {
     "Inicio": principal,
-    "Económico": pagina2,
+    "Económico": economico,
+    "Localización e investigación": mapas
 }
 
 selection = st.sidebar.radio("Ir a", list(pages.keys()))
