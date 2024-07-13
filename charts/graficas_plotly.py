@@ -74,3 +74,31 @@ camaronicultura = px.line(
     peces["Camaronicultura"], title="Capturas de Camaronicultura en Toneladas"
 )
 moralla = px.line(peces["Moralla"], title="Capturas de Moralla en Toneladas")
+
+
+
+with open('data/mypimes.json','r')as f:
+    mypimes=json.load(f)
+
+mypimesdf= pd.DataFrame(mypimes)
+mypimesdf.columns=['alojamiento de servicios de comida','Agricultura,Pesca,Ganaderia y Silvicultura','Comercio','Industrias manufactureras','información y comunicaciones','Transporte y Almacenamiento','Construcción','Resto de Actividades']
+
+mypimesdf=mypimesdf.drop([0])
+mypimesdf.index=['Pinar del Rio',"Artemisa","La Habana","Mayabeque","Matanzas","Villa Clara","Cienfuegos","Santi Spiritus","Ciego de Ávila","Camagüey","Las Tunas","Holguín","Granma","Santiago de Cuba","Guantánamo","La Isla de la Juventud"]
+
+
+p=px.bar(mypimesdf.T['Pinar del Rio'])
+p1=px.bar(mypimesdf.T['Artemisa'])
+p2=px.bar(mypimesdf.T['La Habana'])
+p3=px.bar(mypimesdf.T['Mayabeque'])
+p4=px.bar(mypimesdf.T['Matanzas'])
+p5=px.bar(mypimesdf.T['Villa Clara'])
+p6=px.bar(mypimesdf.T['Cienfuegos'])
+p7=px.bar(mypimesdf.T['Santi Spiritus'])
+p8=px.bar(mypimesdf.T['Ciego de Ávila'])
+p9=px.bar(mypimesdf.T['Camagüey'])
+p10=px.bar(mypimesdf.T['Las Tunas'])
+p11=px.bar(mypimesdf.T['Granma'])
+p12=px.bar(mypimesdf.T['Santiago de Cuba'])
+p13=px.bar(mypimesdf.T['Guantánamo'])
+p14=px.bar(mypimesdf.T['La Isla de la Juventud'])

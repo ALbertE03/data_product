@@ -80,7 +80,7 @@ def economico():
 
 def mapas():
     st.title("Empresas de Pesca en Cuba")
-    option=st.selectbox("",['EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])
+    option=st.selectbox("",['Mypimes','EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])
 
     #fig = go.Figure(go.Scattermapbox(lat=[20.329436],lon=[-77.153311],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
     #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
@@ -91,21 +91,54 @@ def mapas():
     #pio.write_html(fig,file="mapa1.html")
 
     #fig = go.Figure(go.Scattermapbox(lat=[22.526927],lon=[-79.467644],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
-    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
+    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=22.526927,lon=-79.467644),zoom=13))
     #pio.write_html(fig,file="mapa2.html")
 
     #fig = go.Figure(go.Scattermapbox(lat=[22.169549],lon=[-80.480796],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
-    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
+    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=22.169549,lon=-80.480796),zoom=13))
     #pio.write_html(fig,file="mapa3.html")
 
     #fig = go.Figure(go.Scattermapbox(lat=[23.161990],lon=[-82.290785],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
-    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
+    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=23.161990,lon=-82.290785),zoom=13))
     #pio.write_html(fig,file="mapa4.html")
 
     #fig = go.Figure(go.Scattermapbox(lat=[23.119680],lon=[-82.354357],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
-    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
+    #fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=23.119680,lon=-82.354357),zoom=13))
     #pio.write_html(fig,file="mapa5.html")
 
+    if option == 'Mypimes':
+        o=st.selectbox("",mypimesdf.index)
+        if o =='Pinar del Rio':
+            st.plotly_chart(p)
+        if o == "Artemisa":
+            st.plotly_chart(p1)
+        if o == 'La Habana':
+            st.plotly_chart(p2)
+        if o== "Mayabeque":
+            st.plotly_chart(p3)
+        if o =="Matanzas":
+            st.plotly_chart(p4)
+        if o == "Villa Clara":
+            st.plotly_chart(p5)
+        if o =="Cienfuegos":
+            st.plotly_chart(p6)
+        if  o =="Santi Spiritus":
+            st.plotly_chart(p7)
+        if o =="Ciego de Ávila":
+            st.plotly_chart(p8)
+        if o =="Camagüey":
+            st.plotly_chart(p9)
+        if o =="Las Tunas":
+            st.plotly_chart(p10)
+        if o =="Holguín":
+            st.plotly_chart(p11)
+        if o =="Santiago de Cuba":
+            st.plotly_chart(p12)
+        if o =="Guantánamo":
+            st.plotly_chart(p13)
+        if o =="La Isla de la Juventud":  
+            st.plotly_chart(p14)
+            
     if option == "EpiGram":
         st.subheader("EpiGram")
         with open("mapa1.html",'r') as f:
