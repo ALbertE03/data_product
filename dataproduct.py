@@ -2,6 +2,8 @@ import streamlit as st
 from charts.graficas_plotly import *
 import plotly.graph_objects as go
 import plotly.io as pio
+import time
+
 
 st.set_page_config(
     page_title="Data Product",
@@ -80,8 +82,49 @@ def economico():
 
 def leyes():
     st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
-    
+    ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])
+    if 'cantidad de Resoluciones por año' == ly:
+        st.plotly_chart(leyes_annos)
+        
+    if 'sobre pesca ilegal' == ly:
+        pass
+    if 'sobre prohibición' == ly:
+        pass
+    if 'sobre prohibición' == ly:
+        pass
+    if 'sobre periodos de pesca' == ly:
+        pass
+    if 'sobre autorizacion' == ly:
+        st.plotly_chart(leyes_auto)
+    if "sobre arte de pesca" == ly:
+        pass
+    if  'otros' == ly:
+        pass
 
+    if st.checkbox("Mostrar las resoluciones"):
+        if 'cantidad de Resoluciones por año' == ly:
+            st.subheader('Todas las Resoluciones sobre Pesca en Cuba')
+            merge
+        if 'sobre pesca ilegal' == ly:
+            st.subheader("Resoluciones sobre la pesca ilegal")
+            if len(pesca_ilegal):
+                pesca_ilegal
+        if 'sobre prohibición' == ly:
+            st.subheader("Resoluciones sobre prohibiciones en la pesca")
+            prohibicion
+        if 'sobre periodos de pesca' == ly:
+            st.subheader("Resoluciones sobre los periodos de pesca")
+            periodos
+        if 'sobre autorizacion' == ly:
+            st.subheader('Resoluciones sobre autorizaciones en la pesca')
+            autorizacion
+        if "sobre arte de pesca" == ly:
+            st.subheader("Resoluciones sobre el arte de la pesca")
+            artes_pesca
+        if  'otros' == ly:
+            st.subheader("Resoluciones sobre pesca")
+            pesca
+    
 def mapas():
     st.title("Empresas de Pesca en Cuba")
     option=st.selectbox("",['Mypimes','EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])

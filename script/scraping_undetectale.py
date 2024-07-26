@@ -171,6 +171,9 @@ def scraping(payload,name):
 
 
 
+
+
+
 url = ["https://www.gacetaoficial.gob.cu/es/autorización-de-pesca","https://www.gacetaoficial.gob.cu/es/artes-de-pesca","https://www.gacetaoficial.gob.cu/es/período-de-pesca","https://www.gacetaoficial.gob.cu/es/pesca","https://www.gacetaoficial.gob.cu/es/pesca-ilegal","https://www.gacetaoficial.gob.cu/es/prohibición-de-pesca"]
 names=['data/autorizacion.csv','data/artes_de_pesca.csv','data/periodo_de_pesca.csv','data/pesca.csv','data/pesca_ilegal.csv','data/prohibicion_de_pesca.csv']
 
@@ -178,12 +181,7 @@ names=['data/autorizacion.csv','data/artes_de_pesca.csv','data/periodo_de_pesca.
 
 APIKEY='34e4d4a1a227d76dfe3b0dc97110bede'
 for i,name in enumerate(names):
-    '''params = {
-    'api_key': API_KEY,
-    'url': url[i],
-    'render_js': 'false'
-    }'''
+                
     payload = {'api_key':APIKEY, 'url': url[i]}
     scraping(payload,name)
-
-
+    

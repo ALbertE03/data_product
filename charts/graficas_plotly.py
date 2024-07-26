@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import json
 
 df = pd.read_json("./data/exportaciones.json")
@@ -111,3 +112,32 @@ pesca_ilegal = pd.read_csv('data/pesca_ilegal.csv')
 periodos = pd.read_csv('data/periodo_de_pesca.csv')
 prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv')
 pesca = pd.read_csv("data/pesca.csv")
+
+merge = pd.concat([artes_pesca,autorizacion,pesca,pesca_ilegal,prohibicion,periodos])
+a=merge['año'].unique()
+def contar(df,target):
+    cont = 0 
+    for i in df:
+        if  i == target:
+            cont+=1
+    print(cont)
+    print("")
+    return [cont]
+
+dic={}
+for i in a:
+    dic[f"{i}"] = contar(merge['año'],i)
+
+years = list(dic.keys())
+values = [value[0] for value in dic.values()]
+
+dic1={}
+b= autorizacion['año'].unique()
+for i in b:
+    dic1[f'{i}'] = contar(autorizacion['año'],i)
+
+values1 = [value1[0] for value1 in  dic1.values()]
+years1 = list(dic1.keys())
+leyes_annos = go.Figure(data=[go.Bar(x=years, y=values)])
+
+leyes_auto = go.Figure(data = [go.Bar(x=years1, y = values1)])
