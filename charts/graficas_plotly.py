@@ -102,3 +102,12 @@ p11=px.bar(mypimesdf.T['Granma'])
 p12=px.bar(mypimesdf.T['Santiago de Cuba'])
 p13=px.bar(mypimesdf.T['Guantánamo'])
 p14=px.bar(mypimesdf.T['La Isla de la Juventud'])
+
+
+#leyes
+artes_pesca = pd.read_csv('data/artes_de_pesca.csv')
+autorizacion = pd.read_csv('data/autorizacion.csv')
+pesca_ilegal = pd.read_csv('data/pesca_ilegal.csv')
+periodos = pd.read_csv('data/periodo_de_pesca.csv')
+prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv')
+pesca = pd.read_csv("data/pesca.csv")

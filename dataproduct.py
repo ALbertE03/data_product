@@ -78,6 +78,10 @@ def principal():
 def economico():
     pass
 
+def leyes():
+    st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
+    
+
 def mapas():
     st.title("Empresas de Pesca en Cuba")
     option=st.selectbox("",['Mypimes','EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])
@@ -178,7 +182,8 @@ def mapas():
 pages = {
     "Inicio": principal,
     "Económico": economico,
-    "Localización e investigación": mapas
+    "Localización e investigación": mapas,
+    'leyes':leyes
 }
 
 selection = st.sidebar.radio("Ir a", list(pages.keys()))
