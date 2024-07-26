@@ -150,8 +150,27 @@ dic4 = llenar_dict(periodos['año'].unique(),periodos['año'])
 values4 = [values4[0] for values4 in dic4.values()]
 years4 = list(dic4.keys())
 
+dic5 = llenar_dict(artes_pesca['año'].unique(),artes_pesca['año'])
+values5 = [values5[0] for values5 in dic5.values()]
+years5 = list(dic5.keys())
+
+dic6 = llenar_dict(pesca['año'].unique(),pesca['año'])
+values6 = [values6[0] for values6 in dic6.values()]
+years6 = list(dic6.keys())
+
+
 leyes_annos = go.Figure(data=[go.Bar(x=years, y=values)])
 leyes_auto = go.Figure(data = [go.Bar(x=years1, y = values1)])
 leyes_ilegal = go.Figure(data = [go.Bar(x= years2, y= values2)])
 leyes_prohi = go.Figure(data = [go.Bar(x= years3, y= values3)])
 leyes_periodo = go.Figure(data = [go.Bar(x= years4, y= values4)])
+leyes_arte = go.Figure(data = [go.Bar(x= years5, y= values5)])
+leyes_otros = go.Figure(data = [go.Bar(x= years6, y= values6)])
+
+
+#grficos de leyes derogadas
+
+
+
+
+#vigentes

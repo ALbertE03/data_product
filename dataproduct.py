@@ -3,13 +3,13 @@ from charts.graficas_plotly import *
 import plotly.graph_objects as go
 import plotly.io as pio
 
-
 def mostrar(a):
     st.write(a)
 
 def mostrar_grafica(graf):
     st.plotly_chart(graf)
-
+def error(a):
+    st.error(a)
 st.set_page_config(
     page_title="Data Product",
     page_icon=":fish:",
@@ -101,13 +101,76 @@ def leyes():
         mostrar_grafica(leyes_auto)
 
     if "sobre arte de pesca" == ly:
-        pass
+        mostrar_grafica(leyes_arte)
     if  'otros' == ly:
-        pass
+        mostrar_grafica(leyes_otros)
     
     if st.checkbox("Mostrar las resoluciones"):
         check = st.checkbox("derogadas")
-        if check:
+        check1 =st.checkbox("Modificadas")
+        check2 = st.checkbox("Vigentes")
+        if check and check1 and check2:
+            error("Seleccione una sola; una ley no puede estar en tres estados a la vez")
+        elif check1 and check :
+                error("Seleccione una sola; una ley no puede estar en dos estado a la vez")
+        elif check2:
+            if 'cantidad de Resoluciones por año' == ly:
+                st.subheader("Resoluciones Vigentes")
+                mostrar(merge[merge['estado']== 'Vigente'])
+
+            elif 'sobre pesca ilegal' == ly:
+                st.subheader("Resoluciones Vigentes respecto a la pesca ilegal")
+                mostrar(pesca_ilegal[pesca_ilegal['estado']=='Vigente'])
+
+            elif 'sobre prohibición' == ly :
+                st.subheader("Resoluciones Vigentes en cuanto a prohibiciones")
+                mostrar(pesca_ilegal[pesca_ilegal['estado']=='Vigente'])
+
+            elif 'sobre periodos de pesca' == ly:
+                st.subheader("Resoluciones Vigentes con respecto a los periodos de pescas")
+                mostrar(periodos[periodos['estado']=='Vigente'])
+
+            elif 'sobre autorizacion' == ly:
+                st.subheader("Resoluciones Vigentes con respecto a autorizaciones")
+                mostrar(autorizacion[autorizacion['estado']=='Vigente'])
+
+            elif "sobre arte de pesca" == ly:
+                st.subheader("Resoluciones Vigentes con respecto a artes de pesca")
+                mostrar(artes_pesca[artes_pesca['estado']=='Vigente'])
+
+            elif 'otros' == ly:
+                st.subheader("Otras resoluciones Vigentes")
+                mostrar(pesca[pesca['estado']=='Vigente'])
+        elif  check1:
+            if 'cantidad de Resoluciones por año' == ly:
+                st.subheader("Resoluciones Modificadas")
+                mostrar(merge[merge['estado']== 'Modificada'])
+
+            elif 'sobre pesca ilegal' == ly:
+                st.subheader("Resoluciones Modificadas con respecto a la pesca ilegal")
+                mostrar(pesca_ilegal[pesca_ilegal['estado']=='Modificada'])
+
+            elif 'sobre prohibición' == ly :
+                st.subheader("Resoluciones Modificadas en cuanto a prohibiciones")
+                mostrar(pesca_ilegal[pesca_ilegal['estado']=='Modificada'])
+
+            elif 'sobre periodos de pesca' == ly:
+                st.subheader("Resoluciones Modificadas con respecto a los periodos de pescas")
+                mostrar(periodos[periodos['estado']=='Modificada'])
+
+            elif 'sobre autorizacion' == ly:
+                st.subheader("Resoluciones Modificadas con respecto a autorizaciones")
+                mostrar(autorizacion[autorizacion['estado']=='Modificada'])
+
+            elif "sobre arte de pesca" == ly:
+                st.subheader("Resoluciones Modificadas con respecto a artes de pesca")
+                mostrar(artes_pesca[artes_pesca['estado']=='Modificada'])
+
+            elif 'otros' == ly:
+                st.subheader("Otras resoluciones modificadas")
+                mostrar(pesca[pesca['estado']=='Modificada'])
+
+        elif check:
             if 'cantidad de Resoluciones por año' == ly:
                 st.subheader("Resoluciones Derogadas")
                 mostrar(merge[merge['estado']=='Derogada'])
