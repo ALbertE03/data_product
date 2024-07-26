@@ -60,7 +60,7 @@ def scraping(payload,name):
                     estado = soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-estado-norma-juridica field-type-taxonomy-term-reference field-label-inline clearfix').find('div',class_='field-items').find('div',class_='field-item even').a.text
             
                 else:
-                    estado = 'No disponible'
+                    estado = 'Vigente'
                 if soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-normas-deroga-norma field-type-entityreference field-label-above') is not None:
                     listas = soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-normas-deroga-norma field-type-entityreference field-label-above').find('div',class_='field-items').find_all('div')
                     for div in listas:
@@ -136,7 +136,7 @@ def scraping(payload,name):
                                 estado = soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-estado-norma-juridica field-type-taxonomy-term-reference field-label-inline clearfix').find('div',class_='field-items').find('div',class_='field-item even').a.text
                         
                             else:
-                                estado = 'No disponible'
+                                estado = 'Vigente'
 
                             if soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-normas-deroga-norma field-type-entityreference field-label-above') is not None:
                                 listas = soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-normas-deroga-norma field-type-entityreference field-label-above').find('div',class_='field-items').find_all('div')

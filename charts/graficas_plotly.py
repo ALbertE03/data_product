@@ -120,24 +120,38 @@ def contar(df,target):
     for i in df:
         if  i == target:
             cont+=1
-    print(cont)
-    print("")
     return [cont]
+    
+def llenar_dict(df,aux):
+    dic={}
+    for i in df:
+        dic[f'{i}'] = contar(aux,i)
+    return dic
 
-dic={}
-for i in a:
-    dic[f"{i}"] = contar(merge['año'],i)
-
+    
+dic= llenar_dict(a,merge['año'])
 years = list(dic.keys())
 values = [value[0] for value in dic.values()]
 
-dic1={}
-b= autorizacion['año'].unique()
-for i in b:
-    dic1[f'{i}'] = contar(autorizacion['año'],i)
-
+dic1= llenar_dict(autorizacion['año'].unique(),autorizacion['año'])
 values1 = [value1[0] for value1 in  dic1.values()]
 years1 = list(dic1.keys())
-leyes_annos = go.Figure(data=[go.Bar(x=years, y=values)])
 
+dic2 = llenar_dict(pesca_ilegal['año'].unique(),pesca_ilegal['año'])
+values2 = [values2[0] for values2 in dic2.values()]
+years2 = list(dic2.keys())
+
+dic3 = llenar_dict(prohibicion['año'].unique(),prohibicion['año'])
+values3 = [values3[0] for values3 in dic3.values()]
+years3 = list(dic3.keys())
+
+
+dic4 = llenar_dict(periodos['año'].unique(),periodos['año'])
+values4 = [values4[0] for values4 in dic4.values()]
+years4 = list(dic4.keys())
+
+leyes_annos = go.Figure(data=[go.Bar(x=years, y=values)])
 leyes_auto = go.Figure(data = [go.Bar(x=years1, y = values1)])
+leyes_ilegal = go.Figure(data = [go.Bar(x= years2, y= values2)])
+leyes_prohi = go.Figure(data = [go.Bar(x= years3, y= values3)])
+leyes_periodo = go.Figure(data = [go.Bar(x= years4, y= values4)])

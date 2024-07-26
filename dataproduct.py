@@ -2,8 +2,13 @@ import streamlit as st
 from charts.graficas_plotly import *
 import plotly.graph_objects as go
 import plotly.io as pio
-import time
 
+
+def mostrar(a):
+    st.write(a)
+
+def mostrar_grafica(graf):
+    st.plotly_chart(graf)
 
 st.set_page_config(
     page_title="Data Product",
@@ -84,46 +89,95 @@ def leyes():
     st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
     ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])
     if 'cantidad de Resoluciones por año' == ly:
-        st.plotly_chart(leyes_annos)
+        mostrar_grafica(leyes_annos)
         
     if 'sobre pesca ilegal' == ly:
-        pass
+        mostrar(leyes_ilegal)
     if 'sobre prohibición' == ly:
-        pass
-    if 'sobre prohibición' == ly:
-        pass
+        mostrar(leyes_prohi)
     if 'sobre periodos de pesca' == ly:
-        pass
+        mostrar(leyes_periodo)
     if 'sobre autorizacion' == ly:
-        st.plotly_chart(leyes_auto)
+        mostrar_grafica(leyes_auto)
+
     if "sobre arte de pesca" == ly:
         pass
     if  'otros' == ly:
         pass
-
+    
     if st.checkbox("Mostrar las resoluciones"):
-        if 'cantidad de Resoluciones por año' == ly:
+        check = st.checkbox("derogadas")
+        if check:
+            if 'cantidad de Resoluciones por año' == ly:
+                st.subheader("Resoluciones Derogadas")
+                mostrar(merge[merge['estado']=='Derogada'])
+                mostrar( str(len(merge[merge['estado']=='Derogada']))+ " Derogadas")
+
+            elif 'sobre pesca ilegal' == ly:
+                st.subheader("Resoluciones Derogadas sobre pesca ilegal")
+                mostrar(pesca_ilegal[pesca_ilegal['estado']=='Derogada'])
+                mostrar(str(len(pesca_ilegal[pesca_ilegal['estado']=='Derogada']))+ ' Derogadas')
+
+            elif 'sobre prohibición' == ly :
+                st.subheader("Resoluciones Derogadas sobre prohibición")
+                mostrar(prohibicion[prohibicion['estado']=='Derogada'])
+                mostrar(str(len(prohibicion[prohibicion['estado']=='Derogada']))+ ' Derogadas')
+
+            elif 'sobre periodos de pesca' == ly:
+                st.subheader("Resoluciones Derogadas sobre los periodos de pesca")
+                mostrar(periodos[periodos['estado']=='Derogada'])
+                mostrar(str(len(periodos[periodos['estado']=='Derogada']))+ ' Derogadas')
+
+            elif 'sobre autorizacion' == ly:
+                st.subheader("Resoluciones Derogadas sobre autorizaciones")
+                mostrar(autorizacion[autorizacion['estado']=='Derogada'])
+                mostrar( str(len(autorizacion[autorizacion['estado']=='Derogada']))+' Derogadas')
+
+            elif "sobre arte de pesca" == ly:
+                st.subheader("Resoluciones Derogadas sobre artes de pesca")
+                mostrar(artes_pesca[artes_pesca['estado']=='Derogada'])
+                mostrar(str(len(artes_pesca[artes_pesca['estado']=='Derogada']))+ ' Derogadas')
+            
+            elif 'otros' == ly:
+                st.subheader("Resoluciones Derogadas sobre artes de pesca")
+                mostrar(pesca[pesca['estado']=='Derogada'])
+                mostrar( str(len(pesca[pesca['estado']=='Derogada']))+' Derogadas')
+
+        elif  'cantidad de Resoluciones por año' == ly:
             st.subheader('Todas las Resoluciones sobre Pesca en Cuba')
-            merge
-        if 'sobre pesca ilegal' == ly:
+            mostrar(merge)
+            mostrar("total: "+str(len(merge)))
+        
+        elif 'sobre pesca ilegal' == ly:
             st.subheader("Resoluciones sobre la pesca ilegal")
-            if len(pesca_ilegal):
-                pesca_ilegal
-        if 'sobre prohibición' == ly:
+            mostrar(pesca_ilegal)
+            mostrar("total: "+str(len(pesca_ilegal)))
+
+        elif 'sobre prohibición' == ly :
             st.subheader("Resoluciones sobre prohibiciones en la pesca")
             prohibicion
-        if 'sobre periodos de pesca' == ly:
+            mostrar("total: "+str(len(prohibicion)))
+
+        elif 'sobre periodos de pesca' == ly:
             st.subheader("Resoluciones sobre los periodos de pesca")
             periodos
-        if 'sobre autorizacion' == ly:
+            mostrar("total: "+str(len(periodos)))
+
+        elif 'sobre autorizacion' == ly:
             st.subheader('Resoluciones sobre autorizaciones en la pesca')
-            autorizacion
-        if "sobre arte de pesca" == ly:
+            mostrar(autorizacion)
+            mostrar("total: "+str(len(autorizacion)))
+            
+        elif "sobre arte de pesca" == ly:
             st.subheader("Resoluciones sobre el arte de la pesca")
             artes_pesca
-        if  'otros' == ly:
+            mostrar("total: "+str(len(artes_pesca)))
+        elif  'otros' == ly:
             st.subheader("Resoluciones sobre pesca")
             pesca
+            mostrar("total: "+str(len(pesca)))
+
+    
     
 def mapas():
     st.title("Empresas de Pesca en Cuba")
@@ -226,7 +280,7 @@ pages = {
     "Inicio": principal,
     "Económico": economico,
     "Localización e investigación": mapas,
-    'leyes':leyes
+    'leyes y Resoluciones':leyes
 }
 
 selection = st.sidebar.radio("Ir a", list(pages.keys()))
