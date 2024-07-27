@@ -4,6 +4,3 @@ streamlit
 yfinance
 pandas-datareader
 prophet
-bs4
-requests
-csv
