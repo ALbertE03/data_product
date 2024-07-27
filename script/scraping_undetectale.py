@@ -7,7 +7,7 @@ import csv
 def scraping(payload,name):
     
     with open (name,'w', newline='',encoding='utf-8') as csvfile:
-        fielname=['resolución','publicado','identificador','resumen','numero','año','norma_que_modifica','normas_que_la_modifican','norma_que_la_deroga','estado','normas_que_deroga']
+        fielname=['Resolución','Publicado','Identificador','Resumen','Número','Año','Norma que modifica','Normas que la modifican','Norma que la deroga','Estado','Normas que deroga']
         writer=csv.DictWriter(csvfile,fieldnames=fielname)
         writer.writeheader()
         #response = requests.get('https://app.scrapingbee.com/api/v1/', params=params)
@@ -29,6 +29,7 @@ def scraping(payload,name):
 
                 if soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-gaceta-oficial-norma field-type-viewfield field-label-inline clearfix').find('div',class_='field-items').find('div',class_='field-item even').find('div',class_='view-content') is not  None:
                     publicado= soup1.find('div',class_='container content-main').find('div',class_='region region-content').find('div',class_='content').find('div',class_='node node-norma-juridica').find('div',class_='content clearfix').find('div',class_='field field-name-field-gaceta-oficial-norma field-type-viewfield field-label-inline clearfix').find('div',class_='field-items').find('div',class_='field-item even').find('div',class_='view-content').find('div',class_='views-row views-row-1 views-row-odd views-row-first views-row-last').find('div',class_='views-field views-field-title').a.text
+                    
                 else:
                     publicado = 'No disponible'
                 print(publicado)
@@ -70,17 +71,17 @@ def scraping(payload,name):
                 else:
                     normas_que_deroga = "No deroga"
                 writer.writerow({
-                    'resolución':resolucion,
-                    'publicado':publicado,
-                    'identificador':identificador_de_norma,
-                    'resumen':resumen,
-                    'numero':numero,
-                    'año':año,
-                    'norma_que_modifica':norma_que_modifica,
-                    'normas_que_la_modifican':norma_que_la_modifica,
-                    'norma_que_la_deroga':norma_que_la_deroga,
-                    'estado':estado,
-                    'normas_que_deroga':normas_que_deroga
+                    'Resolución':resolucion,
+                    'Publicado':publicado,
+                    'Identificador':identificador_de_norma,
+                    'Resumen':resumen,
+                    'Número':numero,
+                    'Año':año,
+                    'Norma que modifica':norma_que_modifica,
+                    'Normas que la modifican':norma_que_la_modifica,
+                    'Norma que la deroga':norma_que_la_deroga,
+                    'Estado':estado,
+                    'Normas que deroga':normas_que_deroga
                     
                 })
             if paginas is not None:
@@ -148,17 +149,17 @@ def scraping(payload,name):
                                 normas_que_deroga = "No deroga"
                             
                             writer.writerow({
-                                'resolución':resolucion,
-                                'publicado':publicado,
-                                'identificador':identificador_de_norma,
-                                'resumen':resumen,
-                                'numero':numero,
-                                'año':año,
-                                'norma_que_modifica':norma_que_modifica,
-                                'normas_que_la_modifican':norma_que_la_modifica,
-                                'norma_que_la_deroga':norma_que_la_deroga,
-                                'estado':estado,
-                                'normas_que_deroga':normas_que_deroga
+                                'Resolución':resolucion,
+                                'Publicado':publicado,
+                                'Identificador':identificador_de_norma,
+                                'Resumen':resumen,
+                                'Número':numero,
+                                'Año':año,
+                                'Norma que modifica':norma_que_modifica,
+                                'Normas que la modifican':norma_que_la_modifica,
+                                'Norma que la deroga':norma_que_la_deroga,
+                                'Estado':estado,
+                                'Normas que deroga':normas_que_deroga
                                 
                             })
                     else:

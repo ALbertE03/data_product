@@ -106,15 +106,15 @@ p14=px.bar(mypimesdf.T['La Isla de la Juventud'])
 
 
 #leyes
-artes_pesca = pd.read_csv('data/artes_de_pesca.csv')
-autorizacion = pd.read_csv('data/autorizacion.csv')
-pesca_ilegal = pd.read_csv('data/pesca_ilegal.csv')
-periodos = pd.read_csv('data/periodo_de_pesca.csv')
-prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv')
-pesca = pd.read_csv("data/pesca.csv")
+artes_pesca = pd.read_csv('data/artes_de_pesca.csv',index_col=0)
+autorizacion = pd.read_csv('data/autorizacion.csv',index_col=0)
+pesca_ilegal = pd.read_csv('data/pesca_ilegal.csv',index_col=0)
+periodos = pd.read_csv('data/periodo_de_pesca.csv',index_col=0)
+prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv',index_col=0)
+pesca = pd.read_csv("data/pesca.csv",index_col=0)
 
 merge = pd.concat([artes_pesca,autorizacion,pesca,pesca_ilegal,prohibicion,periodos])
-a=merge['año'].unique()
+a=merge['Año'].unique()
 def contar(df,target):
     cont = 0 
     for i in df:
@@ -129,32 +129,32 @@ def llenar_dict(df,aux):
     return dic
 
     
-dic= llenar_dict(a,merge['año'])
+dic= llenar_dict(a,merge['Año'])
 years = list(dic.keys())
 values = [value[0] for value in dic.values()]
 
-dic1= llenar_dict(autorizacion['año'].unique(),autorizacion['año'])
+dic1= llenar_dict(autorizacion['Año'].unique(),autorizacion['Año'])
 values1 = [value1[0] for value1 in  dic1.values()]
 years1 = list(dic1.keys())
 
-dic2 = llenar_dict(pesca_ilegal['año'].unique(),pesca_ilegal['año'])
+dic2 = llenar_dict(pesca_ilegal['Año'].unique(),pesca_ilegal['Año'])
 values2 = [values2[0] for values2 in dic2.values()]
 years2 = list(dic2.keys())
 
-dic3 = llenar_dict(prohibicion['año'].unique(),prohibicion['año'])
+dic3 = llenar_dict(prohibicion['Año'].unique(),prohibicion['Año'])
 values3 = [values3[0] for values3 in dic3.values()]
 years3 = list(dic3.keys())
 
 
-dic4 = llenar_dict(periodos['año'].unique(),periodos['año'])
+dic4 = llenar_dict(periodos['Año'].unique(),periodos['Año'])
 values4 = [values4[0] for values4 in dic4.values()]
 years4 = list(dic4.keys())
 
-dic5 = llenar_dict(artes_pesca['año'].unique(),artes_pesca['año'])
+dic5 = llenar_dict(artes_pesca['Año'].unique(),artes_pesca['Año'])
 values5 = [values5[0] for values5 in dic5.values()]
 years5 = list(dic5.keys())
 
-dic6 = llenar_dict(pesca['año'].unique(),pesca['año'])
+dic6 = llenar_dict(pesca['Año'].unique(),pesca['Año'])
 values6 = [values6[0] for values6 in dic6.values()]
 years6 = list(dic6.keys())
 
