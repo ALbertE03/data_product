@@ -107,12 +107,12 @@ p14=px.bar(mypimesdf.T['La Isla de la Juventud'])
 
 
 #leyes
-artes_pesca = pd.read_csv('data/artes_de_pesca.csv',index_col=0)
-autorizacion = pd.read_csv('data/autorizacion.csv',index_col=0)
-pesca_ilegal = pd.read_csv('data/pesca_ilegal.csv',index_col=0)
-periodos = pd.read_csv('data/periodo_de_pesca.csv',index_col=0)
-prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv',index_col=0)
-pesca = pd.read_csv("data/pesca.csv",index_col=0)
+artes_pesca = pd.read_csv('data/artes_de_pesca.csv')
+autorizacion = pd.read_csv('data/autorizacion.csv')
+pesca_ilegal = pd.read_csv('data/pesca_ilegal.csv')
+periodos = pd.read_csv('data/periodo_de_pesca.csv')
+prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv')
+pesca = pd.read_csv("data/pesca.csv")
 
 merge = pd.concat([artes_pesca,autorizacion,pesca,pesca_ilegal,prohibicion,periodos])
 
