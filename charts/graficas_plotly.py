@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import plotly.io as pio
 import json
 
 df = pd.read_json("./data/exportaciones.json")
@@ -169,9 +170,28 @@ leyes_arte = go.Figure(data = [go.Bar(x= years5, y= values5)])
 leyes_otros = go.Figure(data = [go.Bar(x= years6, y= values6)])
 
 
-#grficos de leyes derogadas
+#mapas
 
+fig = go.Figure(go.Scattermapbox(lat=[20.329436],lon=[-77.153311],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
+fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
+pio.write_html(fig,file="mapa.html")
 
+fig1 = go.Figure(go.Scattermapbox(lat=[20.329436],lon=[-77.153311],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['PescaGram']))
+fig1.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
+pio.write_html(fig1,file="mapa1.html")
 
+fig2 = go.Figure(go.Scattermapbox(lat=[22.526927],lon=[-79.467644],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EPICAI']))
+fig2.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=22.526927,lon=-79.467644),zoom=13))
+pio.write_html(fig2,file="mapa2.html")
 
-#vigentes
+fig3 = go.Figure(go.Scattermapbox(lat=[22.169549],lon=[-80.480796],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EPICIEN']))
+fig3.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=22.169549,lon=-80.480796),zoom=13))
+pio.write_html(fig3,file="mapa3.html")
+
+fig4 = go.Figure(go.Scattermapbox(lat=[23.161990],lon=[-82.290785],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['Pesca Caribe']))
+fig4.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=23.161990,lon=-82.290785),zoom=13))
+pio.write_html(fig4,file="mapa4.html")
+
+fig5 = go.Figure(go.Scattermapbox(lat=[23.119680],lon=[-82.354357],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['GEIP']))
+fig5.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=23.119680,lon=-82.354357),zoom=13))
+pio.write_html(fig5,file="mapa5.html")
