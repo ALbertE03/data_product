@@ -5,4 +5,5 @@ yfinance
 pandas-datareader
 prophet
 bs4
-openpyxl
+requests
+csv

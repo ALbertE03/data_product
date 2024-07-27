@@ -14,16 +14,29 @@ def warning(a):
 
 st.set_page_config(
     page_title="Data Product",
-    page_icon=":fish:",
+    page_icon=":shark:",
+    layout="centered",
+    initial_sidebar_state="expanded",
 )
 
 def principal():
-    pass
+    st.markdown("""<h1 class = 'titulo'>La Pesca en Cuba</h1> <style>
+    .titulo{
+      font-size: 60px;
+      text-align: center;
+    }
+    
+  </style>""",unsafe_allow_html=True)
+    
+    st.write("""<p style='text-aling:center;'>En Económico puede encontrar .... dalia termina esto<p> """,unsafe_allow_html=True)
+    st.write("""En Empresas se encuentran las principales empresas de pesca en Cuba, junto a las pequeñas y medianas empresas""",unsafe_allow_html=True)
+    st.write("En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca",unsafe_allow_html=True)
+
 
 def economico():
     st.title("Captura de diferentes especies")
     opciones = st.selectbox(
-        "Selecione",
+        "",
         [
             "Selecione una especie",
             "Pargo",
@@ -45,7 +58,7 @@ def economico():
             "Camaron de mar",
             "Camaronicultura",
             "Morallas",
-        ],
+        ],help="Selecione una opción para ver las captura realizadas desde el 2001 hasta 2022"
     )
    
     if opciones == "Pargo":
@@ -107,7 +120,9 @@ def leyes():
     if  'otros' == ly:
         mostrar_grafica(leyes_otros)
     
+    
     if st.checkbox("Mostrar las resoluciones"):
+        st.markdown("Selecione un estado")
         check = st.checkbox("derogadas")
         check1 =st.checkbox("Modificadas")
         check2 = st.checkbox("Vigentes")
@@ -161,38 +176,38 @@ def leyes():
         elif  check1:
             if 'cantidad de Resoluciones por año' == ly:
                 st.subheader("Resoluciones Modificadas")
-                mostrar(merge[merge['Estado']== 'Modificada'])
-                mostrar(str(len(merge[merge['Estado']== 'Modificada']))+" Modificadas")
+                mostrar(merge[(merge['Estado']== 'Modificada')|(merge['Estado']== "Copia corregida")])
+                mostrar(str(len(merge[(merge['Estado']== 'Modificada')|(merge['Estado']== "Copia corregida")]))+" Modificadas")
 
             elif 'sobre pesca ilegal' == ly:
                 st.subheader("Resoluciones Modificadas con respecto a la pesca ilegal")
-                mostrar(pesca_ilegal[pesca_ilegal['Estado']=='Modificada'])
-                mostrar(str(len(pesca_ilegal[pesca_ilegal['Estado']=='Modificada']))+" Modificadas")
+                mostrar(pesca_ilegal[(pesca_ilegal['Estado']=='Modificada')|(pesca_ilegal['Estado']=="Copia corregida")])
+                mostrar(str(len(pesca_ilegal[(pesca_ilegal['Estado']=='Modificada')|(pesca_ilegal['Estado']=="Copia corregida")]))+" Modificadas")
 
             elif 'sobre prohibición' == ly :
                 st.subheader("Resoluciones Modificadas en cuanto a prohibiciones")
-                mostrar(pesca_ilegal[pesca_ilegal['Estado']=='Modificada'])
-                mostrar(str(len(pesca_ilegal[pesca_ilegal['Estado']=='Modificada']))+" Modificadas")
+                mostrar(pesca_ilegal[(pesca_ilegal['Estado']=='Modificada')|(pesca_ilegal['Estado']=="Copia corregida")])
+                mostrar(str(len(pesca_ilegal[(pesca_ilegal['Estado']=='Modificada')|(pesca_ilegal['Estado']=="Copia corregida")]))+" Modificadas")
 
             elif 'sobre periodos de pesca' == ly:
                 st.subheader("Resoluciones Modificadas con respecto a los periodos de pescas")
-                mostrar(periodos[periodos['Estado']=='Modificada'])
-                mostrar(str(len(periodos[periodos['Estado']=='Modificada']))+" Modificadas")
+                mostrar(periodos[(periodos['Estado']=='Modificada')|(periodos['Estado']=="Copia corregida")])
+                mostrar(str(len(periodos[(periodos['Estado']=='Modificada')|(periodos['Estado']=="Copia corregida")]))+" Modificadas")
 
             elif 'sobre autorizacion' == ly:
                 st.subheader("Resoluciones Modificadas con respecto a autorizaciones")
-                mostrar(autorizacion[autorizacion['Estado']=='Modificada'])
-                mostrar(str(len(autorizacion[autorizacion['Estado']=='Modificada']))+" Modificadas")
+                mostrar(autorizacion[(autorizacion['Estado']=='Modificada')|(autorizacion['Estado']=="Copia corregida")])
+                mostrar(str(len(autorizacion[(autorizacion['Estado']=='Modificada')|(autorizacion['Estado']=="Copia corregida")]))+" Modificadas")
 
             elif "sobre arte de pesca" == ly:
                 st.subheader("Resoluciones Modificadas con respecto a artes de pesca")
-                mostrar(artes_pesca[artes_pesca['Estado']=='Modificada'])
-                mostrar(str(len(artes_pesca[artes_pesca['Estado']=='Modificada']))+" Modificadas")
+                mostrar(artes_pesca[(artes_pesca['Estado']=='Modificada')|(artes_pesca['Estado']=="Copia corregida")])
+                mostrar(str(len(artes_pesca[(artes_pesca['Estado']=='Modificada')|(artes_pesca['Estado']=="Copia corregida")]))+" Modificadas")
 
             elif 'otros' == ly:
                 st.subheader("Otras resoluciones modificadas")
-                mostrar(pesca[pesca['Estado']=='Modificada'])
-                mostrar(str(len(pesca[pesca['Estado']=='Modificada']))+" Modificadas")
+                mostrar(pesca[(pesca['Estado']=='Modificada')|(pesca['Estado']=="Copia corregida")])
+                mostrar(str(len(pesca[(pesca['Estado']=='Modificada')|(pesca['Estado']=="Copia corregida")]))+" Modificadas")
 
         elif check:
             if 'cantidad de Resoluciones por año' == ly:
@@ -265,7 +280,6 @@ def leyes():
             pesca
             mostrar("total: "+str(len(pesca)))
 
-    
     
 def mapas():
     st.title("Empresas de Pesca en Cuba")
@@ -367,7 +381,7 @@ def mapas():
 pages = {
     "Inicio": principal,
     "Económico": economico,
-    "Localización e investigación": mapas,
+    "Empresas": mapas,
     'leyes y Resoluciones':leyes
 }
 

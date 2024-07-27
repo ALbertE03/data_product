@@ -114,6 +114,7 @@ prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv',index_col=0)
 pesca = pd.read_csv("data/pesca.csv",index_col=0)
 
 merge = pd.concat([artes_pesca,autorizacion,pesca,pesca_ilegal,prohibicion,periodos])
+
 a=merge['Año'].unique()
 def contar(df,target):
     cont = 0 
