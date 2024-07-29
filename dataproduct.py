@@ -35,7 +35,7 @@ def principal():
 
 def economico():
         
-        st.title("Captura de diferentes especies")
+        st.title("Captura de diferentes especies en Cuba")
         opciones = st.selectbox(
             "",
             [
@@ -59,7 +59,7 @@ def economico():
                 "Camaron de mar",
                 "Camaronicultura",
                 "Morallas",
-            ],help="Selecione una opción para ver las captura realizadas desde el 2001 hasta 2022"
+            ],help="Selecione una opción para las captura realizadas desde el 2001 hasta 2022"
         )
     
         if opciones == "Pargo":
@@ -101,12 +101,13 @@ def economico():
         elif opciones == "Morallas":
             st.plotly_chart(moralla)
 
+        st.title("Exportaciones e Importaciones")
         epo = st.checkbox('Exportaciones')
         
-
         if epo:
             precios = st.checkbox("Precios")
             if precios:
+                st.subheader("Exportaciones de Productos seleccionados en la Clasificación Uniforme para el Comercio Internacioal (CUCI)")
                 mostrar_grafica(miles_peso_line)
             mostrar_grafica(grupos_exp_line)
 

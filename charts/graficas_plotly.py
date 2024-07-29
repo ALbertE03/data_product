@@ -51,16 +51,14 @@ for j in (exp):
 miles_peso = pd.DataFrame(miles_peso)
 miles_peso = miles_peso.T
 miles_peso.columns = [x for x in range(1998,2023)]
-miles_peso.index = ['Animales vivos','Carne y preparados de carne','Productos lácteos y huevos de aves','Pescado',' Pescado y marisco fresco y congelado',' Pescado y marisco en conserva','Cereales y preparados de cereales','Legumbres y frutas','Papas','  Pimientos','  Cítricos','Conservas de frutas y vegetales','Azúcares, preparados de azúcar y miel','Azúcar','Melaza de caña','Caramelos','Miel natural',' Café, té, cacao, especias y sus preparados','Manteca, grasa o aceite de cacao',' Pienso para animales','Productos y preparados comestibles diversos']
-miles_peso_line = px.line(miles_peso.T)
+miles_peso = miles_peso.drop(index=2).drop(index=1).drop(index=0).drop(index=3).drop(index=6).drop(index=7).drop(index=12).drop(index=17).drop(index=19).drop(index=20)
+miles_peso.index = [ 'Pescado y marisco fresco y congelado',' Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
+
+miles_peso_line = px.line(miles_peso.T,title="Precios de CUCI")
 miles_peso_line.update_layout(
     xaxis_title= "años",
     yaxis_title = 'Millones de pesos (MP)'
 )
-
-
-
-
 
 #por grupos
 with open ("./data/exportaciones_por_grupos.json",'r') as yeison:
@@ -245,20 +243,94 @@ mypimesdf=mypimesdf.drop([0])
 mypimesdf.index=['Pinar del Rio',"Artemisa","La Habana","Mayabeque","Matanzas","Villa Clara","Cienfuegos","Santi Spiritus","Ciego de Ávila","Camagüey","Las Tunas","Holguín","Granma","Santiago de Cuba","Guantánamo","La Isla de la Juventud"]
 
 p=px.bar(mypimesdf.T['Pinar del Rio'])
+p.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p1=px.bar(mypimesdf.T['Artemisa'])
+p1.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p2=px.bar(mypimesdf.T['La Habana'])
+p2.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p3=px.bar(mypimesdf.T['Mayabeque'])
+p3.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p4=px.bar(mypimesdf.T['Matanzas'])
+p4.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p5=px.bar(mypimesdf.T['Villa Clara'])
+p5.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p6=px.bar(mypimesdf.T['Cienfuegos'])
+p6.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p7=px.bar(mypimesdf.T['Santi Spiritus'])
+p7.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p8=px.bar(mypimesdf.T['Ciego de Ávila'])
+p8.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p9=px.bar(mypimesdf.T['Camagüey'])
+p9.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p10=px.bar(mypimesdf.T['Las Tunas'])
+p10.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p11=px.bar(mypimesdf.T['Granma'])
+p11.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p12=px.bar(mypimesdf.T['Santiago de Cuba'])
+p12.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p13=px.bar(mypimesdf.T['Guantánamo'])
+p13.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
+
 p14=px.bar(mypimesdf.T['La Isla de la Juventud'])
+p14.update_layout(
+    xaxis_title="Empresas",
+    yaxis_title='Cantidad'
+)
 
 
 #leyes
