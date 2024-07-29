@@ -4,3 +4,5 @@ streamlit
 yfinance
 pandas-datareader
 prophet
+streamlit-analytics
+numpy

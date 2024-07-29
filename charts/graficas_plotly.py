@@ -3,28 +3,105 @@ import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
 import json
+import numpy as np
+#economico
+with open ("./data/exportaciones_por_mercancias.json",'r') as file:
+    df = json.load(file)
+index = [x for x in df['Unnamed: 2'] if x.lstrip() != 'Cantidad' and x.lstrip() != "Valor"]
 
-df = pd.read_json("./data/exportaciones.json")
-df.index = [x for x in range(1998, 2023)]
-df.columns = [x for x in range(1, 83)]
-data = pd.DataFrame(
-    {
-        "animales vivos": df[3],
-        "productos lácteos": df[4],
-        "moluscos y crustáceos": df[5],
-        "mariscos congelados": df[7],
-        "mariscos en conserva": df[9],
-        "legumbres y frutas": df[10],
-        "citrícos": df[12],
-        "azúcares": df[15],
-        "miel natural": df[18],
-        "cafe, té, cacao": df[19],
-        "manteca": df[21],
-        "bebidas alcholicas": df[26],
-        "tabaco": df[27],
-    }
+columns= ['names'] + [x for x in range(1998,2023)]
+exp = {}
+
+
+#arreglar el json
+for i,j in enumerate(df):
+    contador = 0 
+    auxiliar=[]
+    for u in df[j]:
+        if contador >= 3:
+            auxiliar.append(u)
+        contador+=1
+    exp[str(columns[i])] = auxiliar
+
+# arreglar primera parte (productos alimenticios y animales vivos)
+toneladas=[]
+miles_peso=[]
+
+for j in (exp):
+    if j != "names":
+        y=[]
+        o=[]
+        for t,u in enumerate(exp[j]):
+            
+            if t<32:
+                
+                if t == 4 or t==6 or t==10 or t==12 or t ==14 or t==16 or t==19 or t==21 or t==23 or t==25  or t ==28:
+                    if isinstance(u,str):
+                        y.append(0)
+                    else:
+                        y.append(u)
+                elif isinstance(u,str):
+                     o.append(0)
+                else:
+                    o.append(u) 
+                    
+        miles_peso.append(o)           
+        toneladas.append(y)
+
+miles_peso = pd.DataFrame(miles_peso)
+miles_peso = miles_peso.T
+miles_peso.columns = [x for x in range(1998,2023)]
+miles_peso.index = ['Animales vivos','Carne y preparados de carne','Productos lácteos y huevos de aves','Pescado',' Pescado y marisco fresco y congelado',' Pescado y marisco en conserva','Cereales y preparados de cereales','Legumbres y frutas','Papas','  Pimientos','  Cítricos','Conservas de frutas y vegetales','Azúcares, preparados de azúcar y miel','Azúcar','Melaza de caña','Caramelos','Miel natural',' Café, té, cacao, especias y sus preparados','Manteca, grasa o aceite de cacao',' Pienso para animales','Productos y preparados comestibles diversos']
+miles_peso_line = px.line(miles_peso.T)
+miles_peso_line.update_layout(
+    xaxis_title= "años",
+    yaxis_title = 'Millones de pesos (MP)'
 )
-exportaciones = px.line(data, title="exportaciones de productos en millones de pesos")
+
+
+
+
+
+#por grupos
+with open ("./data/exportaciones_por_grupos.json",'r') as yeison:
+        grupos_exp = json.load(yeison)
+años =[x for x  in range(1984,2023)]
+grupos_exp_real = {}
+for i,j in enumerate(grupos_exp):
+    if i !=0:
+        r=[]
+        for e,t in enumerate(grupos_exp[j]):
+            if j == "Unnamed: 37":
+                if e ==0 or e ==1 or e == 2:
+                    continue
+            elif j =="Unnamed: 18":
+                if e ==0 or e ==1 or e == 2:
+                    continue
+            elif e ==0 or e ==1:
+                continue
+            r.append(t)
+        
+        grupos_exp_real[años[i]] = r
+
+
+grupos_exp_real = pd.DataFrame(grupos_exp_real)
+
+grupos_exp_real = grupos_exp_real.T.drop([1985]).drop([1986]).drop([1987])
+
+grupos_exp_real.index = [x for x in range(1989,2023)]
+grupos_exp_real = grupos_exp_real.T
+grupos_auxiliar = grupos_exp_real.copy()
+corr = grupos_auxiliar[grupos_auxiliar[2012]!="\u2026"].corr() 
+
+
+grupos_exp_real.index = ['Productos agropecuarios','Productos de la Pesca',"Productos de la industria azucarera","Productos de la minería","Productos de la industria del tabaco","Otros productos"]
+grupos_exp_real  = grupos_exp_real.drop(index="Otros productos")
+grupos_exp_line = px.line(grupos_exp_real.T,title="Exportaciones de mercancías por grupos de productos")
+grupos_exp_line.update_layout(
+    xaxis_title="años",
+    yaxis_title='millones de pesos(MP)'
+)
+
 
 #peces
 peces = pd.read_json("./data/grupos_de_especies.json")
@@ -53,29 +130,108 @@ peces.index = [
 ]
 peces = peces.T
 fish = px.line(peces, title="capturas de peces en toneladas")
+fish.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 pargo = px.line(peces["Pargo"], title="Capturas de Pargo en Toneladas")
+pargo.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 Cherna = px.line(peces["Cherna"], title="Capturas de Cherna en Toneladas")
+Cherna.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 tunidos = px.line(peces["Túnidos"], title="Capturas de Túnidos en Toneladas")
+tunidos.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 bonitos = px.line(peces["Bonito"], title="Capturas de Bonito en Toneladas")
+bonitos.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 biajaiba = px.line(peces["Biajaiba"], title="Capturas de Biajaiba en Toneladas")
+biajaiba.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 machuelo = px.line(peces["Machuelo"], title="Capturas de Machuelo en Toneladas")
+machuelo.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 rabirubia = px.line(peces["Rabirubia"], title="Capturas de Rabirubia en Toneladas")
+rabirubia.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 raya = px.line(peces["Raya"], title="Capturas de Raya en Toneladas")
+raya.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 carpa = px.line(peces["Carpa"], title="Capturas de Carpa en Toneladas")
+carpa.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 tenca = px.line(peces["Tenca"], title="Capturas de Tenca en Toneladas")
+tenca.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 tilapia = px.line(peces["Tilapia"], title="Capturas de Tilapia en Toneladas")
+tilapia.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 claria = px.line(peces["Claria"], title="Capturas de Claria en Toneladas")
+claria.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 cobo = px.line(peces["Cobo"], title="Capturas de Cobo en Toneladas")
+cobo.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 ostion = px.line(peces["Ostión"], title="Capturas de Ostión en Toneladas")
+ostion.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 almeja = px.line(peces["Almeja"], title="Capturas de Almeja en Toneladas")
+almeja.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 langosta = px.line(peces["Langosta"], title="Capturas de Langosta en Toneladas")
+langosta.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 camaron_de_mar = px.line(
     peces["Camarón de Mar"], title="Capturas de Camarón de Mar en Toneladas"
 )
+camaron_de_mar.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 camaronicultura = px.line(
     peces["Camaronicultura"], title="Capturas de Camaronicultura en Toneladas"
 )
+camaronicultura.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
+
 moralla = px.line(peces["Moralla"], title="Capturas de Moralla en Toneladas")
+moralla.update_layout(
+    xaxis_title="años",
+    yaxis_title = 'captura en toneladas(T)')
 
 
 
@@ -87,7 +243,6 @@ mypimesdf.columns=['alojamiento de servicios de comida','Agricultura,Pesca,Ganad
 
 mypimesdf=mypimesdf.drop([0])
 mypimesdf.index=['Pinar del Rio',"Artemisa","La Habana","Mayabeque","Matanzas","Villa Clara","Cienfuegos","Santi Spiritus","Ciego de Ávila","Camagüey","Las Tunas","Holguín","Granma","Santiago de Cuba","Guantánamo","La Isla de la Juventud"]
-
 
 p=px.bar(mypimesdf.T['Pinar del Rio'])
 p1=px.bar(mypimesdf.T['Artemisa'])
@@ -115,7 +270,7 @@ prohibicion  = pd.read_csv('data/prohibicion_de_pesca.csv')
 pesca = pd.read_csv("data/pesca.csv")
 
 merge = pd.concat([artes_pesca,autorizacion,pesca,pesca_ilegal,prohibicion,periodos])
-
+merge.index = [x for x in range(1,len(merge)+1)]
 a=merge['Año'].unique()
 def contar(df,target):
     cont = 0 
