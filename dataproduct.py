@@ -14,8 +14,6 @@ def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
     bot = telegram.Bot(token=token)
-
-    data = {'chat_id':chat_id,'text': feedback}
     try:
         bot.send_message(chat_id=chat_id,text=feedback)
         st.toast("Recivido ✅")
