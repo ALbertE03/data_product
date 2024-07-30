@@ -9,4 +9,4 @@ numpy
 streamlit-folium
 folium
 streamlit-feedback
-streamlit python-telegram-bot
+telegram
