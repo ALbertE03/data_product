@@ -12,7 +12,7 @@ import requests
 def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
-    url_base = f'https://api.telegram.org/bot{token}/sendMessage'
+    url = f'https://api.telegram.org/bot{token}/sendMessage'
     data = {'chat_id':chat_id,'text': feedback}
     try:
         requests.post(url,data=data)
