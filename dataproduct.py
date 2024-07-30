@@ -5,25 +5,23 @@ import streamlit_analytics
 import folium
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
-import os
-import csv
-import requests
+import telegram
+
+
+
 
 def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
-    url = f'https://api.telegram.org/bot{token}/sendMessage'
+    bot = telegram.Bot(token=token)
+
     data = {'chat_id':chat_id,'text': feedback}
     try:
-        requests.post(url,data=data)
+        bot.send_message(chat_id=chat_id,text=feedback)
         st.toast("Recivido ✅")
     except Exception as e :
         st.toast('Error al enviar el mensaje',e)
     
-
-    
-    
-
 def mostrar(a):
         st.write(a)
 
