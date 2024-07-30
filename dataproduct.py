@@ -13,7 +13,7 @@ st.set_page_config(
         layout="wide",
         
     )
-def recivir_feedback(feedback):
+async def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
     bot = telegram.Bot(token=token)
