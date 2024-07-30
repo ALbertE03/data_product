@@ -13,13 +13,13 @@ st.set_page_config(
         layout="wide",
         
     )
-async def recivir_feedback(feedback):
+def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
     bot = telegram.Bot(token=token)
 
     try:
-        await bot.send_message(chat_id=chat_id,text=feedback)
+        bot.send_message(chat_id=chat_id,text=feedback)
         st.toast("Recibido ✅")
     except Exception as e :
         st.toast('Error al enviar el mensaje',e)
