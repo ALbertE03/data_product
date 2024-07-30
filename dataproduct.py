@@ -144,7 +144,8 @@ def economico():
                 ton = st.selectbox("Toneladas de los Diferentes productos",[ 'Pescado y marisco fresco y congelado','Pescado y marisco en conserva'])
                 if ton == "Pescado y marisco en conserva":
                     mostrar_grafica_sin(toneladas_bar1)
-                mostrar_grafica_sin(toneladas_bar)
+                else:
+                    mostrar_grafica_sin(toneladas_bar)
 
             if leg:
                 mostrar_grafica(grupos_exp_line)
