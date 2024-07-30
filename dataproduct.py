@@ -7,14 +7,21 @@ from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 import os
 import csv
+import requests
 
 def recivir_feedback(feedback):
-    data = [feedback]
+    token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
+    chat_id = '1883265786'
+    url_base = f'https://api.telegram.org/bot{token}/sendMessage'
+    data = {'chat_id':chat_id,'text': feedback}
+    try:
+        requests.post(url,data=data)
+    except:
+        st.toast('Error al enviar el mensaje')
     st.toast("Recivido ✅")
+
     
-    with open ( "feedback.csv",'a',newline='')as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(data)
+    
 
 def mostrar(a):
         st.write(a)
@@ -47,8 +54,9 @@ def principal():
         st.subheader("Dejar suguerencias")
         feed= st.text_area("escribir suguerencias")
         if st.button("Enviar"):
-            recivir_feedback(feed)
-            pass
+            if feed:
+                recivir_feedback(feed)
+            
         
 def economico():
         
