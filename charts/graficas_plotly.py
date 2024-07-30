@@ -4,8 +4,8 @@ import plotly.graph_objects as go
 import json
 import numpy as np
 import folium
-
-
+import matplotlib.pyplot as plt
+import seaborn as sns
 #economico
 with open ("./data/exportaciones_por_mercancias.json",'r') as file:
     df = json.load(file)
@@ -79,7 +79,6 @@ toneladas_bar1.update_layout(
     yaxis_title = 'Cantidad en Toneladas(T)'
 )
 
-
 #por grupos
 with open ("./data/exportaciones_por_grupos.json",'r') as yeison:
         grupos_exp = json.load(yeison)
@@ -108,8 +107,6 @@ grupos_exp_real = grupos_exp_real.T.drop([1985]).drop([1986]).drop([1987])
 grupos_exp_real.index = [x for x in range(1989,2023)]
 grupos_exp_real = grupos_exp_real.T
 grupos_auxiliar = grupos_exp_real.copy()
-corr = grupos_auxiliar[grupos_auxiliar[2012]!="\u2026"].corr() 
-
 
 grupos_exp_real.index = ['Productos agropecuarios','Productos de la Pesca',"Productos de la industria azucarera","Productos de la minería","Productos de la industria del tabaco","Otros productos"]
 grupos_exp_real  = grupos_exp_real.drop(index="Otros productos")
@@ -118,6 +115,13 @@ grupos_exp_line.update_layout(
     xaxis_title="años",
     yaxis_title='millones de pesos(MP)'
 )
+
+#correlaciones
+concatenacion = pd.concat([miles_peso.T['Pescado y marisco fresco y congelado'],toneladas_.T['Pescado y marisco fresco y congelado']],axis=1)
+concatenacion.columns = ['Precio','cantidad(T)']
+corr = concatenacion.corr()
+matriz = plt.figure(figsize=(4,4))
+sns.heatmap(corr,annot=True,cmap='coolwarm',vmin=-1,vmax=1,center=0)
 
 
 #peces

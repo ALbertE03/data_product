@@ -146,7 +146,24 @@ def economico():
                     mostrar_grafica_sin(toneladas_bar1)
                 else:
                     mostrar_grafica_sin(toneladas_bar)
-
+                correla = st.checkbox("Correlación precio-volumen")
+                if correla  and ton == "Pescado y marisco en conserva":
+                    st.markdown("""<h3 class = 'corr1'> Precio-Volumen de Pescado y marisco en conserva</h3>
+                    <style>
+                    .corr1{
+                        text-aling:center;
+                    }
+                    </style>
+                    """,unsafe_allow_html=True)
+                elif correla and 'Pescado y marisco fresco y congelado':
+                    st.markdown("""<h3 class = 'corr'> Precio-Volumen de Pescado y marisco fresco y congelado </h3>
+                    <style>
+                    .corr{
+                        text-aling:center;
+                    }
+                    </style>
+                    """,unsafe_allow_html=True)
+                    st.pyplot(matriz)
             if leg:
                 mostrar_grafica(grupos_exp_line)
             else:
