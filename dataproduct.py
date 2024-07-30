@@ -7,10 +7,13 @@ from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 import telegram
 
-
-
-
-def recivir_feedback(feedback):
+st.set_page_config(
+        page_title="Data Product",
+        page_icon=":shark:",
+        layout="wide",
+        
+    )
+async def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
     bot = telegram.Bot(token=token)
@@ -34,12 +37,6 @@ def mostrar_grafica_sin(g):
 def warning(a):
         st.warning(a)
 
-st.set_page_config(
-        page_title="Data Product",
-        page_icon=":shark:",
-        layout="wide"
-    )
-
 def principal():
         st.markdown("""<h1 class = 'titulo'>La Pesca en Cuba</h1> <style>
         .titulo{
@@ -59,7 +56,8 @@ def principal():
             if feed:
                 recivir_feedback(feed)
             
-        
+@st.cache_resource
+@st.cache_data   
 def economico():
         
         st.title("Captura de diferentes especies en Cuba")
@@ -158,7 +156,8 @@ def economico():
         if impo:
             pass
 
-
+@st.cache_resource
+@st.cache_data 
 def leyes():
         st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
         ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])
@@ -345,7 +344,8 @@ def leyes():
                 mostrar(pesca)
                 mostrar("total: "+str(len(pesca)))
 
-        
+@st.cache_resource
+@st.cache_data     
 def mapas():
         st.title("Empresas de Pesca en Cuba")
         option=st.selectbox("",['Mypimes','EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])
@@ -413,7 +413,6 @@ pages = {
         "Empresas": mapas,
         'leyes y Resoluciones':leyes
     }
-
 
 
 selection = st.sidebar.radio("Ir a", pages.keys())
