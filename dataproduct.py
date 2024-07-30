@@ -16,9 +16,10 @@ def recivir_feedback(feedback):
     data = {'chat_id':chat_id,'text': feedback}
     try:
         requests.post(url,data=data)
-    except:
-        st.toast('Error al enviar el mensaje')
-    st.toast("Recivido ✅")
+        st.toast("Recivido ✅")
+    except Exception as e :
+        st.toast('Error al enviar el mensaje',e)
+    
 
     
     
