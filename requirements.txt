@@ -8,3 +8,4 @@ streamlit-analytics
 numpy
 streamlit-folium
 folium
+streamlit-feedback

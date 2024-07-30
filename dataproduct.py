@@ -4,12 +4,23 @@ import plotly.graph_objects as go
 import streamlit_analytics
 import folium
 from streamlit_folium import st_folium
+from streamlit_feedback import streamlit_feedback
+import os
+import csv
+
+def recivir_feedback(feedback):
+    data = [feedback]
+    st.toast("Recivido ✅")
+    
+    with open ( "feedback.csv",'a',newline='')as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(data)
 
 def mostrar(a):
         st.write(a)
 
 def mostrar_grafica(graf):
-        st.plotly_chart(graf)
+        st.plotly_chart(graf,use_container_width=True)
 
 def warning(a):
         st.warning(a)
@@ -17,8 +28,7 @@ def warning(a):
 st.set_page_config(
         page_title="Data Product",
         page_icon=":shark:",
-        layout="centered",
-        initial_sidebar_state="expanded",
+        layout="wide"
     )
 
 def principal():
@@ -32,8 +42,14 @@ def principal():
         st.write("""<p style='text-aling:center;'>En Económico puede encontrar .... dalia termina esto<p> """,unsafe_allow_html=True)
         st.write("""En Empresas se encuentran las principales empresas de pesca en Cuba, junto a las pequeñas y medianas empresas""",unsafe_allow_html=True)
         st.write("En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca",unsafe_allow_html=True)
+        
 
-
+        st.subheader("Dejar suguerencias")
+        feed= st.text_area("escribir suguerencias")
+        if st.button("Enviar"):
+            recivir_feedback(feed)
+            pass
+        
 def economico():
         
         st.title("Captura de diferentes especies en Cuba")
@@ -64,43 +80,43 @@ def economico():
         )
     
         if opciones == "Pargo":
-            st.plotly_chart(pargo)
+            mostrar_grafica(pargo)
         elif opciones == "Cherna":
-            st.plotly_chart(Cherna)
+            mostrar_grafica(Cherna)
         elif opciones == "Túnidos":
-            st.plotly_chart(tunidos)
+            mostrar_grafica(tunidos)
         elif opciones == "Bonito":
-            st.plotly_chart(bonitos)
+            mostrar_grafica(bonitos)
         elif opciones == "Biajaiba":
-            st.plotly_chart(biajaiba)
+            mostrar_grafica(biajaiba)
         elif opciones == "Machuelo":
-            st.plotly_chart(machuelo)
+            mostrar_grafica(machuelo)
         elif opciones == "Rabirubia":
-            st.plotly_chart(rabirubia)
+            mostrar_grafica(rabirubia)
         elif opciones == "Raya":
-            st.plotly_chart(raya)
+            mostrar_grafica(raya)
         elif opciones == "Carpa":
-            st.plotly_chart(carpa)
+            mostrar_grafica(carpa)
         elif opciones == "Tencas":
-            st.plotly_chart(tenca)
+            mostrar_grafica(tenca)
         elif opciones == "Tilapia":
-            st.plotly_chart(tilapia)
+            mostrar_grafica(tilapia)
         elif opciones == "Claria":
-            st.plotly_chart(claria)
+            mostrar_grafica(claria)
         elif opciones == "Cobo":
-            st.plotly_chart(cobo)
+            mostrar_grafica(cobo)
         elif opciones == "Ostión":
-            st.plotly_chart(ostion)
+            mostrar_grafica(ostion)
         elif opciones == "Almeja":
-            st.plotly_chart(almeja)
+            mostrar_grafica(almeja)
         elif opciones == "Langosta":
-            st.plotly_chart(langosta)
+            mostrar_grafica(langosta)
         elif opciones == "Camaron de mar":
-            st.plotly_chart(camaron_de_mar)
+            mostrar_grafica(camaron_de_mar)
         elif opciones == "Camaronicultura":
-            st.plotly_chart(camaronicultura)
+            mostrar_grafica(camaronicultura)
         elif opciones == "Morallas":
-            st.plotly_chart(moralla)
+            mostrar_grafica(moralla)
 
         st.title("Exportaciones e Importaciones")
         epo = st.checkbox('Exportaciones')
@@ -316,35 +332,35 @@ def mapas():
         if option == 'Mypimes':
             o=st.selectbox("",mypimesdf.index)
             if o =='Pinar del Rio':
-                st.plotly_chart(p)
+                mostrar_grafica(p)
             if o == "Artemisa":
-                st.plotly_chart(p1)
+                mostrar_grafica(p1)
             if o == 'La Habana':
-                st.plotly_chart(p2)
+                mostrar_grafica(p2)
             if o== "Mayabeque":
-                st.plotly_chart(p3)
+                mostrar_grafica(p3)
             if o =="Matanzas":
-                st.plotly_chart(p4)
+                mostrar_grafica(p4)
             if o == "Villa Clara":
-                st.plotly_chart(p5)
+                mostrar_grafica(p5)
             if o =="Cienfuegos":
-                st.plotly_chart(p6)
+                mostrar_grafica(p6)
             if  o =="Santi Spiritus":
-                st.plotly_chart(p7)
+                mostrar_grafica(p7)
             if o =="Ciego de Ávila":
-                st.plotly_chart(p8)
+                mostrar_grafica(p8)
             if o =="Camagüey":
-                st.plotly_chart(p9)
+                mostrar_grafica(p9)
             if o =="Las Tunas":
-                st.plotly_chart(p10)
+                mostrar_grafica(p10)
             if o =="Holguín":
-                st.plotly_chart(p11)
+                mostrar_grafica(p11)
             if o =="Santiago de Cuba":
-                st.plotly_chart(p12)
+                mostrar_grafica(p12)
             if o =="Guantánamo":
-                st.plotly_chart(p13)
+                mostrar_grafica(p13)
             if o =="La Isla de la Juventud":  
-                st.plotly_chart(p14)
+                mostrar_grafica(p14)
                 
         if option == "EpiGram":
             st.subheader("EpiGram")
@@ -376,6 +392,8 @@ pages = {
         "Empresas": mapas,
         'leyes y Resoluciones':leyes
     }
+
+
 
 selection = st.sidebar.radio("Ir a", pages.keys())
 pages[selection]()
