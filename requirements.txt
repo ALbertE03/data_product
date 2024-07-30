@@ -6,3 +6,5 @@ pandas-datareader
 prophet
 streamlit-analytics
 numpy
+streamlit-folium
+folium

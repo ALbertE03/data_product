@@ -2,7 +2,8 @@ import streamlit as st
 from charts.graficas_plotly import *
 import plotly.graph_objects as go
 import streamlit_analytics
-
+import folium
+from streamlit_folium import st_folium
 
 def mostrar(a):
         st.write(a)
@@ -105,10 +106,15 @@ def economico():
         epo = st.checkbox('Exportaciones')
         
         if epo:
-            precios = st.checkbox("Precios")
+            st.info("Todos los valores faltantes fueron rellenados con valor el 0")
+            precios = st.checkbox("Precios y Toneladas CUCI")
             if precios:
                 st.subheader("Exportaciones de Productos seleccionados en la Clasificación Uniforme para el Comercio Internacioal (CUCI)")
                 mostrar_grafica(miles_peso_line)
+                ton = st.selectbox("Toneladas de los Diferentes productos",[ 'Pescado y marisco fresco y congelado','Pescado y marisco en conserva'])
+                if ton == "Pescado y marisco en conserva":
+                    mostrar_grafica(toneladas_bar1)
+                mostrar_grafica(toneladas_bar)
             mostrar_grafica(grupos_exp_line)
 
         impo = st.checkbox("Importaciones")
@@ -198,12 +204,12 @@ def leyes():
                 if 'cantidad de Resoluciones por año' == ly:
                     st.subheader("Resoluciones Modificadas")
                     mostrar(merge[(merge['Estado'] == 'Modificada')|(merge['Estado'] == "Copia corregida")])
-                    mostrar(str(len(merge[(merge['Estado']== 'Modificada')|(merge['Estado'] == "Copia corregida")]))+" Modificadas")
+                    mostrar(str(len(merge[(merge['Estado']== 'Modificada')|(merge['Estado'] == "Copia corregida")])) + " Modificadas")
 
                 elif 'sobre pesca ilegal' == ly:
                     st.subheader("Resoluciones Modificadas con respecto a la pesca ilegal")
                     mostrar(pesca_ilegal[(pesca_ilegal['Estado'] =='Modificada')|(pesca_ilegal['Estado'] == "Copia corregida")])
-                    mostrar(str(len(pesca_ilegal[(pesca_ilegal['Estado'] =='Modificada')|(pesca_ilegal['Estado'] == "Copia corregida")]))+" Modificadas")
+                    mostrar(str(len(pesca_ilegal[(pesca_ilegal['Estado'] =='Modificada')|(pesca_ilegal['Estado'] == "Copia corregida")])) + " Modificadas")
 
                 elif 'sobre prohibición' == ly :
                     st.subheader("Resoluciones Modificadas en cuanto a prohibiciones")
@@ -342,39 +348,27 @@ def mapas():
                 
         if option == "EpiGram":
             st.subheader("EpiGram")
-            with open("mapa.html",'r') as f:
-                html =f.read()
-            st.components.v1.html(html,height=500)
+            st_folium(m,width = 700,height=700)
 
         if option == "PESCAGRAM":
             st.subheader("PESCAGRAM")
-            with open("mapa1.html",'r') as f:
-                html =f.read()
-            st.components.v1.html(html,height=500)
+            st_folium(m1,width=700,height=700)
 
         if option == "EPICAI":
             st.subheader("EPICAI")
-            with open("mapa2.html",'r') as f:
-                html =f.read()
-            st.components.v1.html(html,height=500)
+            st_folium(m2,width=700,height=700)
         
         if option == "EPICIEN":
             st.subheader("EPICIEN")
-            with open("mapa3.html",'r') as f:
-                html =f.read()
-            st.components.v1.html(html,height=500)
+            st_folium(m3,width=700,height=700)
         
         if option == "Pesca Caribe":
             st.subheader("Pesca Caribe")
-            with open("mapa4.html",'r') as f:
-                html =f.read()
-            st.components.v1.html(html,height=500)
+            st_folium(m4,width=700,height=700)
 
         if option == "GEIP":
             st.subheader("Grupo Empresarial de La Industria Pesquera (GEIP)")
-            with open("mapa5.html",'r') as f:
-                html =f.read()
-            st.components.v1.html(html,height=500)
+            st_folium(m5,width=700,height=700)
 
 pages = {
         "Inicio": principal,

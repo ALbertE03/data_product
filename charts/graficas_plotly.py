@@ -1,9 +1,11 @@
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import plotly.io as pio
 import json
 import numpy as np
+import folium
+
+
 #economico
 with open ("./data/exportaciones_por_mercancias.json",'r') as file:
     df = json.load(file)
@@ -11,7 +13,6 @@ index = [x for x in df['Unnamed: 2'] if x.lstrip() != 'Cantidad' and x.lstrip() 
 
 columns= ['names'] + [x for x in range(1998,2023)]
 exp = {}
-
 
 #arreglar el json
 for i,j in enumerate(df):
@@ -48,6 +49,7 @@ for j in (exp):
         miles_peso.append(o)           
         toneladas.append(y)
 
+
 miles_peso = pd.DataFrame(miles_peso)
 miles_peso = miles_peso.T
 miles_peso.columns = [x for x in range(1998,2023)]
@@ -59,6 +61,32 @@ miles_peso_line.update_layout(
     xaxis_title= "años",
     yaxis_title = 'Millones de pesos (MP)'
 )
+
+toneladas_ = pd.DataFrame(toneladas)
+toneladas_ =toneladas_.T
+toneladas_.columns = [x for x in range(1998,2023)]
+toneladas_.index = [ 'Pescado y marisco fresco y congelado','Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
+
+toneladas_bar = px.bar(toneladas_.T['Pescado y marisco fresco y congelado'],title="Toneladas Exportadas")
+toneladas_bar.update_layout(
+    xaxis_title = 'años',
+    yaxis_title = 'Cantidad en Toneladas(T)'
+)
+
+toneladas_bar1 = px.bar(toneladas_.T['Pescado y marisco en conserva'],title="Toneladas Exportadas")
+toneladas_bar1.update_layout(
+    xaxis_title = 'años',
+    yaxis_title = 'Cantidad en Toneladas(T)'
+)
+
+
+
+
+
+
+
+
+
 
 #por grupos
 with open ("./data/exportaciones_por_grupos.json",'r') as yeison:
@@ -83,7 +111,6 @@ for i,j in enumerate(grupos_exp):
 
 
 grupos_exp_real = pd.DataFrame(grupos_exp_real)
-
 grupos_exp_real = grupos_exp_real.T.drop([1985]).drop([1986]).drop([1987])
 
 grupos_exp_real.index = [x for x in range(1989,2023)]
@@ -399,26 +426,24 @@ leyes_otros = go.Figure(data = [go.Bar(x= years6, y= values6)])
 
 #mapas
 
-fig = go.Figure(go.Scattermapbox(lat=[20.329436],lon=[-77.153311],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EpiGram']))
-fig.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
-pio.write_html(fig,file="mapa.html")
+m = folium.Map(location =[20.329436,-77.153311]) 
+m.add_child(folium.Marker(location=[20.329436,-77.153311]))
 
-fig1 = go.Figure(go.Scattermapbox(lat=[20.329436],lon=[-77.153311],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['PescaGram']))
-fig1.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=20.329436,lon=-77.153311),zoom=13))
-pio.write_html(fig1,file="mapa1.html")
 
-fig2 = go.Figure(go.Scattermapbox(lat=[22.526927],lon=[-79.467644],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EPICAI']))
-fig2.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=22.526927,lon=-79.467644),zoom=13))
-pio.write_html(fig2,file="mapa2.html")
+m1 = folium.Map(location=[20.329436,-77.153311])
+m1.add_child(folium.Marker(location=[20.329436,-77.153311]))
 
-fig3 = go.Figure(go.Scattermapbox(lat=[22.169549],lon=[-80.480796],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['EPICIEN']))
-fig3.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=22.169549,lon=-80.480796),zoom=13))
-pio.write_html(fig3,file="mapa3.html")
 
-fig4 = go.Figure(go.Scattermapbox(lat=[23.161990],lon=[-82.290785],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['Pesca Caribe']))
-fig4.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=23.161990,lon=-82.290785),zoom=13))
-pio.write_html(fig4,file="mapa4.html")
+m2 = folium.Map(location=[22.526927,-79.467644])
+m2.add_child(folium.Marker(location=[22.526927,-79.467644]))
 
-fig5 = go.Figure(go.Scattermapbox(lat=[23.119680],lon=[-82.354357],mode='markers',marker=go.scattermapbox.Marker(size=14),text=['GEIP']))
-fig5.update_layout(mapbox_style='open-street-map',mapbox=dict(center=go.layout.mapbox.Center(lat=23.119680,lon=-82.354357),zoom=13))
-pio.write_html(fig5,file="mapa5.html")
+m3 = folium.Map(location=[22.169549,-80.480796])
+m3.add_child(folium.Marker(location=[22.169549,-80.480796]))
+
+
+m4 = folium.Map(location=[23.161990,-82.290785])
+m4.add_child(folium.Marker(location=[23.161990,-82.290785]))
+
+
+m5 = folium.Map(location=[23.119680,-82.354357])
+m5.add_child(folium.Marker(location=[23.119680,-82.354357]))
