@@ -10,3 +10,4 @@ streamlit-folium
 folium
 streamlit-feedback
 telegram
+python-telegram-bot
