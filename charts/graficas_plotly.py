@@ -80,14 +80,6 @@ toneladas_bar1.update_layout(
 )
 
 
-
-
-
-
-
-
-
-
 #por grupos
 with open ("./data/exportaciones_por_grupos.json",'r') as yeison:
         grupos_exp = json.load(yeison)
@@ -156,86 +148,103 @@ peces.index = [
 peces = peces.T
 fish = px.line(peces, title="capturas de peces en toneladas")
 fish.update_layout(
+    showlegend= False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 pargo = px.line(peces["Pargo"], title="Capturas de Pargo en Toneladas")
 pargo.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 Cherna = px.line(peces["Cherna"], title="Capturas de Cherna en Toneladas")
 Cherna.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 tunidos = px.line(peces["Túnidos"], title="Capturas de Túnidos en Toneladas")
 tunidos.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 bonitos = px.line(peces["Bonito"], title="Capturas de Bonito en Toneladas")
 bonitos.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 biajaiba = px.line(peces["Biajaiba"], title="Capturas de Biajaiba en Toneladas")
 biajaiba.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 machuelo = px.line(peces["Machuelo"], title="Capturas de Machuelo en Toneladas")
 machuelo.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 rabirubia = px.line(peces["Rabirubia"], title="Capturas de Rabirubia en Toneladas")
 rabirubia.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 raya = px.line(peces["Raya"], title="Capturas de Raya en Toneladas")
 raya.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 carpa = px.line(peces["Carpa"], title="Capturas de Carpa en Toneladas")
 carpa.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 tenca = px.line(peces["Tenca"], title="Capturas de Tenca en Toneladas")
 tenca.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 tilapia = px.line(peces["Tilapia"], title="Capturas de Tilapia en Toneladas")
 tilapia.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 claria = px.line(peces["Claria"], title="Capturas de Claria en Toneladas")
 claria.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 cobo = px.line(peces["Cobo"], title="Capturas de Cobo en Toneladas")
 cobo.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 ostion = px.line(peces["Ostión"], title="Capturas de Ostión en Toneladas")
 ostion.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 almeja = px.line(peces["Almeja"], title="Capturas de Almeja en Toneladas")
 almeja.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 langosta = px.line(peces["Langosta"], title="Capturas de Langosta en Toneladas")
 langosta.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
@@ -243,6 +252,7 @@ camaron_de_mar = px.line(
     peces["Camarón de Mar"], title="Capturas de Camarón de Mar en Toneladas"
 )
 camaron_de_mar.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
@@ -250,11 +260,13 @@ camaronicultura = px.line(
     peces["Camaronicultura"], title="Capturas de Camaronicultura en Toneladas"
 )
 camaronicultura.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 moralla = px.line(peces["Moralla"], title="Capturas de Moralla en Toneladas")
 moralla.update_layout(
+    showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 

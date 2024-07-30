@@ -16,7 +16,7 @@ def recivir_feedback(feedback):
     bot = telegram.Bot(token=token)
     try:
         bot.send_message(chat_id=chat_id,text=feedback)
-        st.toast("Recivido ✅")
+        st.toast("Recibido ✅")
     except Exception as e :
         st.toast('Error al enviar el mensaje',e)
     
@@ -24,7 +24,12 @@ def mostrar(a):
         st.write(a)
 
 def mostrar_grafica(graf):
+        graf.update_layout(showlegend =True)
         st.plotly_chart(graf,use_container_width=True)
+        
+def mostrar_grafica_sin(g):
+    g.update_layout(showlegend=False)
+    st.plotly_chart(g,use_container_width=True)
 
 def warning(a):
         st.warning(a)
@@ -85,43 +90,43 @@ def economico():
         )
     
         if opciones == "Pargo":
-            mostrar_grafica(pargo)
+            mostrar_grafica_sin(pargo)
         elif opciones == "Cherna":
-            mostrar_grafica(Cherna)
+            mostrar_grafica_sin(Cherna)
         elif opciones == "Túnidos":
-            mostrar_grafica(tunidos)
+            mostrar_grafica_sin(tunidos)
         elif opciones == "Bonito":
-            mostrar_grafica(bonitos)
+            mostrar_grafica_sin(bonitos)
         elif opciones == "Biajaiba":
-            mostrar_grafica(biajaiba)
+            mostrar_grafica_sin(biajaiba)
         elif opciones == "Machuelo":
-            mostrar_grafica(machuelo)
+            mostrar_grafica_sin(machuelo)
         elif opciones == "Rabirubia":
-            mostrar_grafica(rabirubia)
+            mostrar_grafica_sin(rabirubia)
         elif opciones == "Raya":
-            mostrar_grafica(raya)
+            mostrar_grafica_sin(raya)
         elif opciones == "Carpa":
-            mostrar_grafica(carpa)
+            mostrar_grafica_sin(carpa)
         elif opciones == "Tencas":
-            mostrar_grafica(tenca)
+            mostrar_grafica_sin(tenca)
         elif opciones == "Tilapia":
-            mostrar_grafica(tilapia)
+            mostrar_grafica_sin(tilapia)
         elif opciones == "Claria":
-            mostrar_grafica(claria)
+            mostrar_grafica_sin(claria)
         elif opciones == "Cobo":
-            mostrar_grafica(cobo)
+            mostrar_grafica_sin(cobo)
         elif opciones == "Ostión":
-            mostrar_grafica(ostion)
+            mostrar_grafica_sin(ostion)
         elif opciones == "Almeja":
-            mostrar_grafica(almeja)
+            mostrar_grafica_sin(almeja)
         elif opciones == "Langosta":
-            mostrar_grafica(langosta)
+            mostrar_grafica_sin(langosta)
         elif opciones == "Camaron de mar":
-            mostrar_grafica(camaron_de_mar)
+            mostrar_grafica_sin(camaron_de_mar)
         elif opciones == "Camaronicultura":
-            mostrar_grafica(camaronicultura)
+            mostrar_grafica_sin(camaronicultura)
         elif opciones == "Morallas":
-            mostrar_grafica(moralla)
+            mostrar_grafica_sin(moralla)
 
         st.title("Exportaciones e Importaciones")
         epo = st.checkbox('Exportaciones')
@@ -129,16 +134,27 @@ def economico():
         if epo:
             st.info("Todos los valores faltantes fueron rellenados con valor el 0")
             precios = st.checkbox("Precios y Toneladas CUCI")
+            leg = st.checkbox("Mostrar leyendas")
             if precios:
                 st.subheader("Exportaciones de Productos seleccionados en la Clasificación Uniforme para el Comercio Internacioal (CUCI)")
-                mostrar_grafica(miles_peso_line)
+                
+                if leg:
+                    mostrar_grafica(miles_peso_line)
+                else:
+                    mostrar_grafica_sin(miles_peso_line)
+                
                 ton = st.selectbox("Toneladas de los Diferentes productos",[ 'Pescado y marisco fresco y congelado','Pescado y marisco en conserva'])
                 if ton == "Pescado y marisco en conserva":
-                    mostrar_grafica(toneladas_bar1)
-                mostrar_grafica(toneladas_bar)
-            mostrar_grafica(grupos_exp_line)
+                    mostrar_grafica_sin(toneladas_bar1)
+                mostrar_grafica_sin(toneladas_bar)
+
+            if leg:
+                mostrar_grafica(grupos_exp_line)
+            else:
+                mostrar_grafica_sin(grupos_exp_line)
 
         impo = st.checkbox("Importaciones")
+
         if impo:
             pass
 
@@ -147,24 +163,24 @@ def leyes():
         st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
         ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])
         if 'cantidad de Resoluciones por año' == ly:
-            mostrar_grafica(leyes_annos)
+            mostrar_grafica_sin(leyes_annos)
             
         if 'sobre pesca ilegal' == ly:
             mostrar(leyes_ilegal)
 
         elif 'sobre prohibición' == ly:
-            mostrar(leyes_prohi)
+            mostrar_grafica_sin(leyes_prohi)
 
         elif 'sobre periodos de pesca' == ly:
-            mostrar(leyes_periodo)
+            mostrar_grafica_sin(leyes_periodo)
 
         elif 'sobre autorizacion' == ly:
-            mostrar_grafica(leyes_auto)
+            mostrar_grafica_sin(leyes_auto)
 
         elif "sobre arte de pesca" == ly:
-            mostrar_grafica(leyes_arte)
+            mostrar_grafica_sin(leyes_arte)
         elif  'otros' == ly:
-            mostrar_grafica(leyes_otros)
+            mostrar_grafica_sin(leyes_otros)
         
         
         if st.checkbox("Mostrar las resoluciones"):
@@ -337,35 +353,35 @@ def mapas():
         if option == 'Mypimes':
             o=st.selectbox("",mypimesdf.index)
             if o =='Pinar del Rio':
-                mostrar_grafica(p)
+                mostrar_grafica_sin(p)
             if o == "Artemisa":
-                mostrar_grafica(p1)
+                mostrar_grafica_sin(p1)
             if o == 'La Habana':
-                mostrar_grafica(p2)
+                mostrar_grafica_sin(p2)
             if o== "Mayabeque":
-                mostrar_grafica(p3)
+                mostrar_grafica_sin(p3)
             if o =="Matanzas":
-                mostrar_grafica(p4)
+                mostrar_grafica_sin(p4)
             if o == "Villa Clara":
-                mostrar_grafica(p5)
+                mostrar_grafica_sin(p5)
             if o =="Cienfuegos":
-                mostrar_grafica(p6)
+                mostrar_grafica_sin(p6)
             if  o =="Santi Spiritus":
-                mostrar_grafica(p7)
+                mostrar_grafica_sin(p7)
             if o =="Ciego de Ávila":
-                mostrar_grafica(p8)
+                mostrar_grafica_sin(p8)
             if o =="Camagüey":
-                mostrar_grafica(p9)
+                mostrar_grafica_sin(p9)
             if o =="Las Tunas":
-                mostrar_grafica(p10)
+                mostrar_grafica_sin(p10)
             if o =="Holguín":
-                mostrar_grafica(p11)
+                mostrar_grafica_sin(p11)
             if o =="Santiago de Cuba":
-                mostrar_grafica(p12)
+                mostrar_grafica_sin(p12)
             if o =="Guantánamo":
-                mostrar_grafica(p13)
+                mostrar_grafica_sin(p13)
             if o =="La Isla de la Juventud":  
-                mostrar_grafica(p14)
+                mostrar_grafica_sin(p14)
                 
         if option == "EpiGram":
             st.subheader("EpiGram")
