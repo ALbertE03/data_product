@@ -5,7 +5,7 @@ import streamlit_analytics
 import folium
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
-from telegram import Bot
+import telebot
 
 st.set_page_config(
         page_title="Data Product",
@@ -16,8 +16,7 @@ st.set_page_config(
 def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
-    bot = Bot(token=token)
-
+    bot = telebot.TeleBot(token)
     try:
         bot.send_message(chat_id=chat_id,text=feedback)
         st.toast("Recibido ✅")
