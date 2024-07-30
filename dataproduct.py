@@ -9,7 +9,7 @@ import telegram
 
 st.set_page_config(
         page_title="Data Product",
-        page_icon=":shark:",
+        page_icon="🦈",
         layout="wide",
         
     )
@@ -56,7 +56,7 @@ def principal():
             if feed:
                 recivir_feedback(feed)
             
-@st.cache_resource
+
 @st.cache_data   
 def economico():
         
@@ -156,7 +156,7 @@ def economico():
         if impo:
             pass
 
-@st.cache_resource
+
 @st.cache_data 
 def leyes():
         st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
@@ -344,7 +344,7 @@ def leyes():
                 mostrar(pesca)
                 mostrar("total: "+str(len(pesca)))
 
-@st.cache_resource
+
 @st.cache_data     
 def mapas():
         st.title("Empresas de Pesca en Cuba")
