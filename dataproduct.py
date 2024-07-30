@@ -57,7 +57,7 @@ def principal():
                 recivir_feedback(feed)
             
 
-@st.cache_data   
+  
 def economico():
         
         st.title("Captura de diferentes especies en Cuba")
@@ -157,7 +157,7 @@ def economico():
             pass
 
 
-@st.cache_data 
+
 def leyes():
         st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
         ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])
@@ -345,7 +345,7 @@ def leyes():
                 mostrar("total: "+str(len(pesca)))
 
 
-@st.cache_data     
+
 def mapas():
         st.title("Empresas de Pesca en Cuba")
         option=st.selectbox("",['Mypimes','EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])
