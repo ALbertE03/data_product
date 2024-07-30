@@ -11,3 +11,5 @@ folium
 streamlit-feedback
 telegram
 pyTelegramBotAPI
+seaborn
+matplotlib
