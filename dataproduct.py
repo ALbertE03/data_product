@@ -5,7 +5,7 @@ import streamlit_analytics
 import folium
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
-import telegram
+from telegram import Bot
 
 st.set_page_config(
         page_title="Data Product",
@@ -16,7 +16,7 @@ st.set_page_config(
 def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
     chat_id = '1883265786'
-    bot = telegram.Bot(token=token)
+    bot = Bot(token=token)
 
     try:
         bot.send_message(chat_id=chat_id,text=feedback)
