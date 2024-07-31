@@ -13,7 +13,7 @@ with streamlit_analytics.track(save_to_json="track.json"):
 
     @bot.message_handler(commands=['json'])
     def  enviar(message):
-        with open("track.json",'rb')as doc_file:
+        with open("track.json",'rb') as doc_file:
             bot.reply_to(message,doc_file)
 
     st.set_page_config(
@@ -462,6 +462,7 @@ with streamlit_analytics.track(save_to_json="track.json"):
             'leyes y Resoluciones':leyes
         }
 
-    bot.infinity_polling()
+   
     selection = st.sidebar.radio("Ir a", pages.keys())
     pages[selection]()
+    
