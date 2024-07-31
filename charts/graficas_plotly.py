@@ -84,10 +84,10 @@ miles_peso,toneladas = separar(exp,True)
 miles_peso = pd.DataFrame(miles_peso)
 miles_peso = miles_peso.T
 miles_peso.columns = [x for x in range(1998,2023)]
-miles_peso = miles_peso.drop(index=2).drop(index=1).drop(index=0).drop(index=3).drop(index=6).drop(index=7).drop(index=12).drop(index=17).drop(index=19).drop(index=20)
-miles_peso.index = [ 'Pescado y marisco fresco y congelado','Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
-
-miles_peso_line = px.line(miles_peso.T,title="Precios de CUCI")
+miles_peso = miles_peso.drop(index=[0,1,2,3,6,7,12,17,19,20])
+miles_peso.index = ['Pescado y marisco fresco y congelado','Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
+miles_peso_ = miles_peso.T
+miles_peso_line = px.line(miles_peso_[['Pescado y marisco fresco y congelado','Pescado y marisco en conserva']],title="Precios de CUCI")
 miles_peso_line.update_layout(
     xaxis_title= "años",
     yaxis_title = 'Millones de pesos (MP)'
@@ -97,7 +97,6 @@ toneladas_ = pd.DataFrame(toneladas)
 toneladas_ =toneladas_.T
 toneladas_.columns = [x for x in range(1998,2023)]
 toneladas_.index = [ 'Pescado y marisco fresco y congelado','Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
-
 toneladas_bar = px.bar(toneladas_.T['Pescado y marisco fresco y congelado'],title="Toneladas Exportadas")
 toneladas_bar.update_layout(
     xaxis_title = 'años',
@@ -137,7 +136,7 @@ def arreglar(grupos_exp):
 grupos_exp_real = arreglar(grupos_exp)
 
 grupos_exp_real = pd.DataFrame(grupos_exp_real)
-grupos_exp_real = grupos_exp_real.T.drop([1985]).drop([1986]).drop([1987])
+grupos_exp_real = grupos_exp_real.T.drop([1985,1986,1987])
 
 grupos_exp_real.index = [x for x in range(1989,2023)]
 grupos_exp_real = grupos_exp_real.T
@@ -177,9 +176,21 @@ for i in imp:
 
 
 miles_peso_impo,toneladas_impo = separar(imp_real,False)
-print(toneladas_impo[0])
 
+miles_peso_impo = pd.DataFrame(miles_peso_impo).T.drop(index=[0,1,6,11,14])
+miles_peso_impo.columns = [x for x in range(1998,2023)]
+miles_peso_impo.index = ['Carne de ganado bovino, congelada deshuesada','Carne de ganado porcino, congelada','Carne y despojos comestibles de las aves','Carne y despojos de carne, preparados o en conserva,','Leche condensada','Leche en polvo','Mantequilla','Queso y cuajada','Pescado y marisco fresco y congelado','Otros pescados, preparados o en conserva','Trigo y morcajo o tranquillón sin moler','Arroz consumo','Cebada sin moler']
+miles_peso_impo = miles_peso_impo.T
+miles_peso_impo_line = px.line(miles_peso_impo[['Pescado y marisco fresco y congelado','Otros pescados, preparados o en conserva']])
 
+#barras importacion
+toneladas_impo_ = pd.DataFrame(toneladas_impo).T.drop(index=13)
+toneladas_impo_.columns = [x for x in range(1998,2023)]
+toneladas_impo_.index = ['Carne de ganado bovino, congelada deshuesada','Carne de ganado porcino, congelada','Carne y despojos comestibles de las aves','Carne y despojos de carne, preparados o en conserva,','Leche condensada','Leche en polvo','Mantequilla','Queso y cuajada','Pescado y marisco fresco y congelado','Otros pescados, preparados o en conserva','Trigo y morcajo o tranquillón sin moler','Arroz consumo','Cebada sin moler']
+
+toneladas_impo_bar = px.bar(toneladas_impo_.T['Pescado y marisco fresco y congelado'])
+
+toneladas_impo_bar1 = px.bar(toneladas_impo_.T['Otros pescados, preparados o en conserva'])
 
 #predicción
 suma = miles_peso.T['Pescado y marisco fresco y congelado']+miles_peso.T['Pescado y marisco en conserva'] 
