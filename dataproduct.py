@@ -10,8 +10,7 @@ import telebot
 st.set_page_config(
         page_title="Data Product",
         page_icon="🦈",
-        layout="wide",
-        
+        layout="wide"
     )
 def recivir_feedback(feedback):
     token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
@@ -130,9 +129,12 @@ def economico():
         epo = st.checkbox('Exportaciones')
         
         if epo:
-            st.info("Todos los valores faltantes fueron rellenados con valor el 0")
+            st.info("Todos los valores faltantes fueron rellenados con valor 0")
             precios = st.checkbox("Precios y Toneladas CUCI")
             leg = st.checkbox("Mostrar leyendas")
+            rege = st.checkbox("Predicciones")
+            if rege:
+                st.warning("Proximamente...")
             if precios:
                 st.subheader("Exportaciones de Productos seleccionados en la Clasificación Uniforme para el Comercio Internacioal (CUCI)")
                 
@@ -155,6 +157,11 @@ def economico():
                     }
                     </style>
                     """,unsafe_allow_html=True)
+
+                    st.text("Los valores cercanos a 1 significan que estan directamente relacionados")
+                    st.text("Los valores cercanos a -1 significan que estan inversamente relacionados")
+                    st.pyplot(matriz1)
+
                 elif correla and 'Pescado y marisco fresco y congelado':
                     st.markdown("""<h3 class = 'corr'> Precio-Volumen de Pescado y marisco fresco y congelado </h3>
                     <style>
@@ -163,12 +170,16 @@ def economico():
                     }
                     </style>
                     """,unsafe_allow_html=True)
+
+                    st.markdown("Los valores cercanos a 1 significan que estan directamente relacionados")
+                    st.markdown("Los valores cercanos a -1 significan que estan inversamente relacionados")
                     st.pyplot(matriz)
             if leg:
                 mostrar_grafica(grupos_exp_line)
             else:
                 mostrar_grafica_sin(grupos_exp_line)
 
+            
         impo = st.checkbox("Importaciones")
 
         if impo:

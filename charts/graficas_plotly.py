@@ -6,55 +6,86 @@ import numpy as np
 import folium
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+
 #economico
 with open ("./data/exportaciones_por_mercancias.json",'r') as file:
     df = json.load(file)
 index = [x for x in df['Unnamed: 2'] if x.lstrip() != 'Cantidad' and x.lstrip() != "Valor"]
 
-columns= ['names'] + [x for x in range(1998,2023)]
-exp = {}
 
-#arreglar el json
-for i,j in enumerate(df):
-    contador = 0 
-    auxiliar=[]
-    for u in df[j]:
-        if contador >= 3:
-            auxiliar.append(u)
-        contador+=1
-    exp[str(columns[i])] = auxiliar
 
-# arreglar primera parte (productos alimenticios y animales vivos)
+#arreglar el json de exportacion
+def llenar(df):
+    columns= ['names'] + [x for x in range(1998,2023)]
+    exp ={}
+    for i,j in enumerate(df):
+        contador = 0 
+        auxiliar=[]
+        for u in df[j]:
+            if contador >= 3:
+                auxiliar.append(u)
+            contador+=1
+        exp[str(columns[i])] = auxiliar
+    return exp
+
+exp = llenar(df)
+
+# arreglar primera parte (productos alimenticios y animales vivos) de exportacion
 toneladas=[]
 miles_peso=[]
 
-for j in (exp):
-    if j != "names":
-        y=[]
-        o=[]
-        for t,u in enumerate(exp[j]):
-            
-            if t<32:
-                
-                if t == 4 or t==6 or t==10 or t==12 or t ==14 or t==16 or t==19 or t==21 or t==23 or t==25  or t ==28:
-                    if isinstance(u,str):
-                        y.append(0)
-                    else:
-                        y.append(u)
-                elif isinstance(u,str):
-                     o.append(0)
-                else:
-                    o.append(u) 
+def separar(exp,boolean):
+    miles_peso1=[]
+    toneladas1=[]
+    if boolean:
+        for j in (exp):
+            if j != "names":
+                y=[]
+                o=[]
+                for t,u in enumerate(exp[j]):
                     
-        miles_peso.append(o)           
-        toneladas.append(y)
+                    if t<32:
+                        
+                        if t == 4 or t==6 or t==10 or t==12 or t ==14 or t==16 or t==19 or t==21 or t==23 or t==25  or t ==28:
+                            if isinstance(u,str):
+                                y.append(0)
+                            else:
+                                y.append(u)
+                        elif isinstance(u,str):
+                            o.append(0)
+                        else:
+                            o.append(u) 
+                            
+                miles_peso1.append(o)           
+                toneladas1.append(y)
+        return miles_peso1,toneladas1
+    
+    for j in (exp):
+            if j != "names":
+                y=[]
+                o=[]
+                for t,u in enumerate(exp[j]):
+                    if t<32:
+                        if t == 4 or t==6 or t==10 or t==12 or t ==14 or t==16 or t==19 or t==21 or t==23 or t==25  or t ==28:
+                            if isinstance(u,str):
+                                y.append(0)
+                            else:
+                                y.append(u)
+                        elif isinstance(u,str):
+                            o.append(0)
+                        else:
+                            o.append(u) 
+                miles_peso1.append(o)           
+                toneladas1.append(y)
+    return miles_peso1,toneladas1
 
-
+miles_peso,toneladas = separar(exp,True)
 miles_peso = pd.DataFrame(miles_peso)
 miles_peso = miles_peso.T
 miles_peso.columns = [x for x in range(1998,2023)]
 miles_peso = miles_peso.drop(index=2).drop(index=1).drop(index=0).drop(index=3).drop(index=6).drop(index=7).drop(index=12).drop(index=17).drop(index=19).drop(index=20)
-miles_peso.index = [ 'Pescado y marisco fresco y congelado',' Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
+miles_peso.index = [ 'Pescado y marisco fresco y congelado','Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
 
 miles_peso_line = px.line(miles_peso.T,title="Precios de CUCI")
 miles_peso_line.update_layout(
@@ -79,27 +110,31 @@ toneladas_bar1.update_layout(
     yaxis_title = 'Cantidad en Toneladas(T)'
 )
 
-#por grupos
+#por grupos, exportacion
 with open ("./data/exportaciones_por_grupos.json",'r') as yeison:
         grupos_exp = json.load(yeison)
-años =[x for x  in range(1984,2023)]
-grupos_exp_real = {}
-for i,j in enumerate(grupos_exp):
-    if i !=0:
-        r=[]
-        for e,t in enumerate(grupos_exp[j]):
-            if j == "Unnamed: 37":
-                if e ==0 or e ==1 or e == 2:
-                    continue
-            elif j =="Unnamed: 18":
-                if e ==0 or e ==1 or e == 2:
-                    continue
-            elif e ==0 or e ==1:
-                continue
-            r.append(t)
-        
-        grupos_exp_real[años[i]] = r
 
+def arreglar(grupos_exp):
+    grupos_exp_real={}
+    años =[x for x  in range(1984,2023)]
+    for i,j in enumerate(grupos_exp):
+        if i !=0:
+            r=[]
+            for e,t in enumerate(grupos_exp[j]):
+                if j == "Unnamed: 37":
+                    if e ==0 or e ==1 or e == 2:
+                        continue
+                elif j =="Unnamed: 18":
+                    if e ==0 or e ==1 or e == 2:
+                        continue
+                elif e ==0 or e ==1:
+                    continue
+                r.append(t)
+            
+            grupos_exp_real[años[i]] = r
+    return grupos_exp_real
+
+grupos_exp_real = arreglar(grupos_exp)
 
 grupos_exp_real = pd.DataFrame(grupos_exp_real)
 grupos_exp_real = grupos_exp_real.T.drop([1985]).drop([1986]).drop([1987])
@@ -122,6 +157,35 @@ concatenacion.columns = ['Precio','cantidad(T)']
 corr = concatenacion.corr()
 matriz = plt.figure(figsize=(4,4))
 sns.heatmap(corr,annot=True,cmap='coolwarm',vmin=-1,vmax=1,center=0)
+
+concatenacion1 = pd.concat([miles_peso.T['Pescado y marisco en conserva'],toneladas_.T['Pescado y marisco en conserva']],axis=1)
+concatenacion1.columns = ['Precio','cantidad(T)']
+corr1 = concatenacion1.corr()
+matriz1 = plt.figure(figsize=(4,4))
+sns.heatmap(corr1,annot=True,cmap='coolwarm',vmin=-1,vmax=1,center=0)
+
+
+#importaciones
+with open('./data/importaciones.json','r') as f:
+    importaciones = json.load(f)
+imp = llenar(importaciones)
+imp_real={}
+for i in imp:
+    if i =="names":
+        imp_real['hola'] = imp[i]
+    imp_real[i]= imp[i]
+
+
+miles_peso_impo,toneladas_impo = separar(imp_real,False)
+print(imp_real['hola'])
+
+
+
+#predicción
+suma = miles_peso.T['Pescado y marisco fresco y congelado']+miles_peso.T['Pescado y marisco en conserva'] 
+suma1 = toneladas_.T['Pescado y marisco en conserva']+toneladas_.T['Pescado y marisco fresco y congelado'] 
+total_suma = pd.concat([suma,suma1],axis=1)
+total_suma.columns = ['MP','T']
 
 
 #peces
@@ -441,7 +505,6 @@ leyes_otros = go.Figure(data = [go.Bar(x= years6, y= values6)])
 
 
 #mapas
-
 m = folium.Map(location =[20.329436,-77.153311]) 
 m.add_child(folium.Marker(location=[20.329436,-77.153311]))
 
