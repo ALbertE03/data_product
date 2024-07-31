@@ -6,15 +6,34 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 import telebot
-from bot import *
+import streamlit.components.v1 as components
 
-streamlit_analytics.track(save_to_json='track.json')
 st.set_page_config(
             page_title="Data Product",
             page_icon="🦈",
             layout="wide"
         )
     
+
+def recivir_feedback(feedback):
+        token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
+        bot = telebot.TeleBot(token)
+
+        chat_id = '1883265786'
+        try:
+            bot.send_message(chat_id=chat_id,text=feedback)
+            st.toast("Recibido ✅")
+        except Exception as e :
+            st.toast('Error al enviar el mensaje',e)
+        
+
+
+with open("google_analytics.html", "r") as f:
+    html_code = f.read()
+
+components.html(html_code, height=0)
+
+
 def mostrar(a):
         st.write(a)
 
