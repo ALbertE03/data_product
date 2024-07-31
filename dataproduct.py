@@ -6,46 +6,30 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 import telebot
+from bot import *
 
-with streamlit_analytics.track(save_to_json="track.json"):
-    token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
-    bot = telebot.TeleBot(token)
-
-    @bot.message_handler(commands=['json'])
-    def  enviar(message):
-        with open("track.json",'rb') as doc_file:
-            bot.reply_to(message,doc_file)
-
-    st.set_page_config(
+streamlit_analytics.track(save_to_json='track.json')
+st.set_page_config(
             page_title="Data Product",
             page_icon="🦈",
             layout="wide"
         )
-    def recivir_feedback(feedback):
-        
-        chat_id = '1883265786'
-        
-        try:
-            bot.send_message(chat_id=chat_id,text=feedback)
-            st.toast("Recibido ✅")
-        except Exception as e :
-            st.toast('Error al enviar el mensaje',e)
-        
-    def mostrar(a):
-            st.write(a)
+    
+def mostrar(a):
+        st.write(a)
 
-    def mostrar_grafica(graf):
-            graf.update_layout(showlegend =True)
-            st.plotly_chart(graf,use_container_width=True)
+def mostrar_grafica(graf):
+        graf.update_layout(showlegend =True)
+        st.plotly_chart(graf,use_container_width=True)
             
-    def mostrar_grafica_sin(g):
-        g.update_layout(showlegend=False)
-        st.plotly_chart(g,use_container_width=True)
+def mostrar_grafica_sin(g):
+    g.update_layout(showlegend=False)
+    st.plotly_chart(g,use_container_width=True)
 
-    def warning(a):
-            st.warning(a)
+def warning(a):
+        st.warning(a)
 
-    def principal():
+def principal():
             st.markdown("""<h1 class = 'titulo'>La Pesca en Cuba</h1> <style>
             .titulo{
             font-size: 60px;
@@ -66,7 +50,7 @@ with streamlit_analytics.track(save_to_json="track.json"):
                 
 
     
-    def economico():
+def economico():
             
             st.title("Captura de diferentes especies en Cuba")
             opciones = st.selectbox(
@@ -206,7 +190,7 @@ with streamlit_analytics.track(save_to_json="track.json"):
                 else:
                     mostrar_grafica_sin(toneladas_impo_bar1)
 
-    def leyes():
+def leyes():
             st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
             ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])
             if 'cantidad de Resoluciones por año' == ly:
@@ -394,7 +378,7 @@ with streamlit_analytics.track(save_to_json="track.json"):
 
 
 
-    def mapas():
+def mapas():
             st.title("Empresas de Pesca en Cuba")
             option=st.selectbox("",['Mypimes','EpiGram','PESCAGRAM','EPICAI',"EPICIEN",'Pesca Caribe',"GEIP"])
 
@@ -455,7 +439,7 @@ with streamlit_analytics.track(save_to_json="track.json"):
                 st.subheader("Grupo Empresarial de La Industria Pesquera (GEIP)")
                 st_folium(m5,width=700,height=700)
 
-    pages = {
+pages = {
             "Inicio": principal,
             "Económico": economico,
             "Empresas": mapas,
@@ -463,6 +447,6 @@ with streamlit_analytics.track(save_to_json="track.json"):
         }
 
    
-    selection = st.sidebar.radio("Ir a", pages.keys())
-    pages[selection]()
+selection = st.sidebar.radio("Ir a", pages.keys())
+pages[selection]()
     
