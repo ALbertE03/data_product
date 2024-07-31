@@ -67,7 +67,7 @@ def separar(exp,boolean):
                 o=[]
                 for t,u in enumerate(exp[j]):
                     if t<32:
-                        if t == 4 or t==6 or t==10 or t==12 or t ==14 or t==16 or t==19 or t==21 or t==23 or t==25  or t ==28:
+                        if t==2 or t==4 or t ==6 or t ==8  or t==11 or t==13 or t ==15 or t ==17 or t==20 or t == 22 or t==25 or t ==27 or t==29 or t==31 or t ==33:
                             if isinstance(u,str):
                                 y.append(0)
                             else:
@@ -177,7 +177,7 @@ for i in imp:
 
 
 miles_peso_impo,toneladas_impo = separar(imp_real,False)
-print(imp_real['hola'])
+print(toneladas_impo[0])
 
 
 
