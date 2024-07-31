@@ -6,17 +6,16 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 import telebot
-import streamlit.components.v1 as components
 
-
-with streamlit_analytics.track():
-    st.set_page_config(
+st.set_page_config(
                 page_title="Data Product",
                 page_icon="🦈",
                 layout="wide"
             )
-        
 
+
+with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
+ 
     def recivir_feedback(feedback):
             token= '7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98'
             bot = telebot.TeleBot(token)
@@ -27,13 +26,6 @@ with streamlit_analytics.track():
                 st.toast("Recibido ✅")
             except Exception as e :
                 st.toast('Error al enviar el mensaje',e)
-            
-
-
-    with open("google_analytics.html", "r") as f:
-        html_code = f.read()
-
-    components.html(html_code, height=0)
 
 
     def mostrar(a):
@@ -208,9 +200,14 @@ with streamlit_analytics.track():
                     opp = st.selectbox("Toneladas de los Diferentes productos",[ 'Pescado y marisco fresco y congelado','Otros pescados, preparados o en conserva'])
                     if opp =='Pescado y marisco fresco y congelado':
                         mostrar_grafica_sin(toneladas_impo_bar)
+                        st.markdown("Los valores cercanos a 1 significan que estan directamente relacionados")
+                        st.markdown("Los valores cercanos a -1 significan que estan inversamente relacionados")
+                        st.pyplot(matriz2)
                     else:
                         mostrar_grafica_sin(toneladas_impo_bar1)
-
+                        st.markdown("Los valores cercanos a 1 significan que estan directamente relacionados")
+                        st.markdown("Los valores cercanos a -1 significan que estan inversamente relacionados")
+                        st.pyplot(matriz3)
     def leyes():
                 st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
                 ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])

@@ -150,7 +150,7 @@ grupos_exp_line.update_layout(
     yaxis_title='millones de pesos(MP)'
 )
 
-#correlaciones
+#correlaciones  exportaciones
 concatenacion = pd.concat([miles_peso.T['Pescado y marisco fresco y congelado'],toneladas_.T['Pescado y marisco fresco y congelado']],axis=1)
 concatenacion.columns = ['Precio','cantidad(T)']
 corr = concatenacion.corr()
@@ -187,16 +187,31 @@ miles_peso_impo_line = px.line(miles_peso_impo[['Pescado y marisco fresco y cong
 toneladas_impo_ = pd.DataFrame(toneladas_impo).T.drop(index=13)
 toneladas_impo_.columns = [x for x in range(1998,2023)]
 toneladas_impo_.index = ['Carne de ganado bovino, congelada deshuesada','Carne de ganado porcino, congelada','Carne y despojos comestibles de las aves','Carne y despojos de carne, preparados o en conserva,','Leche condensada','Leche en polvo','Mantequilla','Queso y cuajada','Pescado y marisco fresco y congelado','Otros pescados, preparados o en conserva','Trigo y morcajo o tranquillón sin moler','Arroz consumo','Cebada sin moler']
-
 toneladas_impo_bar = px.bar(toneladas_impo_.T['Pescado y marisco fresco y congelado'])
 
 toneladas_impo_bar1 = px.bar(toneladas_impo_.T['Otros pescados, preparados o en conserva'])
 
-#predicción
+#correlaciones importaciones
+concatenacion2 = pd.concat([miles_peso_impo['Pescado y marisco fresco y congelado'],toneladas_impo_.T['Pescado y marisco fresco y congelado']],axis=1)
+concatenacion2.columns = ['Precio','Toneladas']
+corr2 = concatenacion2.corr()
+matriz2 = plt.figure(figsize=(4,4))
+sns.heatmap(corr2,annot=True,cmap='coolwarm',vmin=-1,vmax=1,center=0)
+
+
+concatenacion3 = pd.concat([miles_peso_impo['Otros pescados, preparados o en conserva'],toneladas_impo_.T['Otros pescados, preparados o en conserva']],axis=1)
+concatenacion3.columns = ['Precio','Toneladas']
+corr3 = concatenacion3.corr()
+matriz3 = plt.figure(figsize=(4,4))
+sns.heatmap(corr3,annot=True,cmap='coolwarm',vmin=-1,vmax=1,center=0)
+
+'''predicción
 suma = miles_peso.T['Pescado y marisco fresco y congelado']+miles_peso.T['Pescado y marisco en conserva'] 
 suma1 = toneladas_.T['Pescado y marisco en conserva']+toneladas_.T['Pescado y marisco fresco y congelado'] 
 total_suma = pd.concat([suma,suma1],axis=1)
-total_suma.columns = ['MP','T']
+total_suma.columns = ['MP','T']'''
+
+
 
 
 #peces
