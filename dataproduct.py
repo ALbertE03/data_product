@@ -6,6 +6,8 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 import telebot
+from streamlit_option_menu import option_menu
+
 
 st.set_page_config(
                 page_title="Data Product",
@@ -43,6 +45,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
             st.warning(a)
 
     def principal():
+                
                 st.markdown("""<h1 class = 'titulo'>La Pesca en Cuba</h1> <style>
                 .titulo{
                 font-size: 60px;
@@ -50,19 +53,22 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 }
             </style>""",unsafe_allow_html=True)
                 
-                st.write("""<p style='text-aling:center;'>En Económico puede encontrar .... dalia termina esto<p> """,unsafe_allow_html=True)
-                st.write("""En Empresas se encuentran las principales empresas de pesca en Cuba, junto a las pequeñas y medianas empresas""",unsafe_allow_html=True)
-                st.write("En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca",unsafe_allow_html=True)
+                st.write("""<p style='text-aling:center;'>En Económico puede encontrar las capturas en toneladas de los diferentes peces, además, 
+                la comparativa y relaciones entre Importaciones e Exportaciones.<p> """,
+                unsafe_allow_html=True)
+                st.write("""En Empresas se encuentran las principales empresas de pesca en Cuba, 
+                junto a las pequeñas y medianas empresas, sus localizaciones y las principales zonas de pesca.""",
+                unsafe_allow_html=True)
+                st.write("En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca.",
+                unsafe_allow_html=True)
                 
-
+                
                 st.subheader("Dejar suguerencias")
-                feed= st.text_area("escribir suguerencias")
+                feed= st.text_area("",help="Contáctenos")
                 if st.button("Enviar"):
                     if feed:
                         recivir_feedback(feed)
                     
-
-        
     def economico():
                 
                 st.title("Captura de diferentes especies en Cuba")
@@ -457,13 +463,25 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                     st.subheader("Grupo Empresarial de La Industria Pesquera (GEIP)")
                     st_folium(m5,width=700,height=700)
 
-    pages = {
-                "Inicio": principal,
-                "Económico": economico,
-                "Empresas": mapas,
-                'leyes y Resoluciones':leyes
-            }
 
-    
-    selection = st.sidebar.radio("Ir a", pages.keys())
-    pages[selection]()
+
+
+
+    selected = option_menu(
+        menu_title=None,
+        options=['Inicio','Económico','Empresas','leyes y Resoluciones'],
+        icons=['house','currency-dollar','building','clipboard'] ,
+        default_index=0,
+        orientation='horizontal'
+        )
+
+
+    if selected == 'Inicio':
+        principal()
+    if selected == "Económico":
+        economico()
+    if selected == "Empresas":
+        mapas()
+    if selected == 'leyes y Resoluciones':
+        leyes()
+
