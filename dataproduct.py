@@ -482,6 +482,6 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
         economico()
     if selected == "Empresas":
         mapas()
-    if selected == 'leyes':
+    if selected == 'Leyes':
         leyes()
 
