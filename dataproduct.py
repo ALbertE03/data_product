@@ -473,7 +473,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
         icons=['house','currency-dollar','building','clipboard'],
         menu_icon='cast',
         default_index=0,
-        orientation='horizontal'
+        orientation='vertical'
         )
 
 
