@@ -469,8 +469,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
 
     selected = option_menu(
         menu_title=None,
-        options=['Inicio','Económico','Empresas','leyes y Resoluciones'],
-        icons=['house','currency-dollar','building','clipboard'] ,
+        options=['Inicio','Económico','Empresas','Leyes'],
+        icons=['house','currency-dollar','building','clipboard'],
+        menu_icon='cast',
         default_index=0,
         orientation='horizontal'
         )
