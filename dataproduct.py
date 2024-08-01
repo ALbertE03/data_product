@@ -214,6 +214,12 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                         st.markdown("Los valores cercanos a 1 significan que estan directamente relacionados")
                         st.markdown("Los valores cercanos a -1 significan que estan inversamente relacionados")
                         st.pyplot(matriz3)
+
+                st.subheader("Dejar suguerencias")
+                feed= st.text_area("",help="Contáctenos")
+                if st.button("Enviar"):
+                    if feed:
+                        recivir_feedback(feed)
     def leyes():
                 st.title('¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?')
                 ly = st.selectbox("",['Selecione una opción','cantidad de Resoluciones por año','sobre pesca ilegal','sobre prohibición','sobre periodos de pesca','sobre autorizacion','sobre arte de pesca','otros'])
@@ -400,7 +406,11 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                         mostrar(pesca)
                         mostrar("total: "+str(len(pesca)))
 
-
+                st.subheader("Dejar suguerencias")
+                feed= st.text_area("",help="Contáctenos")
+                if st.button("Enviar"):
+                    if feed:
+                        recivir_feedback(feed)
 
     def mapas():
                 st.title("Empresas de Pesca en Cuba")
@@ -463,10 +473,12 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                     st.subheader("Grupo Empresarial de La Industria Pesquera (GEIP)")
                     st_folium(m5,width=700,height=700)
 
-
-
-
-
+                st.subheader("Dejar suguerencias")
+                feed= st.text_area("",help="Contáctenos")
+                if st.button("Enviar"):
+                    if feed:
+                        recivir_feedback(feed)
+                        
     selected = option_menu(
         menu_title=None,
         options=['Inicio','Económico','Empresas','Leyes'],
