@@ -7,14 +7,17 @@ from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 import telebot
 from streamlit_option_menu import option_menu
-
+import streamlit.components.v1 as components
 
 st.set_page_config(
                 page_title="Data Product",
                 page_icon="🦈",
                 layout="wide"
             )
+with open('analytics.html', 'r') as file:
+    html = file.read()
 
+components(html)
 
 with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
  
