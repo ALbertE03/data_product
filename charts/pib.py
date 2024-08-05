@@ -35,6 +35,10 @@ pib_corriente_df.index = ['Agricultura, ganadería y silvicultura ','Pesca',' Ex
 ' Otras act de servicios comunales, de asociaciones y personales',' Derechos de importación'
 ]
 
-def pastel(leyenda,año,df):
+def auto(año,df):
     
-    return go.Figure(data=[go.Pie(labels=leyenda,values=df[año])])
+    fig = go.Figure(data=[go.Bar(x=list(df.index),y=df[año],text=df[año],textposition='auto',marker_color='skyblue')])
+    fig.add_hline(y=sum(df[año])/len(df[año]),line_dash ='dash',line_color='red', annotation_text="media")
+    fig.update_layout(title="PIB a precios corrientes", yaxis_title='Millones depesos (MP)')
+    return fig
+
