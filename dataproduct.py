@@ -17,7 +17,7 @@ st.set_page_config(
 with open('analytics.html', 'r') as file:
     html = file.read()
 
-components(html)
+components.htmlå(html)
 
 with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
  
