@@ -49,3 +49,7 @@ def pastel(año):
     fig = go.Figure(data=[go.Pie(labels=['total','pesca'],values=[total,pesca])])
     fig.update_layout(title=f'Porciento del pib de año: {año}')
     return fig
+
+
+
+    

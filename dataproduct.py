@@ -219,11 +219,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                     slider = st.slider('selecione un año',2010,2022)
                     st.info("linea roja representa la media en cada año")
                     mostrar_grafica_sin(auto(str(slider),pib_corriente_df))
-                    mostrar_grafica(pastel(slider))
+                    paste = pastel(slider)
+                    mostrar_grafica(paste)
                     
-
-
-
                 st.subheader("Dejar suguerencias")
                 feed= st.text_area("",help="Contáctenos")
                 if st.button("Enviar"):
