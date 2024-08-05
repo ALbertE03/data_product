@@ -141,7 +141,6 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 epo = st.checkbox('Exportaciones')
                 
                 if epo:
-                    st.info("Todos los valores faltantes fueron rellenados con valor 0")
                     precios = st.checkbox("Precios y Toneladas CUCI")
                     leg = st.checkbox("Mostrar leyendas (Exportaciones)",help="En movil usar el modo horizontal")
                     rege = st.checkbox("Predicciones Exportación")
