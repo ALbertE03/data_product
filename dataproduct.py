@@ -403,7 +403,10 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                         st.subheader("Resoluciones sobre pesca")
                         mostrar(pesca)
                         mostrar("total: "+str(len(pesca)))
+                with open('analytics.html', 'r') as file:
+                        html = file.read()
 
+                components.html(html)
                 st.subheader("Dejar suguerencias")
                 feed= st.text_area("",help="Contáctenos")
                 if st.button("Enviar"):
@@ -496,7 +499,3 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
     if selected == 'Leyes':
         leyes()
 
-with open('analytics.html', 'r') as file:
-    html = file.read()
-
-components.html(html)
