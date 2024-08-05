@@ -14,10 +14,6 @@ st.set_page_config(
                 page_icon="🦈",
                 layout="wide"
             )
-with open('analytics.html', 'r') as file:
-    html = file.read()
-
-components.html(html)
 
 with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
  
@@ -500,3 +496,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
     if selected == 'Leyes':
         leyes()
 
+with open('analytics.html', 'r') as file:
+    html = file.read()
+
+components.html(html)
