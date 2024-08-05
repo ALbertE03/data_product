@@ -212,7 +212,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                         st.markdown("Los valores cercanos a 1 significan que estan directamente relacionados")
                         st.markdown("Los valores cercanos a -1 significan que estan inversamente relacionados")
                         st.pyplot(matriz3)
-
+                pibruto = st.checkbox("PIB")
+                if pibruto:
+                    pass
                 st.subheader("Dejar suguerencias")
                 feed= st.text_area("",help="Contáctenos")
                 if st.button("Enviar"):
