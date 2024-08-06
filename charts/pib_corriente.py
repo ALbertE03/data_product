@@ -5,7 +5,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 
-
 with open("./data/pib_corriente.json",'r') as jsonfile:
     pib_corriente = json.load(jsonfile)
 
