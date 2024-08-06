@@ -65,7 +65,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 
                 
                 st.subheader("Dejar suguerencias")
-                feed= st.text_area("",help="Contáctenos")
+                feed= st.text_area("",help="Si es posible su pedido será añadido")
                 if st.button("Enviar"):
                     if feed:
                         recivir_feedback(feed)
@@ -218,6 +218,8 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 pibruto = st.checkbox("PIB-precios corrientes")
                 if pibruto:
                     st.info("a partir del 2021 se nota un aumento drástico debido a la Tarea Ordenamieto")
+                    mostrar_grafica_sin(fig1)
+                    
                     slider = st.slider('selecione un año',2010,2022)
                     st.info("linea roja representa la media en cada año")
                     mostrar_grafica_sin(auto(str(slider),pib_corriente_df))
@@ -226,10 +228,14 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
 
                 pibrutoC = st.checkbox("PIB-precios constantes")
                 if pibrutoC:
+                    st.info("a partir del 2021 se nota un aumento drástico debido a la Tarea Ordenamieto")
                     mostrar_grafica_sin(fig)
-                    pass
+                    slider1 = st.slider('selecione un año',2005,2022)
+                    st.info("linea roja representa la media en cada año")
+                    mostrar_grafica_sin(auto(slider1,pib_const_aux_df))
+                    mostrar_grafica(pastel1(slider1))
                 st.subheader("Dejar suguerencias")
-                feed= st.text_area("",help="Contáctenos")
+                feed= st.text_area("",help="Si es posible su pedido será añadido")
                 if st.button("Enviar"):
                     if feed:
                         recivir_feedback(feed)
@@ -418,12 +424,13 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                         st.subheader("Resoluciones sobre pesca")
                         mostrar(pesca)
                         mostrar("total: "+str(len(pesca)))
+
                 with open('analytics.html', 'r') as file:
                         html = file.read()
 
                 components.html(html)
                 st.subheader("Dejar suguerencias")
-                feed= st.text_area("",help="Contáctenos")
+                feed= st.text_area("",help="Si es posible su pedido será añadido")
                 if st.button("Enviar"):
                     if feed:
                         recivir_feedback(feed)
@@ -490,7 +497,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                     st_folium(m5,width=700,height=700)
 
                 st.subheader("Dejar suguerencias")
-                feed= st.text_area("",help="Contáctenos")
+                feed= st.text_area("",help="Si es posible su pedido será añadido")
                 if st.button("Enviar"):
                     if feed:
                         recivir_feedback(feed)

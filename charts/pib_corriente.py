@@ -35,6 +35,8 @@ pib_corriente_df.index = ['Agricultura, ganadería y silvicultura ','Pesca',' Ex
 ' Otras act de servicios comunales, de asociaciones y personales',' Derechos de importación'
 ]
 
+fig1 = px.line(pib_corriente_df.loc['Pesca'].T,title="Evolución del pib de la pesca a precios corrientes")
+fig1.update_layout(yaxis_title="millones de pesos (MP)",xaxis_title='años')
 def auto(año,df):
     
     fig = go.Figure(data=[go.Bar(x=list(df.index),y=df[año],text=df[año],textposition='auto',marker_color='skyblue')])
