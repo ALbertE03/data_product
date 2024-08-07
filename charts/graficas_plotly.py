@@ -87,6 +87,7 @@ miles_peso.columns = [x for x in range(1998,2023)]
 miles_peso = miles_peso.drop(index=[0,1,2,3,6,7,12,17,19,20])
 miles_peso.index = ['Pescado y marisco fresco y congelado','Pescado y marisco en conserva','Papas','Pimientos','Cítricos','Conservas de frutas y vegetales','Azúcar','Melaza de caña','Caramelos','Miel natural','Manteca, grasa o aceite de cacao']
 miles_peso_ = miles_peso.T
+
 miles_peso_line = px.line(miles_peso_[['Pescado y marisco fresco y congelado','Pescado y marisco en conserva']],title="Precios de CUCI")
 miles_peso_line.update_layout(
     xaxis_title= "años",
@@ -141,6 +142,7 @@ grupos_exp_real = grupos_exp_real.T.drop([1985,1986,1987])
 grupos_exp_real.index = [x for x in range(1989,2023)]
 grupos_exp_real = grupos_exp_real.T
 grupos_auxiliar = grupos_exp_real.copy()
+
 
 grupos_exp_real.index = ['Productos agropecuarios','Productos de la Pesca',"Productos de la industria azucarera","Productos de la minería","Productos de la industria del tabaco","Otros productos"]
 grupos_exp_real  = grupos_exp_real.drop(index="Otros productos")
