@@ -145,8 +145,16 @@ grupos_auxiliar = grupos_exp_real.copy()
 
 
 grupos_exp_real.index = ['Productos agropecuarios','Productos de la Pesca',"Productos de la industria azucarera","Productos de la minería","Productos de la industria del tabaco","Otros productos"]
+with open('./data/predi.json','r') as pepe:
+    data_new = json.load(pepe)
+data_new_df = pd.DataFrame(data_new)
+
 grupos_exp_real  = grupos_exp_real.drop(index="Otros productos")
-grupos_exp_line = px.line(grupos_exp_real.T,title="Exportaciones de mercancías por grupos de productos")
+data_new_df.index=[2023,2024]
+
+grupos_exp_real1 = pd.concat([grupos_exp_real,data_new_df.T],axis=1)
+
+grupos_exp_line = px.line(grupos_exp_real1.T,title="Exportaciones de mercancías por grupos de productos")
 grupos_exp_line.update_layout(
     xaxis_title="años",
     yaxis_title='millones de pesos(MP)'
@@ -206,15 +214,6 @@ concatenacion3.columns = ['Precio','Toneladas']
 corr3 = concatenacion3.corr()
 matriz3 = plt.figure(figsize=(4,4))
 sns.heatmap(corr3,annot=True,cmap='coolwarm',vmin=-1,vmax=1,center=0)
-
-'''predicción
-suma = miles_peso.T['Pescado y marisco fresco y congelado']+miles_peso.T['Pescado y marisco en conserva'] 
-suma1 = toneladas_.T['Pescado y marisco en conserva']+toneladas_.T['Pescado y marisco fresco y congelado'] 
-total_suma = pd.concat([suma,suma1],axis=1)
-total_suma.columns = ['MP','T']'''
-
-
-
 
 #peces
 peces = pd.read_json("./data/grupos_de_especies.json")
@@ -377,8 +376,8 @@ mypimesdf.columns=['alojamiento de servicios de comida','Agricultura,Pesca,Ganad
 mypimesdf=mypimesdf.drop([0])
 mypimesdf.index=['Pinar del Rio',"Artemisa","La Habana","Mayabeque","Matanzas","Villa Clara","Cienfuegos","Santi Spiritus","Ciego de Ávila","Camagüey","Las Tunas","Holguín","Granma","Santiago de Cuba","Guantánamo","La Isla de la Juventud"]
 
-p=px.bar(mypimesdf.T['Pinar del Rio'])
-p.update_layout(
+p15=px.bar(mypimesdf.T['Pinar del Rio'])
+p15.update_layout(
     xaxis_title="Empresas",
     yaxis_title='Cantidad'
 )

@@ -442,7 +442,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 if option == 'Mypimes':
                     o=st.selectbox("",mypimesdf.index)
                     if o =='Pinar del Rio':
-                        mostrar_grafica_sin(p)
+                        mostrar_grafica_sin(p15)
                     if o == "Artemisa":
                         mostrar_grafica_sin(p1)
                     if o == 'La Habana':
