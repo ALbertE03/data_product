@@ -153,7 +153,7 @@ grupos_exp_real  = grupos_exp_real.drop(index="Otros productos")
 data_new_df.index=[2023,2024]
 
 grupos_exp_real1 = pd.concat([grupos_exp_real,data_new_df.T],axis=1)
-
+print(grupos_exp_real1)
 grupos_exp_line = px.line(grupos_exp_real1.T,title="Exportaciones de mercancías por grupos de productos")
 grupos_exp_line.update_layout(
     xaxis_title="años",
@@ -246,105 +246,107 @@ fish.update_layout(
     showlegend= False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
+pescados_predict = pd.read_json('./data/predi_pez.json')
+pescados_predict.index = [2023,2024]
 
-pargo = px.line(peces["Pargo"], title="Capturas de Pargo en Toneladas")
+pargo = px.line(pd.concat([peces["Pargo"],pescados_predict.T.loc['Pargo']]), title="Capturas de Pargo en Toneladas")
 pargo.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-Cherna = px.line(peces["Cherna"], title="Capturas de Cherna en Toneladas")
+Cherna = px.line(pd.concat([peces["Cherna"],pescados_predict.T.loc['Cherna']]), title="Capturas de Cherna en Toneladas")
 Cherna.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-tunidos = px.line(peces["Túnidos"], title="Capturas de Túnidos en Toneladas")
+tunidos = px.line(pd.concat([peces["Túnidos"],pescados_predict.T.loc['Túnidos']]), title="Capturas de Túnidos en Toneladas")
 tunidos.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-bonitos = px.line(peces["Bonito"], title="Capturas de Bonito en Toneladas")
+bonitos = px.line(pd.concat([peces["Bonito"],pescados_predict.T.loc['Bonito']]), title="Capturas de Bonito en Toneladas")
 bonitos.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-biajaiba = px.line(peces["Biajaiba"], title="Capturas de Biajaiba en Toneladas")
+biajaiba = px.line(pd.concat([peces["Biajaiba"],pescados_predict.T.loc['Biajaiba']]), title="Capturas de Biajaiba en Toneladas")
 biajaiba.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-machuelo = px.line(peces["Machuelo"], title="Capturas de Machuelo en Toneladas")
+machuelo = px.line(pd.concat([peces["Machuelo"],pescados_predict.T.loc['Machuelo']]), title="Capturas de Machuelo en Toneladas")
 machuelo.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-rabirubia = px.line(peces["Rabirubia"], title="Capturas de Rabirubia en Toneladas")
+rabirubia = px.line(pd.concat([peces["Rabirubia"],pescados_predict.T.loc['Rabirubia']]), title="Capturas de Rabirubia en Toneladas")
 rabirubia.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-raya = px.line(peces["Raya"], title="Capturas de Raya en Toneladas")
+raya = px.line(pd.concat([peces["Raya"],pescados_predict.T.loc['Raya']]), title="Capturas de Raya en Toneladas")
 raya.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-carpa = px.line(peces["Carpa"], title="Capturas de Carpa en Toneladas")
+carpa = px.line(pd.concat([peces["Carpa"],pescados_predict.T.loc['Carpa']]), title="Capturas de Carpa en Toneladas")
 carpa.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-tenca = px.line(peces["Tenca"], title="Capturas de Tenca en Toneladas")
+tenca = px.line(pd.concat([peces["Tenca"],pescados_predict.T.loc['Tenca']]), title="Capturas de Tenca en Toneladas")
 tenca.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-tilapia = px.line(peces["Tilapia"], title="Capturas de Tilapia en Toneladas")
+tilapia = px.line(pd.concat([peces["Tilapia"],pescados_predict.T.loc['Tilapia']]), title="Capturas de Tilapia en Toneladas")
 tilapia.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-claria = px.line(peces["Claria"], title="Capturas de Claria en Toneladas")
+claria = px.line(pd.concat([peces["Claria"],pescados_predict.T.loc['Claria']]), title="Capturas de Claria en Toneladas")
 claria.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-cobo = px.line(peces["Cobo"], title="Capturas de Cobo en Toneladas")
+cobo = px.line(pd.concat([peces["Cobo"],pescados_predict.T.loc['Cobo']]), title="Capturas de Cobo en Toneladas")
 cobo.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-ostion = px.line(peces["Ostión"], title="Capturas de Ostión en Toneladas")
+ostion = px.line(pd.concat([peces["Ostión"],pescados_predict.T.loc['Ostión']]), title="Capturas de Ostión en Toneladas")
 ostion.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-almeja = px.line(peces["Almeja"], title="Capturas de Almeja en Toneladas")
+almeja = px.line(pd.concat([peces["Almeja"],pescados_predict.T.loc['Almeja']]), title="Capturas de Almeja en Toneladas")
 almeja.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-langosta = px.line(peces["Langosta"], title="Capturas de Langosta en Toneladas")
+langosta = px.line(pd.concat([peces["Langosta"],pescados_predict.T.loc['Langosta']]), title="Capturas de Langosta en Toneladas")
 langosta.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
 camaron_de_mar = px.line(
-    peces["Camarón de Mar"], title="Capturas de Camarón de Mar en Toneladas"
+    pd.concat([peces["Camarón de Mar"],pescados_predict.T.loc['Camarón de Mar']]), title="Capturas de Camarón de Mar en Toneladas"
 )
 camaron_de_mar.update_layout(
     showlegend = False,
@@ -352,14 +354,14 @@ camaron_de_mar.update_layout(
     yaxis_title = 'captura en toneladas(T)')
 
 camaronicultura = px.line(
-    peces["Camaronicultura"], title="Capturas de Camaronicultura en Toneladas"
+    pd.concat([peces["Camaronicultura"],pescados_predict.T.loc['Camaronicultura']]), title="Capturas de Camaronicultura en Toneladas"
 )
 camaronicultura.update_layout(
     showlegend = False,
     xaxis_title="años",
     yaxis_title = 'captura en toneladas(T)')
 
-moralla = px.line(peces["Moralla"], title="Capturas de Moralla en Toneladas")
+moralla = px.line(pd.concat([peces["Moralla"],pescados_predict.T.loc['Moralla']]), title="Capturas de Moralla en Toneladas")
 moralla.update_layout(
     showlegend = False,
     xaxis_title="años",

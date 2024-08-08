@@ -729,3 +729,14 @@ aaa = list(p)+list(predict24)
 plt.plot(años_peces,Moralla,'.')
 plt.plot([x for x in range(2001,2025)],aaa)
 plt.show()
+
+
+pescados = {}
+predicciones_peces=[predict6,predict7,predict8,predict9,predict10,predict11,predict12,predict13,predict14,predict15,predict16,predict17,predict18,predict19,predict20,predict21,predict22,predict23,predict24]
+
+for j,i in enumerate(peces.columns):
+    pescados[i]=predicciones_peces[j]
+    
+pescados_df= pd.DataFrame(pescados)
+
+pescados_df.to_json("data/predi_pez.json",indent=4)
