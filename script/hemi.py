@@ -20,12 +20,6 @@ with open ('barcos.json','w') as file:
     json.dump(a,file,indent=4)
 
 
-with open ('barcos.json','r') as barcos:
-    data =  json.load(barcos)
-
-
-df= pd.DataFrame(data)
-print(df)
     
             
 
