@@ -26,7 +26,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
             chat_id = '1883265786'
             try:
                 bot.send_message(chat_id=chat_id,text=feedback)
-                st.toast("Recibido ✅")
+                st.success("Recibido ✅")
             except Exception as e :
                 st.toast('Error al enviar el mensaje',e)
 
@@ -144,9 +144,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 if epo:
                     precios = st.checkbox("Precios y Toneladas CUCI")
                     leg = st.checkbox("Mostrar leyendas (Exportaciones)",help="En movil usar el modo horizontal")
-                    rege = st.checkbox("Predicciones Exportación")
-                    if rege:
-                        st.warning("Proximamente...")
+                    
                     if precios: 
                         st.subheader("Exportaciones de Productos seleccionados en la Clasificación Uniforme para el Comercio Internacioal (CUCI)")
                         
@@ -195,9 +193,6 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 impo = st.checkbox("Importaciones")
 
                 if impo:
-                    predi_imp = st.checkbox("Prediciones Importación")
-                    if predi_imp:
-                        st.warning("Proximamente")
                     leg1 = st.checkbox("Mostrar leyendas (Importaciones)",help="En movil usar el modo horizontal")
                     if leg1:
                         mostrar_grafica(miles_peso_impo_line)
@@ -501,7 +496,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
                 if st.button("Enviar"):
                     if feed:
                         recivir_feedback(feed)
-                        
+
+
+               
     selected = option_menu(
         menu_title=None,
         options=['Inicio','Económico','Empresas','Leyes'],
@@ -520,4 +517,4 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
         mapas()
     if selected == 'Leyes':
         leyes()
-
+    
