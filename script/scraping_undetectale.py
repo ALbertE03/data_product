@@ -10,6 +10,7 @@ def scraping(payload,name):
         fielname=['Resolución','Publicado','Identificador','Resumen','Número','Año','Norma que modifica','Normas que la modifican','Norma que la deroga','Estado','Normas que deroga']
         writer=csv.DictWriter(csvfile,fieldnames=fielname)
         writer.writeheader()
+        
         #response = requests.get('https://app.scrapingbee.com/api/v1/', params=params)
     
         response = requests.get('https://api.scraperapi.com', params=payload)

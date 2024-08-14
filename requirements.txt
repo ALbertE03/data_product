@@ -13,4 +13,5 @@ telegram
 pyTelegramBotAPI
 seaborn
 matplotlib
-streamlit-option-menu 
+streamlit-option-menu
+selenium
