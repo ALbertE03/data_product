@@ -12,10 +12,9 @@ from charts.pib_corriente import *
 from charts.pib_const import *
 
 st.set_page_config(
-                page_title="Data Product",
-                page_icon="🦈",
-                layout="wide"
-            )
+    page_title="Data Product", page_icon="🦈", layout="wide", theme={"base":'dark','primaryColor':"#077776",
+'font':"monospace"}
+)
 
 with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
  
@@ -517,4 +516,3 @@ with streamlit_analytics.track(unsafe_password="Pesca1234",verbose=True):
         mapas()
     if selected == 'Leyes':
         leyes()
-    
