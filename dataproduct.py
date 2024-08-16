@@ -15,7 +15,6 @@ st.set_page_config(
     page_title="Data Product",
     page_icon="🦈",
     layout="wide",
-   
 )
 
 with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
@@ -79,7 +78,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
                 recivir_feedback(feed)
 
     def economico():
-
+        mostrar_grafica_sin(suma_peces)
         st.title("Captura de diferentes especies en Cuba")
         opciones = st.selectbox(
             "",
