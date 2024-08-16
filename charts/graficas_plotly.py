@@ -223,7 +223,7 @@ grupos_exp_line = px.line(
     grupos_exp_real1.T, title="Exportaciones de mercancías por grupos de productos"
 )
 grupos_exp_line.update_layout(xaxis_title="años", yaxis_title="millones de pesos(MP)")
-
+oscarr = 5
 # correlaciones  exportaciones
 concatenacion = pd.concat(
     [
