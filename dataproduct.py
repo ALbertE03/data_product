@@ -27,8 +27,10 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         try:
             bot.send_message(chat_id=chat_id, text=feedback)
             st.success("Recibido ✅")
+            return 1
         except Exception as e:
-            st.toast("Error al enviar el mensaje", e)
+            st.error(f"Error al enviar el mensaje: {e}")
+            return 0
 
     def mostrar(a):
         st.write(a)
@@ -75,10 +77,11 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                recivir_feedback(feed)
+                if recivir_feedback(feed) == 1:
+                    feed = ""
 
     def economico():
-        mostrar_grafica_sin(suma_peces)
+
         st.title("Captura de diferentes especies en Cuba")
         opciones = st.selectbox(
             "",
@@ -106,7 +109,8 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             ],
             help="Selecione una opción para las captura realizadas desde el 2001 hasta 2022",
         )
-
+        if opciones == "Selecione una especie":
+            mostrar_grafica_sin(peces_sum_line)
         if opciones == "Pargo":
             mostrar_grafica_sin(pargo)
         elif opciones == "Cherna":
@@ -282,18 +286,19 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             st.info("linea roja representa la media en cada año")
             mostrar_grafica_sin(auto1(slider1, pib_const_aux_df))
             mostrar_grafica(pastel1(slider1))
+
         st.subheader("Dejar suguerencias")
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                recivir_feedback(feed)
+                if recivir_feedback(feed) == 1:
+                    feed = ""
 
     def leyes():
         st.title("¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?")
         ly = st.selectbox(
             "",
             [
-                "Selecione una opción",
                 "cantidad de Resoluciones por año",
                 "sobre pesca ilegal",
                 "sobre prohibición",

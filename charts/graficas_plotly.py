@@ -223,7 +223,7 @@ grupos_exp_line = px.line(
     grupos_exp_real1.T, title="Exportaciones de mercancías por grupos de productos"
 )
 grupos_exp_line.update_layout(xaxis_title="años", yaxis_title="millones de pesos(MP)")
-oscarr = 5
+
 # correlaciones  exportaciones
 concatenacion = pd.concat(
     [
@@ -366,10 +366,8 @@ peces.index = [
     "Camaronicultura",
     "Moralla",
 ]
-sum_peces = np.sum(peces)
-print(peces)
-print(sum_peces.T)
-suma_peces = px.line(sum_peces)
+
+
 peces = peces.T
 fish = px.line(peces, title="capturas de peces en toneladas")
 fish.update_layout(
@@ -378,6 +376,9 @@ fish.update_layout(
 pescados_predict = pd.read_json("./data/predi_pez.json")
 pescados_predict.index = [2023, 2024]
 
+peces_concat = pd.concat([peces.T, pescados_predict.T], axis=1)
+peces_sum_line = px.line(np.sum(peces_concat), title="Total de capturas de especies")
+peces_sum_line.update_layout(xaxis_title="años", yaxis_title="toneladas")
 pargo = px.line(
     pd.concat([peces["Pargo"], pescados_predict.T.loc["Pargo"]]),
     title="Capturas de Pargo en Toneladas",
