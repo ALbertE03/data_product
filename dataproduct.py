@@ -27,10 +27,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         try:
             bot.send_message(chat_id=chat_id, text=feedback)
             st.success("Recibido ✅")
-            return 1
+
         except Exception as e:
             st.error(f"Error al enviar el mensaje: {e}")
-            return 0
 
     def mostrar(a):
         st.write(a)
@@ -77,8 +76,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                if recivir_feedback(feed) == 1:
-                    feed = ""
+                recivir_feedback(feed)
 
     def economico():
 
@@ -292,8 +290,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                if recivir_feedback(feed) == 1:
-                    feed = ""
+                recivir_feedback(feed)
 
     def leyes():
         st.title("¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?")
@@ -655,8 +652,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                if recivir_feedback(feed) == 1:
-                    feed = ""
+                recivir_feedback(feed)
 
     def mapas():
         st.title("Empresas de Pesca en Cuba")
@@ -677,8 +673,8 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         if option == "Mypimes":
             o = st.selectbox("", mypimesdf.index)
             if o == "Pinar del Rio":
-                mostrar_grafica_sin(p15)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 15))
+                mostrar_grafica_sin(p16)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 0))
             if o == "Artemisa":
                 mostrar_grafica_sin(p1)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 1))
@@ -712,15 +708,19 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             if o == "Holguín":
                 mostrar_grafica_sin(p11)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 11))
-            if o == "Santiago de Cuba":
+            if o == "Granma":
                 mostrar_grafica_sin(p12)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 12))
-            if o == "Guantánamo":
+            if o == "Santiago de Cuba":
                 mostrar_grafica_sin(p13)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 13))
-            if o == "La Isla de la Juventud":
+            if o == "Guantánamo":
                 mostrar_grafica_sin(p14)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 14))
+            if o == "La Isla de la Juventud":
+                mostrar_grafica_sin(p15)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 15))
+
             prov = st.checkbox("Totales")
             if prov:
                 mostrar_grafica_sin(mypimesdf_bar)
@@ -752,16 +752,14 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                if recivir_feedback(feed) == 1:
-                    feed = ""
+                recivir_feedback(feed)
 
     selected = option_menu(
-        menu_title="Paginas",
+        menu_title=None,
         options=["Inicio", "Económico", "Empresas", "Leyes"],
         icons=["house", "currency-dollar", "building", "clipboard"],
-        menu_icon="cast",
         default_index=0,
-        orientation="vertical",
+        orientation="horizontal",
     )
 
     if selected == "Inicio":

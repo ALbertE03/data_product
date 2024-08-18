@@ -602,8 +602,6 @@ p15.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 def graficar_pastel_mypime(prov, num):
 
     def verificar_prov(num):
-        if num == 15:
-            return list(mypimesdf.index)[0]
         for i, j in enumerate(list(mypimesdf.index)):
             if i == num:
                 return j
@@ -655,17 +653,23 @@ p9.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 p10 = px.bar(mypimesdf.T["Las Tunas"])
 p10.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 
-p11 = px.bar(mypimesdf.T["Granma"])
+p11 = px.bar(mypimesdf.T["Holguín"])
 p11.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 
-p12 = px.bar(mypimesdf.T["Santiago de Cuba"])
+p12 = px.bar(mypimesdf.T["Granma"])
 p12.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 
-p13 = px.bar(mypimesdf.T["Guantánamo"])
+p13 = px.bar(mypimesdf.T["Santiago de Cuba"])
 p13.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 
-p14 = px.bar(mypimesdf.T["La Isla de la Juventud"])
+p14 = px.bar(mypimesdf.T["Guantánamo"])
 p14.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
+
+p15 = px.bar(mypimesdf.T["La Isla de la Juventud"])
+p15.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
+
+p16 = px.bar(mypimesdf.T["Pinar del Rio"])
+p16.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 
 mypimesdf_bar = px.bar(np.sum(mypimesdf), title="total de mypimes en Cuba")
 
