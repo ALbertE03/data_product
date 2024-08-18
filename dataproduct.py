@@ -720,10 +720,10 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             if o == "La Isla de la Juventud":
                 mostrar_grafica_sin(p15)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 15))
-
             prov = st.checkbox("Totales")
             if prov:
                 mostrar_grafica_sin(mypimesdf_bar)
+                mostrar_grafica(graficar_mypimes_total_pastel())
         if option == "EpiGram":
             st.subheader("EpiGram")
             st_folium(m, width=700, height=700)
