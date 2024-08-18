@@ -72,11 +72,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             unsafe_allow_html=True,
         )
 
-        st.subheader("Dejar suguerencias")
-        feed = st.text_area("", help="Si es posible su pedido será añadido")
-        if st.button("Enviar"):
-            if feed:
-                recivir_feedback(feed)
+        feed = st.chat_input("Sugerencias")
+        if feed:
+            recivir_feedback(feed)
 
     def economico():
 
@@ -286,11 +284,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             mostrar_grafica_sin(auto1(slider1, pib_const_aux_df))
             mostrar_grafica(pastel1(slider1))
 
-        st.subheader("Dejar suguerencias")
-        feed = st.text_area("", help="Si es posible su pedido será añadido")
-        if st.button("Enviar"):
-            if feed:
-                recivir_feedback(feed)
+        feed = st.chat_input("Sugerencias")
+        if feed:
+            recivir_feedback(feed)
 
     def leyes():
         st.title("¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?")
@@ -648,11 +644,10 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             html = file.read()
 
         components.html(html)
-        st.subheader("Dejar suguerencias")
-        feed = st.text_area("", help="Si es posible su pedido será añadido")
-        if st.button("Enviar"):
-            if feed:
-                recivir_feedback(feed)
+
+        feed = st.chat_input("Sugerencias")
+        if feed:
+            recivir_feedback(feed)
 
     def mapas():
         st.title("Empresas de Pesca en Cuba")
@@ -748,11 +743,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             st.subheader("Grupo Empresarial de La Industria Pesquera (GEIP)")
             st_folium(m5, width=700, height=700)
 
-        st.subheader("Dejar suguerencias")
-        feed = st.text_area("", help="Si es posible su pedido será añadido")
-        if st.button("Enviar"):
-            if feed:
-                recivir_feedback(feed)
+        feed = st.chat_input("Sugerencias")
+        if feed:
+            recivir_feedback(feed)
 
     selected = option_menu(
         menu_title=None,
