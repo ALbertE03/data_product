@@ -158,7 +158,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             precios = st.checkbox("Precios y Toneladas CUCI")
             leg = st.checkbox(
                 "Mostrar leyendas (Exportaciones)",
-                help="En movil usar el modo horizontal",
+                help="En movil, usar el modo horizontal",
             )
 
             if precios:
@@ -232,7 +232,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         if impo:
             leg1 = st.checkbox(
                 "Mostrar leyendas (Importaciones)",
-                help="En movil usar el modo horizontal",
+                help="En movil, usar el modo horizontal",
             )
             if leg1:
                 mostrar_grafica(miles_peso_impo_line)
@@ -660,6 +660,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
     def mapas():
         st.title("Empresas de Pesca en Cuba")
+
         option = st.selectbox(
             "",
             [
@@ -677,35 +678,52 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             o = st.selectbox("", mypimesdf.index)
             if o == "Pinar del Rio":
                 mostrar_grafica_sin(p15)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 15))
             if o == "Artemisa":
                 mostrar_grafica_sin(p1)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 1))
             if o == "La Habana":
                 mostrar_grafica_sin(p2)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 2))
             if o == "Mayabeque":
                 mostrar_grafica_sin(p3)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 3))
             if o == "Matanzas":
                 mostrar_grafica_sin(p4)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 4))
             if o == "Villa Clara":
                 mostrar_grafica_sin(p5)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 5))
             if o == "Cienfuegos":
                 mostrar_grafica_sin(p6)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 6))
             if o == "Santi Spiritus":
                 mostrar_grafica_sin(p7)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 7))
             if o == "Ciego de Ávila":
                 mostrar_grafica_sin(p8)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 8))
             if o == "Camagüey":
                 mostrar_grafica_sin(p9)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 9))
             if o == "Las Tunas":
                 mostrar_grafica_sin(p10)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 10))
             if o == "Holguín":
                 mostrar_grafica_sin(p11)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 11))
             if o == "Santiago de Cuba":
                 mostrar_grafica_sin(p12)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 12))
             if o == "Guantánamo":
                 mostrar_grafica_sin(p13)
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 13))
             if o == "La Isla de la Juventud":
                 mostrar_grafica_sin(p14)
-
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 14))
+            prov = st.checkbox("Totales")
+            if prov:
+                mostrar_grafica_sin(mypimesdf_bar)
         if option == "EpiGram":
             st.subheader("EpiGram")
             st_folium(m, width=700, height=700)

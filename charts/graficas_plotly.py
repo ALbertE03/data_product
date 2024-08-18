@@ -594,8 +594,36 @@ mypimesdf.index = [
     "La Isla de la Juventud",
 ]
 
+
 p15 = px.bar(mypimesdf.T["Pinar del Rio"])
 p15.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
+
+
+def graficar_pastel_mypime(prov, num):
+
+    def verificar_prov(num):
+        if num == 15:
+            return list(mypimesdf.index)[0]
+        for i, j in enumerate(list(mypimesdf.index)):
+            if i == num:
+                return j
+
+    prov_real = verificar_prov(num)
+
+    mypimesdf_pr = mypimesdf.loc[prov_real]
+    pesca_mypimes = mypimesdf_pr["Agricultura,Pesca,Ganaderia y Silvicultura"]
+    mypimesdf_pr_sum = np.sum(mypimesdf_pr) - pesca_mypimes
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
+                values=[pesca_mypimes, mypimesdf_pr_sum],
+            )
+        ]
+    )
+
+    return fig
+
 
 p1 = px.bar(mypimesdf.T["Artemisa"])
 p1.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
@@ -639,6 +667,7 @@ p13.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 p14 = px.bar(mypimesdf.T["La Isla de la Juventud"])
 p14.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
 
+mypimesdf_bar = px.bar(np.sum(mypimesdf), title="total de mypimes en Cuba")
 
 # leyes
 artes_pesca = pd.read_csv("data/artes_de_pesca.csv")
