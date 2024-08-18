@@ -166,6 +166,17 @@ toneladas_bar1 = px.bar(
 )
 toneladas_bar1.update_layout(xaxis_title="años", yaxis_title="Cantidad en Toneladas(T)")
 
+toneladas_total = np.sum(
+    pd.concat(
+        [
+            toneladas_.T["Pescado y marisco en conserva"],
+            toneladas_.T["Pescado y marisco fresco y congelado"],
+        ],
+        axis=1,
+    ).T
+)
+# toneladas_total_line = px.line(toneladas_total, title="total de toneladas exportadas")
+
 # por grupos, exportacion
 with open("./data/exportaciones_por_grupos.json", "r") as yeison:
     grupos_exp = json.load(yeison)
@@ -314,6 +325,21 @@ toneladas_impo_bar1 = px.bar(
     toneladas_impo_.T["Otros pescados, preparados o en conserva"]
 )
 
+toneladas_impo_total = np.sum(
+    pd.concat(
+        [
+            toneladas_impo_.T["Otros pescados, preparados o en conserva"],
+            toneladas_impo_.T["Pescado y marisco fresco y congelado"],
+        ],
+        axis=1,
+    ).T
+)
+toneladas_global_total = pd.concat([toneladas_impo_total, toneladas_total], axis=1)
+toneladas_global_total.columns = ["importaciones", "exportaciones"]
+toneladas_global_total_line = px.line(
+    toneladas_global_total, title="Total de exportacioes e importaciones"
+)
+
 # correlaciones importaciones
 concatenacion2 = pd.concat(
     [
@@ -379,6 +405,7 @@ pescados_predict.index = [2023, 2024]
 peces_concat = pd.concat([peces.T, pescados_predict.T], axis=1)
 peces_sum_line = px.line(np.sum(peces_concat), title="Total de capturas de especies")
 peces_sum_line.update_layout(xaxis_title="años", yaxis_title="toneladas")
+
 pargo = px.line(
     pd.concat([peces["Pargo"], pescados_predict.T.loc["Pargo"]]),
     title="Capturas de Pargo en Toneladas",

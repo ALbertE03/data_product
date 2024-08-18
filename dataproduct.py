@@ -151,6 +151,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             mostrar_grafica_sin(moralla)
 
         st.title("Exportaciones e Importaciones")
+        mostrar_grafica_sin(toneladas_global_total_line)
         epo = st.checkbox("Exportaciones")
 
         if epo:
@@ -654,7 +655,8 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                recivir_feedback(feed)
+                if recivir_feedback(feed) == 1:
+                    feed = ""
 
     def mapas():
         st.title("Empresas de Pesca en Cuba")
@@ -732,10 +734,11 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         feed = st.text_area("", help="Si es posible su pedido será añadido")
         if st.button("Enviar"):
             if feed:
-                recivir_feedback(feed)
+                if recivir_feedback(feed) == 1:
+                    feed = ""
 
     selected = option_menu(
-        menu_title=None,
+        menu_title="Paginas",
         options=["Inicio", "Económico", "Empresas", "Leyes"],
         icons=["house", "currency-dollar", "building", "clipboard"],
         menu_icon="cast",
