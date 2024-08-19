@@ -11,6 +11,7 @@ import streamlit.components.v1 as components
 from charts.pib_corriente import *
 from charts.pib_const import *
 
+
 st.set_page_config(
     page_title="Data Product",
     page_icon="🦈",
@@ -30,8 +31,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             unsafe_allow_html=True,
         )
         st.write(
-            "Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio Economia de Pesca conversaremos sobre el impacto económico del sector pesquero en nuestra Isla,sin mas,los exorto a que se adentren y conozcan nuestro podcast"
+            "Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio Economía de Pesca conversaremos sobre el impacto económico del sector pesquero en nuestra Isla, sin más, los exorto a que se adentren y conozcan nuestro podcast."
         )
+        st.markdown("#### Capítulo 1:")
         st.audio("50_Cent_-_Candy_Shop__Official_Music_Video__ft._Olivia(999998).mp3")
 
     def recivir_feedback(feedback):
@@ -62,7 +64,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
     def autores():
         st.markdown(
-            """<h1 class = 'uni'>Universidad de la Habana</h1> <style>
+            """<h1 class = 'uni'>Universidad de la Habana🏛️</h1> <style>
                 .uni{
                 font-size: 60px;
                 text-align: center;
@@ -71,7 +73,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             unsafe_allow_html=True,
         )
         st.markdown(
-            """<h2 class = 'facu'>MATCOM</h2> <style>
+            """<h2 class = 'facu'>Facultad: MATCOM </h2> <style>
                 .facu{
                 font-size: 45px;
                 text-align: center;
@@ -80,9 +82,18 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             unsafe_allow_html=True,
         )
         st.markdown(
-            """<h5 class = 'name1'>Alberto E Marichal Fonseca</h5> <style>
+            """<h2 class = 'facu'>Carrera: Ciencia de Datos</h2> <style>
+                .facu{
+                font-size: 35px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """<h5 class = 'name1'>Alberto E Marichal Fonseca: primer año</h5> <style>
                 .name1{
-                font-size: 30px;
+                font-size: 25px;
                 text-align: center;
                 }
             </style>""",
@@ -115,11 +126,14 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             "En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca.",
             unsafe_allow_html=True,
         )
+        st.write("En esta sección encontrará un postcast:")
+        st.write("👇")
         if st.checkbox("Mostrar postcast"):
             postcast()
-
+        st.write("👇")
         if st.checkbox("Mostrar autores"):
             autores()
+
         feed = st.chat_input("Sugerencias")
         if feed:
             recivir_feedback(feed)
