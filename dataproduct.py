@@ -19,6 +19,21 @@ st.set_page_config(
 
 with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
+    def postcast():
+        st.markdown(
+            """<h1 class = 'redes'>Redes de Pesca Cubanas</h1> <style>
+                .redes{
+                font-size: 60px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
+        st.write(
+            "Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio Economia de Pesca conversaremos sobre el impacto económico del sector pesquero en nuestra Isla,sin mas,los exorto a que se adentren y conozcan nuestro podcast"
+        )
+        st.audio("50_Cent_-_Candy_Shop__Official_Music_Video__ft._Olivia(999998).mp3")
+
     def recivir_feedback(feedback):
         token = "7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98"
         bot = telebot.TeleBot(token)
@@ -44,6 +59,35 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
     def warning(a):
         st.warning(a)
+
+    def autores():
+        st.markdown(
+            """<h1 class = 'uni'>Universidad de la Habana</h1> <style>
+                .uni{
+                font-size: 60px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """<h2 class = 'facu'>MATCOM</h2> <style>
+                .facu{
+                font-size: 45px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """<h5 class = 'name1'>Alberto E Marichal Fonseca</h5> <style>
+                .name1{
+                font-size: 30px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
 
     def principal():
 
@@ -71,7 +115,11 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             "En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca.",
             unsafe_allow_html=True,
         )
+        if st.checkbox("Mostrar postcast"):
+            postcast()
 
+        if st.checkbox("Mostrar autores"):
+            autores()
         feed = st.chat_input("Sugerencias")
         if feed:
             recivir_feedback(feed)
@@ -80,9 +128,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
         st.title("Captura de diferentes especies en Cuba")
         opciones = st.selectbox(
-            "",
+            "Seleccione una especie",
             [
-                "Selecione una especie",
+                "Captura total",
                 "Pargo",
                 "Cherna",
                 "Túnidos",
@@ -105,7 +153,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             ],
             help="Selecione una opción para las captura realizadas desde el 2001 hasta 2022",
         )
-        if opciones == "Selecione una especie":
+        if opciones == "Captura total":
             mostrar_grafica_sin(peces_sum_line)
         if opciones == "Pargo":
             mostrar_grafica_sin(pargo)
@@ -275,9 +323,6 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
         pibrutoC = st.checkbox("PIB-precios constantes")
         if pibrutoC:
-            st.info(
-                "a partir del 2021 se nota un aumento drástico debido a la Tarea Ordenamieto"
-            )
             mostrar_grafica_sin(fig)
             slider1 = st.slider("selecione un año", 2005, 2022)
             st.info("linea roja representa la media en cada año")
@@ -750,16 +795,21 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
     selected = option_menu(
         menu_title=None,
         options=["Inicio", "Económico", "Empresas", "Leyes"],
-        icons=["house", "currency-dollar", "building", "clipboard"],
+        icons=[
+            "house",
+            "currency-dollar",
+            "building",
+            "clipboard",
+        ],
         default_index=0,
         orientation="horizontal",
     )
 
     if selected == "Inicio":
         principal()
-    if selected == "Económico":
+    elif selected == "Económico":
         economico()
-    if selected == "Empresas":
+    elif selected == "Empresas":
         mapas()
-    if selected == "Leyes":
+    elif selected == "Leyes":
         leyes()
