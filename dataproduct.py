@@ -31,7 +31,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             unsafe_allow_html=True,
         )
         st.write(
-            "Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio Economía de Pesca conversaremos sobre el impacto económico del sector pesquero en nuestra Isla, sin más, los exorto a que se adentren y conozcan nuestro podcast."
+            "Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio 'Economía de Pesca' conversaremos sobre el impacto económico del sector pesquero en nuestra Isla, sin más, los exorto a que se adentren y conozcan nuestro podcast."
         )
         st.markdown("#### Capítulo 1:")
         st.audio("50_Cent_-_Candy_Shop__Official_Music_Video__ft._Olivia(999998).mp3")
@@ -61,6 +61,31 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
     def warning(a):
         st.warning(a)
+
+    def historia():
+        st.markdown(
+            """<h1 class = 'hist'>De la abundancia a la crisis</h1> <style>
+                .hist{
+                font-size: 30px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            """<h3 class = 'hist1'>La pesca en Cuba desde los años  60 hasta la actualidad</h3> <style>
+                .hist1{
+                font-size: 25px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
+
+        st.write(
+            """   La pesca en Cuba ha pasado de ser una actividad floreciente a enfrentar serios desafíos debido a la sobreexplotación, la contaminación y el cambio climático. En los años 60 y 70, las capturas aumentaron significativamente, impulsadas por políticas gubernamentales que promovían la explotación de los recursos marinos. Sin embargo, a partir de los años 80, la tasa de crecimiento de las capturas comenzó a disminuir, y en los 90, varias pesquerías importantes entraron en decadencia. De 1990 a 2023, la producción de pescados y mariscos se redujo de 188000 a 31933.07 toneladas. En 2018, el 74,4% de los recursos pesqueros cubanos estaban sobreexplotados y el 5,2% colapsados. Además, la contaminación de los acuíferos y la presencia de especies invasoras han contribuido a la degradación de los ecosistemas marinos. En términos de comercio, el valor de las importaciones de productos pesqueros siempre ha superado al de las exportaciones, con un saldo negativo creciente desde \$1.314.000 en 1960 hasta $12.702.000 en 1964. Para revertir esta situación, es crucial implementar medidas de gestión sostenible que incluyan la regulación del esfuerzo pesquero, la protección de los hábitats marinos y la reducción de la contaminación."""
+        )
 
     def autores():
         st.markdown(
@@ -99,6 +124,15 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             </style>""",
             unsafe_allow_html=True,
         )
+        st.markdown(
+            """<h5 class = 'name1'>Dalia Castro Valdes: primer año</h5> <style>
+                .name1{
+                font-size: 25px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
 
     def principal():
 
@@ -126,12 +160,14 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             "En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca.",
             unsafe_allow_html=True,
         )
-        st.write("En esta sección encontrará un postcast:")
         st.write("👇")
         if st.checkbox("Mostrar postcast"):
             postcast()
         st.write("👇")
-        if st.checkbox("Mostrar autores"):
+        if st.checkbox("Historias de Pesca"):
+            historia()
+        st.write("👇")
+        if st.checkbox("¿Quiénes somos?"):
             autores()
 
         feed = st.chat_input("Sugerencias")
