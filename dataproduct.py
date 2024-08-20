@@ -10,7 +10,7 @@ from streamlit_option_menu import option_menu
 import streamlit.components.v1 as components
 from charts.pib_corriente import *
 from charts.pib_const import *
-
+import time
 
 st.set_page_config(
     page_title="Data Product",
@@ -19,7 +19,11 @@ st.set_page_config(
 )
 
 with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
-
+    def cargando():
+        for i in range(5):
+            time.sleep(1)
+            st.write("."*(i+1))
+      
     def postcast():
         st.markdown(
             """<h1 class = 'redes'>Redes de Pesca Cubanas</h1> <style>
@@ -31,10 +35,22 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             unsafe_allow_html=True,
         )
         st.write(
-            "Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio 'Economía de Pesca' conversaremos sobre el impacto económico del sector pesquero en nuestra Isla, sin más, los exorto a que se adentren y conozcan nuestro podcast."
+            """Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país 
+            y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio 'Economía de Pesca' 
+            conversaremos sobre el impacto económico del sector pesquero en nuestra Isla, 
+            sin más, los exorto a que se adentren y conozcan nuestro podcast."""
         )
         st.markdown("#### Capítulo 1:")
-        st.audio("50_Cent_-_Candy_Shop__Official_Music_Video__ft._Olivia(999998).mp3")
+        st.audio(
+            "50_Cent_-_Candy_Shop__Official_Music_Video__ft._Olivia(999998).mp3",
+            loop=True,
+        )
+
+        st.write("👇 podrán escontar los demás capitulos.")
+        if st.button("Más"):
+            with st.spinner("El proceso puede tardar unos segundos........"):
+                cargando()
+                st.warning("Proximamente disponible...")
 
     def recivir_feedback(feedback):
         token = "7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98"
@@ -84,7 +100,17 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         )
 
         st.write(
-            """   La pesca en Cuba ha pasado de ser una actividad floreciente a enfrentar serios desafíos debido a la sobreexplotación, la contaminación y el cambio climático. En los años 60 y 70, las capturas aumentaron significativamente, impulsadas por políticas gubernamentales que promovían la explotación de los recursos marinos. Sin embargo, a partir de los años 80, la tasa de crecimiento de las capturas comenzó a disminuir, y en los 90, varias pesquerías importantes entraron en decadencia. De 1990 a 2023, la producción de pescados y mariscos se redujo de 188000 a 31933.07 toneladas. En 2018, el 74,4% de los recursos pesqueros cubanos estaban sobreexplotados y el 5,2% colapsados. Además, la contaminación de los acuíferos y la presencia de especies invasoras han contribuido a la degradación de los ecosistemas marinos. En términos de comercio, el valor de las importaciones de productos pesqueros siempre ha superado al de las exportaciones, con un saldo negativo creciente desde \$1.314.000 en 1960 hasta $12.702.000 en 1964. Para revertir esta situación, es crucial implementar medidas de gestión sostenible que incluyan la regulación del esfuerzo pesquero, la protección de los hábitats marinos y la reducción de la contaminación."""
+            """   La pesca en Cuba ha pasado de ser una actividad floreciente a enfrentar serios desafíos debido a la sobreexplotación, 
+            la contaminación y el cambio climático. En los años 60 y 70, las capturas aumentaron significativamente, 
+            impulsadas por políticas gubernamentales que promovían la explotación de los recursos marinos. Sin embargo, 
+            a partir de los años 80, la tasa de crecimiento de las capturas comenzó a disminuir, y en los 90, 
+            varias pesquerías importantes entraron en decadencia. De 1990 a 2023, la producción de pescados y mariscos 
+            se redujo de 188000 a 31933.07 toneladas. En 2018, el 74,4% de los recursos pesqueros cubanos estaban sobreexplotados
+             y el 5,2% colapsados. Además, la contaminación de los acuíferos y la presencia de especies invasoras han contribuido 
+             a la degradación de los ecosistemas marinos. En términos de comercio, el valor de las importaciones de productos pesqueros 
+             siempre ha superado al de las exportaciones, con un saldo negativo creciente desde \$1.314.000 en 1960 
+             hasta $12.702.000 en 1964. Para revertir esta situación, es crucial implementar medidas de gestión sostenible que incluyan 
+             la regulación del esfuerzo pesquero, la protección de los hábitats marinos y la reducción de la contaminación."""
         )
 
     def autores():
@@ -160,13 +186,13 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             "En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca.",
             unsafe_allow_html=True,
         )
-        st.write("👇")
-        if st.checkbox("Mostrar postcast"):
+        st.write("⬇️")
+        if st.checkbox("sobre nuestro postcast"):
             postcast()
-        st.write("👇")
+        st.write("⬇️")
         if st.checkbox("Historias de Pesca"):
             historia()
-        st.write("👇")
+        st.write("⬇️")
         if st.checkbox("¿Quiénes somos?"):
             autores()
 
