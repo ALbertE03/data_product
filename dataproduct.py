@@ -19,10 +19,6 @@ st.set_page_config(
 )
 
 with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
-    def cargando():
-        for i in range(5):
-            time.sleep(1)
-            st.write("."*(i+1))
       
     def postcast():
         st.markdown(
@@ -42,14 +38,14 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         )
         st.markdown("#### Capítulo 1:")
         st.audio(
-            "50_Cent_-_Candy_Shop__Official_Music_Video__ft._Olivia(999998).mp3",
+            "AUDIO-2024-08-20-19-12-18.m4a",
             loop=True,
         )
 
-        st.write("👇 podrán escontar los demás capitulos.")
+        st.write("👇 podrán encontar los demás capitulos.")
         if st.button("Más"):
-            with st.spinner("El proceso puede tardar unos segundos........"):
-                cargando()
+            with st.spinner("El proceso puede tardar unos segundos..."):
+                time.sleep(5)
                 st.warning("Proximamente disponible...")
 
     def recivir_feedback(feedback):
@@ -161,7 +157,6 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
         )
 
     def principal():
-
         st.markdown(
             """<h1 class = 'titulo'>La Pesca en Cuba</h1> <style>
                 .titulo{
@@ -171,7 +166,14 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             </style>""",
             unsafe_allow_html=True,
         )
-
+        st.markdown( """<h4 class = 'sub'>Como navegar:</h4> <style>
+                .sub{
+                font-size: 30px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,)
+       
         st.write(
             """<p style='text-aling:center;'>En Económico puede encontrar las capturas en toneladas de los diferentes peces, además, 
                 la comparativa y relaciones entre Importaciones e Exportaciones.<p> """,
@@ -186,6 +188,14 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
             "En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca.",
             unsafe_allow_html=True,
         )
+        st.subheader("",divider="gray")
+        st.markdown( """<h4 class = 'sub'>Extras</h4> <style>
+                .sub{
+                font-size: 30px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,)
         st.write("⬇️")
         if st.checkbox("sobre nuestro postcast"):
             postcast()

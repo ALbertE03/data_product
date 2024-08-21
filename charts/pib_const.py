@@ -38,7 +38,7 @@ def auto1(año,df):
     
     fig = go.Figure(data=[go.Bar(x=list(df.index),y=df[año],text=df[año],textposition='auto',marker_color='skyblue')])
     fig.add_hline(y=sum(df[año])/len(df[año]),line_dash ='dash',line_color='red', annotation_text="media")
-    fig.update_layout(title="PIB a precios constantes", yaxis_title='Millones depesos (MP)')
+    fig.update_layout(title=f"PIB a precios constantes: {año}", yaxis_title='Millones depesos (MP)')
     return fig
 
 def contar_año(año):
