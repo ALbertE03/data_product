@@ -1,12 +1,13 @@
 ##############################################################
 #  imports
 ##############################################################
-from charts.graficas_plotly import miles_peso_, grupos_exp_real,peces
+from charts.graficas_plotly import miles_peso_, grupos_exp_real, peces
 import matplotlib.pyplot as plt
 import numpy as np 
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
+import pandas as pd
 ##############################################################
 # predecir el precio en millones de pesos del pescado en exportaciones (total)
 ##############################################################
@@ -16,8 +17,8 @@ sumap1 = miles_peso_.T.loc['Pescado y marisco fresco y congelado']
 sumap2 = miles_peso_.T.loc['Pescado y marisco en conserva']
 valores = np.array(sumap1+sumap2)
 
-degree=3
-poly_feature =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 3
+poly_feature = PolynomialFeatures(degree = degree,include_bias = False)
 
 x_poly = poly_feature.fit_transform(años)
 
@@ -25,17 +26,17 @@ model = LinearRegression()
 model.fit(x_poly,valores)
 
 
-y= model.predict(x_poly)
+y = model.predict(x_poly)
 r2 = r2_score(valores,y)
 print(f"r2_score: {r2:.2f}")
 
-pre = np.array([[2023],[2024]])
+pre = np.array([[2023]])
 x_future = poly_feature.transform(pre)
 predict = model.predict(x_future)
 
-aaa=list(y)+list(predict)
+aaa = list(y) + list(predict)
 plt.scatter(años,valores)
-plt.plot([x for x in range(1998,2025)],aaa)
+plt.plot([x for x in range(1998,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -48,8 +49,8 @@ plt.show()
 productos_pesca = np.array(grupos_exp_real.loc['Productos de la Pesca'])
 annos = np.array([x for x in range(1989,2023)]).reshape(-1,1)
 
-degree=3
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 3
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(annos)
 
 modelo = LinearRegression()
@@ -60,14 +61,14 @@ p = modelo.predict(poly_x)
 r2 = r2_score(productos_pesca,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict1 = modelo.predict(x_future1)
 print(predict1)
 
-aaa=list(p)+list(predict1)
+aaa = list(p) + list(predict1)
 plt.plot(annos,productos_pesca,'.')
-plt.plot([x for x in range(1989,2025)],aaa)
+plt.plot([x for x in range(1989,2024)],aaa)
 plt.show()
 
 
@@ -76,8 +77,8 @@ plt.show()
 ##############################################################
 
 productos_agropecuarios = np.array(grupos_exp_real.loc['Productos agropecuarios'])
-degree=2
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 2
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(annos)
 
 modelo2 = LinearRegression()
@@ -88,13 +89,13 @@ p = modelo2.predict(poly_x)
 r2 = r2_score(productos_agropecuarios,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict2 = modelo2.predict(x_future1)
 print(predict2)
-aaa=list(p)+list(predict2)
+aaa = list(p) + list(predict2)
 plt.plot(annos,productos_agropecuarios,'.')
-plt.plot([x for x in range(1989,2025)],aaa)
+plt.plot([x for x in range(1989,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -102,8 +103,8 @@ plt.show()
 ##############################################################
 
 productos_azucar = np.array(grupos_exp_real.loc['Productos de la industria azucarera'])
-degree=2
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 2
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(annos)
 
 modelo3 = LinearRegression()
@@ -114,13 +115,13 @@ p = modelo3.predict(poly_x)
 r2 = r2_score(productos_azucar,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict3 = modelo3.predict(x_future1)
 print(predict3)
-aaa=list(p)+list(predict3)
+aaa = list(p) + list(predict3)
 plt.plot(annos,productos_azucar,'.')
-plt.plot([x for x in range(1989,2025)],aaa)
+plt.plot([x for x in range(1989,2024)],aaa)
 plt.show()
 
 
@@ -128,8 +129,8 @@ plt.show()
 # predecir productos de la mineria
 ##############################################################
 productos_mineria = np.array(grupos_exp_real.loc['Productos de la minería'])
-degree=2
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 2
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(annos)
 
 modelo4 = LinearRegression()
@@ -140,13 +141,13 @@ p = modelo4.predict(poly_x)
 r2 = r2_score(productos_mineria,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict4 = modelo4.predict(x_future1)
 print(predict4)
-aaa=list(p)+list(predict4)
+aaa = list(p) + list(predict4)
 plt.plot(annos,productos_mineria,'.')
-plt.plot([x for x in range(1989,2025)],aaa)
+plt.plot([x for x in range(1989,2024)],aaa)
 plt.show()
 
 
@@ -155,8 +156,8 @@ plt.show()
 ##############################################################
 
 productos_tabaco = np.array(grupos_exp_real.loc['Productos de la industria del tabaco'])
-degree=2
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 2
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(annos)
 
 modelo5 = LinearRegression()
@@ -167,18 +168,17 @@ p = modelo5.predict(poly_x)
 r2 = r2_score(productos_tabaco,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict5 = modelo5.predict(x_future1)
 print(predict5)
-aaa=list(p)+list(predict5)
+aaa = list(p) + list(predict5)
 plt.plot(annos,productos_tabaco,'.')
-plt.plot([x for x in range(1989,2025)],aaa)
+plt.plot([x for x in range(1989,2024)],aaa)
 plt.show()
 
-r=list(predict1)+list(predict2)+list(predict3)+list(predict4)+list(predict5)
-agrego = np.array(r).reshape(-2,2)
-agrego
+r = list(predict1) + list(predict2) + list(predict3) + list(predict4) + list(predict5)
+agrego = np.array(r).reshape(-1,1)
 
 actual = {
     'Productos de Pesca':agrego[0],
@@ -197,8 +197,8 @@ actual_df = pd.DataFrame(actual)
 ##############################################################
 pargo = np.array(peces['Pargo'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
-degree=1
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 1
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo6 = LinearRegression()
@@ -209,13 +209,13 @@ p = modelo6.predict(poly_x)
 r2 = r2_score(pargo,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict6 = modelo6.predict(x_future1)
 print(predict6)
-aaa=list(p)+list(predict6)
+aaa = list(p) + list(predict6)
 plt.plot(años_peces,pargo,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -224,8 +224,8 @@ plt.show()
 
 cherna = np.array(peces['Cherna'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
-degree=3
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 3
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo7 = LinearRegression()
@@ -236,13 +236,13 @@ p = modelo7.predict(poly_x)
 r2 = r2_score(cherna,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict7 = modelo7.predict(x_future1)
 print(predict7)
-aaa=list(p)+list(predict7)
+aaa = list(p) + list(predict7)
 plt.plot(años_peces,cherna,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -251,8 +251,8 @@ plt.show()
 
 tunidos = np.array(peces['Túnidos'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
-degree=5
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 5
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo8 = LinearRegression()
@@ -263,13 +263,13 @@ p = modelo8.predict(poly_x)
 r2 = r2_score(tunidos,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict8 = modelo8.predict(x_future1)
 print(predict8)
-aaa=list(p)+list(predict8)
+aaa = list(p) + list(predict8)
 plt.plot(años_peces,tunidos,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -278,8 +278,8 @@ plt.show()
 
 Bonito = np.array(peces['Bonito'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
-degree=3
-poly =PolynomialFeatures(degree=degree,include_bias=False)
+degree = 3
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo9 = LinearRegression()
@@ -290,13 +290,13 @@ p = modelo9.predict(poly_x)
 r2 = r2_score(Bonito,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict9 = modelo9.predict(x_future1)
 print(predict9)
-aaa=list(p)+list(predict9)
+aaa = list(p) + list(predict9)
 plt.plot(años_peces,Bonito,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -306,7 +306,7 @@ plt.show()
 Biajaiba = np.array(peces['Biajaiba'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 2
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo10 = LinearRegression()
@@ -317,14 +317,14 @@ p = modelo10.predict(poly_x)
 r2 = r2_score(Biajaiba,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict10 = modelo10.predict(x_future1)
 
 print(predict10)
-aaa = list(p)+list(predict10)
+aaa = list(p) + list(predict10)
 plt.plot(años_peces,Biajaiba,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -334,7 +334,7 @@ plt.show()
 Machuelo = np.array(peces['Machuelo'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 4
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo11 = LinearRegression()
@@ -345,14 +345,14 @@ p = modelo11.predict(poly_x)
 r2 = r2_score(Machuelo,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict11 = modelo11.predict(x_future1)
 
 print(predict11)
-aaa = list(p)+list(predict11)
+aaa = list(p) + list(predict11)
 plt.plot(años_peces,Machuelo,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -362,7 +362,7 @@ plt.show()
 Rabirubia = np.array(peces['Rabirubia'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 1
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo12 = LinearRegression()
@@ -373,14 +373,14 @@ p = modelo12.predict(poly_x)
 r2 = r2_score(Rabirubia,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict12 = modelo12.predict(x_future1)
 
 print(predict12)
-aaa = list(p)+list(predict12)
+aaa = list(p) + list(predict12)
 plt.plot(años_peces,Rabirubia,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -390,7 +390,7 @@ plt.show()
 Raya = np.array(peces['Raya'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 3
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo13 = LinearRegression()
@@ -401,14 +401,14 @@ p = modelo13.predict(poly_x)
 r2 = r2_score(Raya,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict13 = modelo13.predict(x_future1)
 
 print(predict13)
-aaa = list(p)+list(predict13)
+aaa = list(p) + list(predict13)
 plt.plot(años_peces,Raya,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 
@@ -419,7 +419,7 @@ plt.show()
 Carpa = np.array(peces['Carpa'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 3
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo14 = LinearRegression()
@@ -430,14 +430,14 @@ p = modelo14.predict(poly_x)
 r2 = r2_score(Carpa,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict14 = modelo14.predict(x_future1)
 
 print(predict14)
-aaa = list(p)+list(predict14)
+aaa = list(p) + list(predict14)
 plt.plot(años_peces,Carpa,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -447,7 +447,7 @@ plt.show()
 Tenca = np.array(peces['Tenca'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 3
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo15 = LinearRegression()
@@ -458,14 +458,14 @@ p = modelo15.predict(poly_x)
 r2 = r2_score(Tenca,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict15 = modelo15.predict(x_future1)
 
 print(predict15)
-aaa = list(p)+list(predict15)
+aaa = list(p) + list(predict15)
 plt.plot(años_peces,Tenca,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -475,7 +475,7 @@ plt.show()
 Tilapia = np.array(peces['Tilapia'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 2
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo16 = LinearRegression()
@@ -486,14 +486,14 @@ p = modelo16.predict(poly_x)
 r2 = r2_score(Tilapia,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict16 = modelo16.predict(x_future1)
 
 print(predict16)
-aaa = list(p)+list(predict16)
+aaa = list(p) + list(predict16)
 plt.plot(años_peces,Tilapia,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -503,7 +503,7 @@ plt.show()
 Claria = np.array(peces['Claria'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 2
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo17 = LinearRegression()
@@ -514,14 +514,14 @@ p = modelo17.predict(poly_x)
 r2 = r2_score(Claria,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict17 = modelo17.predict(x_future1)
 
 print(predict17)
-aaa = list(p)+list(predict17)
+aaa = list(p) + list(predict17)
 plt.plot(años_peces,Claria,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -531,7 +531,7 @@ plt.show()
 Cobo = np.array(peces['Cobo'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 1
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo18 = LinearRegression()
@@ -542,14 +542,14 @@ p = modelo18.predict(poly_x)
 r2 = r2_score(Cobo,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict18 = modelo18.predict(x_future1)
 
 print(predict18)
-aaa = list(p)+list(predict18)
+aaa = list(p) + list(predict18)
 plt.plot(años_peces,Cobo,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -559,7 +559,7 @@ plt.show()
 Ostión = np.array(peces['Ostión'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 3
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo19 = LinearRegression()
@@ -570,14 +570,14 @@ p = modelo19.predict(poly_x)
 r2 = r2_score(Ostión,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict19 = modelo19.predict(x_future1)
 
 print(predict19)
-aaa = list(p)+list(predict19)
+aaa = list(p) + list(predict19)
 plt.plot(años_peces,Ostión,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -587,7 +587,7 @@ plt.show()
 Almeja = np.array(peces['Almeja'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 2
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo20 = LinearRegression()
@@ -598,14 +598,14 @@ p = modelo20.predict(poly_x)
 r2 = r2_score(Almeja,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict20 = modelo20.predict(x_future1)
 
 print(predict20)
-aaa = list(p)+list(predict20)
+aaa = list(p) + list(predict20)
 plt.plot(años_peces,Almeja,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -615,7 +615,7 @@ plt.show()
 Langosta = np.array(peces['Langosta'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 3
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo21 = LinearRegression()
@@ -626,14 +626,14 @@ p = modelo21.predict(poly_x)
 r2 = r2_score(Langosta,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict21 = modelo21.predict(x_future1)
 
 print(predict21)
-aaa = list(p)+list(predict21)
+aaa = list(p) + list(predict21)
 plt.plot(años_peces,Langosta,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -643,7 +643,7 @@ plt.show()
 Camarón = np.array(peces['Camarón de Mar'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 4
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo22 = LinearRegression()
@@ -654,24 +654,24 @@ p = modelo22.predict(poly_x)
 r2 = r2_score(Camarón,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict22 = modelo22.predict(x_future1)
 
 print(predict22)
-aaa = list(p)+list(predict22)
+aaa = list(p) + list(predict22)
 plt.plot(años_peces,Camarón,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
-#predecir CCamaronicultura
+#predecir Camaronicultura
 ##############################################################
 
 Camaronicultura = np.array(peces['Camaronicultura'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 3
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo23 = LinearRegression()
@@ -682,14 +682,14 @@ p = modelo23.predict(poly_x)
 r2 = r2_score(Camaronicultura,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict23 = modelo23.predict(x_future1)
 
 print(predict23)
-aaa = list(p)+list(predict23)
+aaa = list(p) + list(predict23)
 plt.plot(años_peces,Camaronicultura,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()
 
 ##############################################################
@@ -699,7 +699,7 @@ plt.show()
 Moralla = np.array(peces['Moralla'])
 años_peces = np.array([x for x in range(2001,2023)]).reshape(-1,1)
 degree = 2
-poly = PolynomialFeatures(degree=degree,include_bias=False)
+poly = PolynomialFeatures(degree = degree,include_bias = False)
 poly_x = poly.fit_transform(años_peces)
 
 modelo24 = LinearRegression()
@@ -710,12 +710,12 @@ p = modelo24.predict(poly_x)
 r2 = r2_score(Moralla,p)
 print(f"r2_score: {r2:.2f}")
 
-pre1 = np.array([[2023],[2024]])
+pre1 = np.array([[2023]])
 x_future1 = poly.transform(pre1)
 predict24 = modelo24.predict(x_future1)
 
 print(predict24)
-aaa = list(p)+list(predict24)
+aaa = list(p) + list(predict24)
 plt.plot(años_peces,Moralla,'.')
-plt.plot([x for x in range(2001,2025)],aaa)
+plt.plot([x for x in range(2001,2024)],aaa)
 plt.show()

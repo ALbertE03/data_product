@@ -8,13 +8,13 @@ import plotly.graph_objects as go
 with open("./data/pib_corriente.json",'r') as jsonfile:
     pib_corriente = json.load(jsonfile)
 
-pib_corriente_aux ={}
+pib_corriente_aux = {}
 
 for i in pib_corriente:
     pepe = []
     for t,j in enumerate(pib_corriente[i]):
-        if t<=20:
-            if j !=0 and t!=0 :
+        if t <= 20:
+            if j != 0 and t != 0 :
                 pepe.append(j)
         
         
@@ -34,21 +34,21 @@ pib_corriente_df.index = ['Agricultura, ganadería y silvicultura ','Pesca',' Ex
 ' Otras act de servicios comunales, de asociaciones y personales',' Derechos de importación'
 ]
 
-fig1 = px.line(pib_corriente_df.loc['Pesca'].T,title="Evolución del pib de la pesca a precios corrientes")
-fig1.update_layout(yaxis_title="millones de pesos (MP)",xaxis_title='años')
+fig1 = px.line(pib_corriente_df.loc['Pesca'].T,title = "Evolución del pib de la pesca a precios corrientes")
+fig1.update_layout(yaxis_title = "millones de pesos (MP)",xaxis_title = 'años')
 def auto(año,df):
     
-    fig = go.Figure(data=[go.Bar(x=list(df.index),y=df[año],text=df[año],textposition='auto',marker_color='skyblue')])
-    fig.add_hline(y=sum(df[año])/len(df[año]),line_dash ='dash',line_color='red', annotation_text="media")
-    fig.update_layout(title=f"PIB a precios corrientes {año}", yaxis_title='Millones depesos (MP)')
+    fig = go.Figure(data = [go.Bar(x = list(df.index),y = df[año],text = df[año],textposition = 'auto',marker_color = 'skyblue')])
+    fig.add_hline(y = sum(df[año]) / len(df[año]),line_dash = 'dash',line_color = 'red', annotation_text = "media")
+    fig.update_layout(title = f"PIB a precios corrientes {año}", yaxis_title = 'Millones depesos (MP)')
     return fig
 
 
 def pastel(año):
     pesca = pib_corriente_df[str(año)].iloc[1]
     total = totales_pib[str(año)] - pesca
-    fig = go.Figure(data=[go.Pie(labels=['total','pesca'],values=[total,pesca])])
-    fig.update_layout(title=f'Porciento del pib de año: {año}')
+    fig = go.Figure(data = [go.Pie(labels = ['total','pesca'],values = [total,pesca])])
+    fig.update_layout(title = f'Porciento del pib de año: {año}')
     return fig
 
 
