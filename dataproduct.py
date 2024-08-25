@@ -1,16 +1,18 @@
 import streamlit as st
-from charts.graficas_plotly import *
 import plotly.graph_objects as go
 import streamlit_analytics
 import folium
+import telebot
+from charts.graficas_plotly import *
+import streamlit.components.v1 as components
+import time
+
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
-import telebot
 from streamlit_option_menu import option_menu
-import streamlit.components.v1 as components
 from charts.pib_corriente import *
 from charts.pib_const import *
-import time
+
 
 st.set_page_config(
     page_title = "Data Product",
