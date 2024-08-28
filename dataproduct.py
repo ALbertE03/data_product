@@ -294,12 +294,12 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
         )
         if opciones == "Captura total":
             mostrar_grafica_sin(peces_sum_line)
-        if opciones == "todos a la vez":
+        elif opciones == "todos a la vez":
             if st.checkbox("leyenda"):
                 mostrar_grafica(fish)
             else:
                 mostrar_grafica_sin(fish)
-        if opciones == "Pargo":
+        elif opciones == "Pargo":
             mostrar_grafica_sin(pargo)
         elif opciones == "Cherna":
             mostrar_grafica_sin(Cherna)
@@ -460,7 +460,8 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
 
             slider = st.slider("selecione un año", 2010, 2022)
             st.info("linea roja representa la media en cada año")
-            mostrar_grafica_sin(auto(str(slider), pib_corriente_df))
+            mostrar(f'La media del {slider} es: {auto(str(slider), pib_corriente_df)[1]}')
+            mostrar_grafica_sin(auto(str(slider), pib_corriente_df)[0])
             paste = pastel(slider)
             mostrar_grafica(paste)
 
@@ -469,7 +470,8 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
             mostrar_grafica_sin(fig)
             slider1 = st.slider("selecione un año", 2005, 2022)
             st.info("linea roja representa la media en cada año")
-            mostrar_grafica_sin(auto1(slider1, pib_const_aux_df))
+            mostrar(f'La media del {slider1} es: {auto1(slider1, pib_const_aux_df)[1]}')
+            mostrar_grafica_sin(auto1(slider1, pib_const_aux_df)[0])
             mostrar_grafica(pastel1(slider1))
 
         feed = st.chat_input("Sugerencias")
@@ -493,7 +495,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
         if "cantidad de Resoluciones por año" == ly:
             mostrar_grafica_sin(leyes_annos)
 
-        if "sobre pesca ilegal" == ly:
+        elif "sobre pesca ilegal" == ly:
             mostrar(leyes_ilegal)
 
         elif "sobre prohibición" == ly:
@@ -907,27 +909,27 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
             if prov:
                 mostrar_grafica_sin(mypimesdf_bar)
                 mostrar_grafica(graficar_mypimes_total_pastel())
-        if option == "EpiGram":
+        elif option == "EpiGram":
             st.subheader("EpiGram")
             st_folium(m, width=700, height=700)
 
-        if option == "PESCAGRAM":
+        elif option == "PESCAGRAM":
             st.subheader("PESCAGRAM")
             st_folium(m1, width=700, height=700)
 
-        if option == "EPICAI":
+        elif option == "EPICAI":
             st.subheader("EPICAI")
             st_folium(m2, width=700, height=700)
 
-        if option == "EPICIEN":
+        elif option == "EPICIEN":
             st.subheader("EPICIEN")
             st_folium(m3, width=700, height=700)
 
-        if option == "Pesca Caribe":
+        elif option == "Pesca Caribe":
             st.subheader("Pesca Caribe")
             st_folium(m4, width=700, height=700)
 
-        if option == "GEIP":
+        elif option == "GEIP":
             st.subheader("Grupo Empresarial de La Industria Pesquera (GEIP)")
             st_folium(m5, width=700, height=700)
 

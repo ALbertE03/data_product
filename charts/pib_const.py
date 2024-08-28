@@ -31,15 +31,15 @@ pib_const_aux_df.index = ['Agricultura, ganadería y silvicultura ','Pesca',' Ex
 pesca_pib_const = pib_const_aux_df.loc['Pesca']
 
 fig = px.line(pesca_pib_const.T,title = "Evolución del pib de la pesca a precios constantes")
-fig.update_layout(yaxis_title = "millones de pesos (MP)",xaxis_title = 'años')
+fig.update_layout(yaxis_title = "millones de pesos",xaxis_title = 'años')
 
 
 def auto1(año,df):
     
     fig = go.Figure(data = [go.Bar(x = list(df.index),y = df[año],text = df[año],textposition = 'auto',marker_color = 'skyblue')])
     fig.add_hline(y = sum(df[año]) / len(df[año]),line_dash = 'dash',line_color = 'red', annotation_text = "media")
-    fig.update_layout(title = f"PIB a precios constantes: {año}", yaxis_title = 'Millones depesos (MP)')
-    return fig
+    fig.update_layout(title = f"PIB a precios constantes: {año}", yaxis_title = 'Millones de pesos')
+    return fig,sum(df[año]) / len(df[año])
 
 def contar_año(año):
     contador = 0

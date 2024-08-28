@@ -35,13 +35,12 @@ pib_corriente_df.index = ['Agricultura, ganadería y silvicultura ','Pesca',' Ex
 ]
 
 fig1 = px.line(pib_corriente_df.loc['Pesca'].T,title = "Evolución del pib de la pesca a precios corrientes")
-fig1.update_layout(yaxis_title = "millones de pesos (MP)",xaxis_title = 'años')
+fig1.update_layout(yaxis_title = "millones de pesos",xaxis_title = 'años')
 def auto(año,df):
-    
     fig = go.Figure(data = [go.Bar(x = list(df.index),y = df[año],text = df[año],textposition = 'auto',marker_color = 'skyblue')])
     fig.add_hline(y = sum(df[año]) / len(df[año]),line_dash = 'dash',line_color = 'red', annotation_text = "media")
-    fig.update_layout(title = f"PIB a precios corrientes {año}", yaxis_title = 'Millones depesos (MP)')
-    return fig
+    fig.update_layout(title = f"PIB a precios corrientes {año}", yaxis_title = 'Millones de pesos')
+    return fig,sum(df[año]) / len(df[año])
 
 
 def pastel(año):
