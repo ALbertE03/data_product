@@ -14,15 +14,14 @@ from charts.pib_corriente import *
 from charts.pib_const import *
 
 st.set_page_config(
-    page_title = "Data Product",
-    page_icon = "🦈",
-    layout = "wide",
+    page_title="Data Product",
+    page_icon="🦈",
+    layout="wide",
 )
-st.logo('data/logo/6156312.jpeg')
+st.logo("data/logo/6156312.jpeg")
 
-with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
-    
-    
+with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
+
     def postcast():
         st.markdown(
             """<h1 class = 'redes'>Redes de Pesca Cubanas</h1> <style>
@@ -31,7 +30,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.write(
             """Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país 
@@ -42,7 +41,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
         st.markdown("#### Capítulo 1:")
         st.audio(
             "AUDIO-2024-08-21-21-32-12.m4a",
-            loop = True,
+            loop=True,
         )
 
         st.write("👇 podrán encontar los demás capitulos.")
@@ -57,7 +56,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
 
         chat_id = "1883265786"
         try:
-            bot.send_message(chat_id = chat_id, text = feedback)
+            bot.send_message(chat_id=chat_id, text=feedback)
             st.success("Recibido ✅, si es posible será agregado. Gracias")
 
         except Exception as e:
@@ -67,12 +66,12 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
         st.write(a)
 
     def mostrar_grafica(graf):
-        graf.update_layout(showlegend = True)
-        st.plotly_chart(graf, use_container_width = True)
+        graf.update_layout(showlegend=True)
+        st.plotly_chart(graf, use_container_width=True)
 
     def mostrar_grafica_sin(g):
-        g.update_layout(showlegend = False)
-        st.plotly_chart(g, use_container_width = True)
+        g.update_layout(showlegend=False)
+        st.plotly_chart(g, use_container_width=True)
 
     def warning(a):
         st.warning(a)
@@ -85,7 +84,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
 
         st.markdown(
@@ -95,7 +94,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
 
         st.write(
@@ -166,7 +165,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.markdown(
             """<h2 class = 'facu'>Facultad: MATCOM </h2> <style>
@@ -175,7 +174,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.markdown(
             """<h2 class = 'carr'>Carrera: Ciencia de Datos</h2> <style>
@@ -184,7 +183,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.markdown(
             """<h5 class = 'name1'>Alberto E Marichal Fonseca: primer año</h5> <style>
@@ -193,7 +192,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.markdown(
             """<h5 class = 'name1'>Dalia Castro Valdes: primer año</h5> <style>
@@ -202,8 +201,8 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
-        ) 
+            unsafe_allow_html=True,
+        )
 
     def principal():
         st.markdown(
@@ -213,41 +212,45 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
-        st.markdown( """<h4 class = 'sub'>Como navegar:</h4> <style>
+        st.markdown(
+            """<h4 class = 'sub'>Como navegar:</h4> <style>
                 .sub{
                 font-size: 30px;
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,)
-       
+            unsafe_allow_html=True,
+        )
+
         st.write(
             """En la pestaña Económico puede acceder a datos sobre las capturas en toneladas de diversas especies de peces. También
                 econtrará comparativas y análisis sobre las relaciones entre Importaciones e Exportaciones en el sector pesquero. """,
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.write(
             """En Empresas se presenta un listado de las principales empresas pesqueras en Cuba,
                 así como pequeñas y medianas empresas del sector. Además, se incluyen detalles 
                 sobre su localización y las principales zonas de pesca que operan""",
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.write(
             """En leyes se recopilan las acciones y regulaciones adoptadas por el gobierno de Cuba 
             en relación con la pesca, proporcionando un panorama claro de las políticas implementdas 
             en este ámbito. """,
-            unsafe_allow_html = True,
+            unsafe_allow_html=True,
         )
         st.divider()
-        st.markdown( """<h4 class = 'sub'>Extras</h4> <style>
+        st.markdown(
+            """<h4 class = 'sub'>Extras</h4> <style>
                 .sub{
                 font-size: 30px;
                 text-align: center;
                 }
             </style>""",
-            unsafe_allow_html = True,)
+            unsafe_allow_html=True,
+        )
         st.write("⬇️")
         if st.checkbox("sobre nuestro postcast"):
             postcast()
@@ -290,7 +293,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                 "Camaronicultura",
                 "Morallas",
             ],
-            help = "Selecione una opción para las captura realizadas desde el 2001 hasta 2022",
+            help="Selecione una opción para las captura realizadas desde el 2001 hasta 2022",
         )
         if opciones == "Captura total":
             mostrar_grafica_sin(peces_sum_line)
@@ -345,7 +348,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
             precios = st.checkbox("Precios y Toneladas CUCI")
             leg = st.checkbox(
                 "Mostrar leyendas (Exportaciones)",
-                help = "En movil, usar el modo horizontal",
+                help="En movil, usar el modo horizontal",
             )
 
             if precios:
@@ -379,7 +382,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                             }
                             </style>
                             """,
-                        unsafe_allow_html = True,
+                        unsafe_allow_html=True,
                     )
 
                     st.text(
@@ -399,7 +402,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
                             }
                             </style>
                             """,
-                        unsafe_allow_html = True,
+                        unsafe_allow_html=True,
                     )
 
                     st.markdown(
@@ -460,7 +463,9 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
 
             slider = st.slider("selecione un año", 2010, 2022)
             st.info("linea roja representa la media en cada año")
-            mostrar(f'La media del {slider} es: {auto(str(slider), pib_corriente_df)[1]}')
+            mostrar(
+                f"La media del {slider} es: {auto(str(slider), pib_corriente_df)[1]}"
+            )
             mostrar_grafica_sin(auto(str(slider), pib_corriente_df)[0])
             paste = pastel(slider)
             mostrar_grafica(paste)
@@ -470,7 +475,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
             mostrar_grafica_sin(fig)
             slider1 = st.slider("selecione un año", 2005, 2022)
             st.info("linea roja representa la media en cada año")
-            mostrar(f'La media del {slider1} es: {auto1(slider1, pib_const_aux_df)[1]}')
+            mostrar(f"La media del {slider1} es: {auto1(slider1, pib_const_aux_df)[1]}")
             mostrar_grafica_sin(auto1(slider1, pib_const_aux_df)[0])
             mostrar_grafica(pastel1(slider1))
 
@@ -938,7 +943,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
             recivir_feedback(feed)
 
     selected = option_menu(
-        menu_title = None,
+        menu_title=None,
         options=["Inicio", "Económico", "Empresas", "Leyes"],
         icons=[
             "house",
@@ -946,8 +951,8 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
             "building",
             "clipboard",
         ],
-        default_index = 0,
-        orientation = "horizontal",
+        default_index=0,
+        orientation="horizontal",
     )
 
     if selected == "Inicio":
