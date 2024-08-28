@@ -1,2 +1,7 @@
 .env
 
+charts/__pycache__/
+script/__pycache__/
+__pycache__/
+.ipynb_checkpoints
+.streamlit
