@@ -54,11 +54,9 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
     def recivir_feedback(feedback):
         load_dotenv()
-        token = st.secrets.TOKEN
-        st.write(token)
+        token = st.secrets.token
         bot = telebot.TeleBot(token)
-
-        chat_id = st.secrets.CHAT_ID
+        chat_id = st.secrets.chat_id
         try:
             bot.send_message(chat_id=chat_id, text=feedback)
             st.success("Recibido ✅, si es posible será agregado. Gracias")
