@@ -653,7 +653,7 @@ names = [
 
 # API_KEY = "RBXGBJ4QGJZW5CJYE42MRF3X765IQZZX4ERWD5EI2QD2YFH1MJ3Y3QV7USZKPVE4MPZ6QROME2GVB1IH"
 load_dotenv()
-APIKEY = os.getenv("TOKEN_SCRAPING")
+APIKEY = st.secrets.TOKEN_SCRAPING
 for i, name in enumerate(names):
 
     payload = {"api_key": APIKEY, "url": url[i]}
