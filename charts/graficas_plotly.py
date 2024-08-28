@@ -607,7 +607,6 @@ def graficar_pastel_mypime(prov, num):
                 return j
 
     prov_real = verificar_prov(num)
-
     mypimesdf_pr = mypimesdf.loc[prov_real]
     pesca_mypimes = mypimesdf_pr["Agricultura,Pesca,Ganaderia y Silvicultura"]
     mypimesdf_pr_sum = np.sum(mypimesdf_pr) - pesca_mypimes
@@ -619,7 +618,7 @@ def graficar_pastel_mypime(prov, num):
             )
         ]
     )
-
+    fig.update_layout(title = f"{prov_real}")
     return fig
 
 

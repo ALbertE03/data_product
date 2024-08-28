@@ -19,9 +19,11 @@ st.set_page_config(
     page_icon = "🦈",
     layout = "wide",
 )
+st.logo('data/logo/6156312.jpeg')
 
 with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
-      
+    
+    
     def postcast():
         st.markdown(
             """<h1 class = 'redes'>Redes de Pesca Cubanas</h1> <style>
@@ -187,7 +189,7 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
             "En leyes y Resoluciones se encuentran las acciones que ah tomado el gobierno de Cuba con respecto a la Pesca.",
             unsafe_allow_html = True,
         )
-        st.subheader("",divider = "gray")
+        st.divider()
         st.markdown( """<h4 class = 'sub'>Extras</h4> <style>
                 .sub{
                 font-size: 30px;
@@ -282,7 +284,6 @@ with streamlit_analytics.track(unsafe_password = "Pesca1234", verbose = True):
         st.title("Exportaciones e Importaciones")
         mostrar_grafica_sin(toneladas_global_total_line)
         epo = st.checkbox("Exportaciones")
-
         if epo:
             precios = st.checkbox("Precios y Toneladas CUCI")
             leg = st.checkbox(
