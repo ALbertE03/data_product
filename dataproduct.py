@@ -6,7 +6,9 @@ import telebot
 from charts.graficas_plotly import *
 import streamlit.components.v1 as components
 import time
+import os
 
+from dotenv import load_dotenv
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 from streamlit_option_menu import option_menu
@@ -51,10 +53,11 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
                 st.warning("Proximamente disponible...")
 
     def recivir_feedback(feedback):
-        token = "7235089424:AAFG69LRNuLCYOFCdnLDuPMQiKxLo7AOj98"
+        load_dotenv()
+        token = os.getenv("TOKEN")
         bot = telebot.TeleBot(token)
 
-        chat_id = "1883265786"
+        chat_id = os.getenv("CHAT_ID")
         try:
             bot.send_message(chat_id=chat_id, text=feedback)
             st.success("Recibido ✅, si es posible será agregado. Gracias")

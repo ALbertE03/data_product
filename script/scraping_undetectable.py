@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import streamlit as st
+import os
+from dotenv import load_dotenv
 
 
 def scraping(payload, name):
@@ -650,8 +652,8 @@ names = [
 ]
 
 # API_KEY = "RBXGBJ4QGJZW5CJYE42MRF3X765IQZZX4ERWD5EI2QD2YFH1MJ3Y3QV7USZKPVE4MPZ6QROME2GVB1IH"
-
-APIKEY = "34e4d4a1a227d76dfe3b0dc97110bede"
+load_dotenv()
+APIKEY = os.getenv("TOKEN_SCRAPING")
 for i, name in enumerate(names):
 
     payload = {"api_key": APIKEY, "url": url[i]}

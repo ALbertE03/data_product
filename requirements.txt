@@ -15,3 +15,4 @@ seaborn
 matplotlib
 streamlit-option-menu
 selenium
+python-dotenv
