@@ -55,6 +55,7 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
     def recivir_feedback(feedback):
         load_dotenv()
         token = st.secrets.TOKEN
+        st.write(token)
         bot = telebot.TeleBot(token)
 
         chat_id = st.secrets.CHAT_ID
