@@ -209,8 +209,8 @@ with streamlit_analytics.track(unsafe_password="Pesca1234", verbose=True):
 
     def principal():
         st.markdown(
-            """<h1 class = 'titulo'>La Pesca en Cuba</h1> <style>
-                .titulo{
+            """<h1 class = 'titulos'>La Pesca en Cuba</h1> <style>
+                .titulos{
                 font-size: 60px;
                 text-align: center;
                 }
