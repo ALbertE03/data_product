@@ -395,13 +395,13 @@ peces.index = [
 
 
 peces = peces.T
-fish = px.line(peces, title = "capturas de peces en toneladas")
+
+pescados_predict = pd.read_json("./data/predi_pez.json")
+pescados_predict.index = [2023]
+fish = px.line(pd.concat([peces,pescados_predict]), title = "capturas de peces en toneladas")
 fish.update_layout(
     showlegend = False, xaxis_title = "años", yaxis_title = "captura en toneladas(T)"
 )
-pescados_predict = pd.read_json("./data/predi_pez.json")
-pescados_predict.index = [2023]
-
 peces_concat = pd.concat([peces.T, pescados_predict.T], axis = 1)
 peces_sum_line = px.line(np.sum(peces_concat), title = "Total de capturas de especies")
 peces_sum_line.update_layout(xaxis_title = "años", yaxis_title = "toneladas")
