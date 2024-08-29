@@ -17,6 +17,7 @@ from charts.graficas_plotly import *
 from charts.pib_corriente import *
 from charts.pib_const import *
 from auxiliar.auxiliar import *
+from auxiliar.arreglos import graficar_mypimes_total_pastel
 
 st.set_page_config(
     page_title="Data Product",
@@ -162,7 +163,9 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             mostrar_grafica_sin(moralla)
 
         st.title("Exportaciones e Importaciones")
-        mostrar_grafica_sin(toneladas_global_total_line)
+        with st.expander("Exportaciones vs importaciones"):
+            mostrar_grafica_sin(toneladas_global_total_line)
+
         epo = st.checkbox("Exportaciones")
         if epo:
             precios = st.checkbox("Precios y Toneladas CUCI")
@@ -740,7 +743,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             prov = st.checkbox("Totales")
             if prov:
                 mostrar_grafica_sin(mypimesdf_bar)
-                mostrar_grafica(graficar_mypimes_total_pastel())
+                mostrar_grafica(graficar_mypimes_total_pastel(mypimesdf))
         elif option == "EpiGram":
             st.subheader("EpiGram")
             st_folium(m, width=700, height=700)

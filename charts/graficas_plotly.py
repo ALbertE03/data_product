@@ -401,25 +401,6 @@ p16 = obtener_grafica_barra_pyme(mypimesdf.T, "Pinar del Rio")
 mypimesdf_bar = px.bar(np.sum(mypimesdf), title="total de mypimes en Cuba")
 
 
-def graficar_mypimes_total_pastel():
-
-    sum_pesca_pyme = np.sum(mypimesdf["Agricultura,Pesca,Ganaderia y Silvicultura"])
-    total_pymes = sum(np.sum(mypimesdf)) - sum_pesca_pyme
-    fig = go.Figure(
-        data=[
-            go.Pie(
-                labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
-                values=[sum_pesca_pyme, total_pymes],
-                hole=0.1,
-                marker=dict(line=dict(color="black", width=0.4)),
-            )
-        ]
-    )
-    fig.update_layout(title="Porciento de mypimes de Pesca vs el total")
-
-    return fig
-
-
 # leyes
 artes_pesca = pd.read_csv("data/artes_de_pesca.csv")
 autorizacion = pd.read_csv("data/autorizacion.csv")
