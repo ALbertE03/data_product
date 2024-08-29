@@ -45,7 +45,6 @@ def recivir_feedback(feedback):
     try:
         bot.send_message(chat_id=chat_id, text=feedback)
         st.success("Recibido ✅, si es posible será agregado. Gracias")
-
     except Exception as e:
         st.error(f"Error al enviar el mensaje: {e}")
 

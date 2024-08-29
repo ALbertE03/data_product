@@ -6,7 +6,7 @@ import numpy as np
 import folium
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+from auxiliar.arreglos import *
 
 # economico
 with open("./data/exportaciones_por_mercancias.json", "r") as file:
@@ -15,101 +15,11 @@ index = [
     x for x in df["Unnamed: 2"] if x.lstrip() != "Cantidad" and x.lstrip() != "Valor"
 ]
 
-
-# arreglar el json de exportacion
-def llenar(df):
-    columns = ["names"] + [x for x in range(1998, 2023)]
-    exp = {}
-    for i, j in enumerate(df):
-        contador = 0
-        auxiliar = []
-        for u in df[j]:
-            if contador >= 3:
-                auxiliar.append(u)
-            contador += 1
-        exp[str(columns[i])] = auxiliar
-    return exp
-
-
 exp = llenar(df)
 
 # arreglar primera parte (productos alimenticios y animales vivos) de exportacion
 toneladas = []
 miles_peso = []
-
-
-def separar(exp, boolean):
-    miles_peso1 = []
-    toneladas1 = []
-    if boolean:
-        for j in exp:
-            if j != "names":
-                y = []
-                o = []
-                for t, u in enumerate(exp[j]):
-
-                    if t < 32:
-
-                        if (
-                            t == 4
-                            or t == 6
-                            or t == 10
-                            or t == 12
-                            or t == 14
-                            or t == 16
-                            or t == 19
-                            or t == 21
-                            or t == 23
-                            or t == 25
-                            or t == 28
-                        ):
-                            if isinstance(u, str):
-                                y.append(0)
-                            else:
-                                y.append(u)
-                        elif isinstance(u, str):
-                            o.append(0)
-                        else:
-                            o.append(u)
-
-                miles_peso1.append(o)
-                toneladas1.append(y)
-        return miles_peso1, toneladas1
-
-    for j in exp:
-        if j != "names":
-            y = []
-            o = []
-            for t, u in enumerate(exp[j]):
-                if t < 32:
-                    if (
-                        t == 2
-                        or t == 4
-                        or t == 6
-                        or t == 8
-                        or t == 11
-                        or t == 13
-                        or t == 15
-                        or t == 17
-                        or t == 20
-                        or t == 22
-                        or t == 25
-                        or t == 27
-                        or t == 29
-                        or t == 31
-                        or t == 33
-                    ):
-                        if isinstance(u, str):
-                            y.append(0)
-                        else:
-                            y.append(u)
-                    elif isinstance(u, str):
-                        o.append(0)
-                    else:
-                        o.append(u)
-            miles_peso1.append(o)
-            toneladas1.append(y)
-    return miles_peso1, toneladas1
 
 
 miles_peso, toneladas = separar(exp, True)
@@ -182,27 +92,6 @@ with open("./data/exportaciones_por_grupos.json", "r") as yeison:
     grupos_exp = json.load(yeison)
 
 
-def arreglar(grupos_exp):
-    grupos_exp_real = {}
-    años = [x for x in range(1984, 2023)]
-    for i, j in enumerate(grupos_exp):
-        if i != 0:
-            r = []
-            for e, t in enumerate(grupos_exp[j]):
-                if j == "Unnamed: 37":
-                    if e == 0 or e == 1 or e == 2:
-                        continue
-                elif j == "Unnamed: 18":
-                    if e == 0 or e == 1 or e == 2:
-                        continue
-                elif e == 0 or e == 1:
-                    continue
-                r.append(t)
-
-            grupos_exp_real[años[i]] = r
-    return grupos_exp_real
-
-
 grupos_exp_real = arreglar(grupos_exp)
 
 grupos_exp_real = pd.DataFrame(grupos_exp_real)
@@ -229,7 +118,7 @@ grupos_exp_real = grupos_exp_real.drop(index="Otros productos")
 data_new_df.index = [2023]
 
 grupos_exp_real1 = pd.concat([grupos_exp_real, data_new_df.T], axis=1)
-print(grupos_exp_real1)
+
 grupos_exp_line = px.line(
     grupos_exp_real1.T, title="Exportaciones de mercancías por grupos de productos"
 )
@@ -393,7 +282,6 @@ peces.index = [
     "Moralla",
 ]
 
-
 peces = peces.T
 
 pescados_predict = pd.read_json("./data/predi_pez.json")
@@ -408,157 +296,25 @@ peces_concat = pd.concat([peces.T, pescados_predict.T], axis=1)
 peces_sum_line = px.line(np.sum(peces_concat), title="Total de capturas de especies")
 peces_sum_line.update_layout(xaxis_title="años", yaxis_title="toneladas")
 
-pargo = px.line(
-    pd.concat([peces["Pargo"], pescados_predict.T.loc["Pargo"]]),
-    title="Capturas de Pargo en Toneladas",
-)
-pargo.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-Cherna = px.line(
-    pd.concat([peces["Cherna"], pescados_predict.T.loc["Cherna"]]),
-    title="Capturas de Cherna en Toneladas",
-)
-Cherna.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-tunidos = px.line(
-    pd.concat([peces["Túnidos"], pescados_predict.T.loc["Túnidos"]]),
-    title="Capturas de Túnidos en Toneladas",
-)
-tunidos.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-bonitos = px.line(
-    pd.concat([peces["Bonito"], pescados_predict.T.loc["Bonito"]]),
-    title="Capturas de Bonito en Toneladas",
-)
-bonitos.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-biajaiba = px.line(
-    pd.concat([peces["Biajaiba"], pescados_predict.T.loc["Biajaiba"]]),
-    title="Capturas de Biajaiba en Toneladas",
-)
-biajaiba.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-machuelo = px.line(
-    pd.concat([peces["Machuelo"], pescados_predict.T.loc["Machuelo"]]),
-    title="Capturas de Machuelo en Toneladas",
-)
-machuelo.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-rabirubia = px.line(
-    pd.concat([peces["Rabirubia"], pescados_predict.T.loc["Rabirubia"]]),
-    title="Capturas de Rabirubia en Toneladas",
-)
-rabirubia.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-raya = px.line(
-    pd.concat([peces["Raya"], pescados_predict.T.loc["Raya"]]),
-    title="Capturas de Raya en Toneladas",
-)
-raya.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-carpa = px.line(
-    pd.concat([peces["Carpa"], pescados_predict.T.loc["Carpa"]]),
-    title="Capturas de Carpa en Toneladas",
-)
-carpa.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-tenca = px.line(
-    pd.concat([peces["Tenca"], pescados_predict.T.loc["Tenca"]]),
-    title="Capturas de Tenca en Toneladas",
-)
-tenca.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-tilapia = px.line(
-    pd.concat([peces["Tilapia"], pescados_predict.T.loc["Tilapia"]]),
-    title="Capturas de Tilapia en Toneladas",
-)
-tilapia.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-claria = px.line(
-    pd.concat([peces["Claria"], pescados_predict.T.loc["Claria"]]),
-    title="Capturas de Claria en Toneladas",
-)
-claria.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-cobo = px.line(
-    pd.concat([peces["Cobo"], pescados_predict.T.loc["Cobo"]]),
-    title="Capturas de Cobo en Toneladas",
-)
-cobo.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-ostion = px.line(
-    pd.concat([peces["Ostión"], pescados_predict.T.loc["Ostión"]]),
-    title="Capturas de Ostión en Toneladas",
-)
-ostion.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-almeja = px.line(
-    pd.concat([peces["Almeja"], pescados_predict.T.loc["Almeja"]]),
-    title="Capturas de Almeja en Toneladas",
-)
-almeja.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-langosta = px.line(
-    pd.concat([peces["Langosta"], pescados_predict.T.loc["Langosta"]]),
-    title="Capturas de Langosta en Toneladas",
-)
-langosta.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-camaron_de_mar = px.line(
-    pd.concat([peces["Camarón de Mar"], pescados_predict.T.loc["Camarón de Mar"]]),
-    title="Capturas de Camarón de Mar en Toneladas",
-)
-camaron_de_mar.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-camaronicultura = px.line(
-    pd.concat([peces["Camaronicultura"], pescados_predict.T.loc["Camaronicultura"]]),
-    title="Capturas de Camaronicultura en Toneladas",
-)
-camaronicultura.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
-
-moralla = px.line(
-    pd.concat([peces["Moralla"], pescados_predict.T.loc["Moralla"]]),
-    title="Capturas de Moralla en Toneladas",
-)
-moralla.update_layout(
-    showlegend=False, xaxis_title="años", yaxis_title="captura en toneladas(T)"
-)
+pargo = obtener_grafica_pez(peces, "Pargo", pescados_predict)
+Cherna = obtener_grafica_pez(peces, "Cherna", pescados_predict)
+tunidos = obtener_grafica_pez(peces, "Túnidos", pescados_predict)
+bonitos = obtener_grafica_pez(peces, "Bonito", pescados_predict)
+biajaiba = obtener_grafica_pez(peces, "Biajaiba", pescados_predict)
+machuelo = obtener_grafica_pez(peces, "Machuelo", pescados_predict)
+rabirubia = obtener_grafica_pez(peces, "Rabirubia", pescados_predict)
+raya = obtener_grafica_pez(peces, "Raya", pescados_predict)
+carpa = obtener_grafica_pez(peces, "Carpa", pescados_predict)
+tenca = obtener_grafica_pez(peces, "Tenca", pescados_predict)
+tilapia = obtener_grafica_pez(peces, "Tilapia", pescados_predict)
+claria = obtener_grafica_pez(peces, "Claria", pescados_predict)
+cobo = obtener_grafica_pez(peces, "Cobo", pescados_predict)
+ostion = obtener_grafica_pez(peces, "Ostión", pescados_predict)
+almeja = obtener_grafica_pez(peces, "Almeja", pescados_predict)
+langosta = obtener_grafica_pez(peces, "Langosta", pescados_predict)
+camaron_de_mar = obtener_grafica_pez(peces, "Camarón de Mar", pescados_predict)
+camaronicultura = obtener_grafica_pez(peces, "Camaronicultura", pescados_predict)
+moralla = obtener_grafica_pez(peces, "Moralla", pescados_predict)
 
 
 with open("data/mypimes.json", "r") as f:
@@ -766,24 +522,9 @@ leyes_otros = go.Figure(data=[go.Bar(x=years6, y=values6)])
 
 
 # mapas
-m = folium.Map(location=[20.329436, -77.153311])
-m.add_child(folium.Marker(location=[20.329436, -77.153311]))
-
-
-m1 = folium.Map(location=[20.329436, -77.153311])
-m1.add_child(folium.Marker(location=[20.329436, -77.153311]))
-
-
-m2 = folium.Map(location=[22.526927, -79.467644])
-m2.add_child(folium.Marker(location=[22.526927, -79.467644]))
-
-m3 = folium.Map(location=[22.169549, -80.480796])
-m3.add_child(folium.Marker(location=[22.169549, -80.480796]))
-
-
-m4 = folium.Map(location=[23.161990, -82.290785])
-m4.add_child(folium.Marker(location=[23.161990, -82.290785]))
-
-
-m5 = folium.Map(location=[23.119680, -82.354357])
-m5.add_child(folium.Marker(location=[23.119680, -82.354357]))
+m = obtener_mapa(20.329436, -77.153311)
+m1 = obtener_mapa(20.329436, -77.153311)
+m2 = obtener_mapa(22.526927, -79.467644)
+m3 = obtener_mapa(22.169549, -80.480796)
+m4 = obtener_mapa(23.161990, -82.290785)
+m5 = obtener_mapa(23.119680, -82.354357)
