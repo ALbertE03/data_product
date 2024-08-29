@@ -382,54 +382,22 @@ def graficar_pastel_mypime(prov, num):
     return fig
 
 
-p1 = px.bar(mypimesdf.T["Artemisa"])
-p1.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p2 = px.bar(mypimesdf.T["La Habana"])
-p2.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p3 = px.bar(mypimesdf.T["Mayabeque"])
-p3.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p4 = px.bar(mypimesdf.T["Matanzas"])
-p4.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p5 = px.bar(mypimesdf.T["Villa Clara"])
-p5.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p6 = px.bar(mypimesdf.T["Cienfuegos"])
-p6.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p7 = px.bar(mypimesdf.T["Santi Spiritus"])
-p7.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p8 = px.bar(mypimesdf.T["Ciego de Ávila"])
-p8.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p9 = px.bar(mypimesdf.T["Camagüey"])
-p9.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p10 = px.bar(mypimesdf.T["Las Tunas"])
-p10.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p11 = px.bar(mypimesdf.T["Holguín"])
-p11.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p12 = px.bar(mypimesdf.T["Granma"])
-p12.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p13 = px.bar(mypimesdf.T["Santiago de Cuba"])
-p13.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p14 = px.bar(mypimesdf.T["Guantánamo"])
-p14.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p15 = px.bar(mypimesdf.T["La Isla de la Juventud"])
-p15.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-p16 = px.bar(mypimesdf.T["Pinar del Rio"])
-p16.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
+p1 = obtener_grafica_barra_pyme(mypimesdf.T, "Artemisa")
+p2 = obtener_grafica_barra_pyme(mypimesdf.T, "La Habana")
+p3 = obtener_grafica_barra_pyme(mypimesdf.T, "Mayabeque")
+p4 = obtener_grafica_barra_pyme(mypimesdf.T, "Matanzas")
+p5 = obtener_grafica_barra_pyme(mypimesdf.T, "Villa Clara")
+p6 = obtener_grafica_barra_pyme(mypimesdf.T, "Cienfuegos")
+p7 = obtener_grafica_barra_pyme(mypimesdf.T, "Santi Spiritus")
+p8 = obtener_grafica_barra_pyme(mypimesdf.T, "Ciego de Ávila")
+p9 = obtener_grafica_barra_pyme(mypimesdf.T, "Camagüey")
+p10 = obtener_grafica_barra_pyme(mypimesdf.T, "Las Tunas")
+p11 = obtener_grafica_barra_pyme(mypimesdf.T, "Holguín")
+p12 = obtener_grafica_barra_pyme(mypimesdf.T, "Granma")
+p13 = obtener_grafica_barra_pyme(mypimesdf.T, "Santiago de Cuba")
+p14 = obtener_grafica_barra_pyme(mypimesdf.T, "Guantánamo")
+p15 = obtener_grafica_barra_pyme(mypimesdf.T, "La Isla de la Juventud")
+p16 = obtener_grafica_barra_pyme(mypimesdf.T, "Pinar del Rio")
 mypimesdf_bar = px.bar(np.sum(mypimesdf), title="total de mypimes en Cuba")
 
 

@@ -133,3 +133,9 @@ def obtener_mapa(lati, long):
     fig = folium.Map(location=[lati, long])
     fig.add_child(folium.Marker(location=[lati, long]))
     return fig
+
+
+def obtener_grafica_barra_pyme(mypimes, prov):
+    fig = px.bar(mypimes[prov])
+    fig.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
+    return fig

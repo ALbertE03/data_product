@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 from streamlit_option_menu import option_menu
+
+# locales
 from charts.graficas_plotly import *
 from charts.pib_corriente import *
 from charts.pib_const import *

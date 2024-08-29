@@ -1,6 +1,3 @@
-##############################################################
-#  imports
-##############################################################
 from charts.graficas_plotly import miles_peso_, grupos_exp_real, peces
 import matplotlib.pyplot as plt
 import numpy as np
