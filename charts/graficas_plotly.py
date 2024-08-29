@@ -617,6 +617,8 @@ def graficar_pastel_mypime(prov, num):
             go.Pie(
                 labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
                 values=[pesca_mypimes, mypimesdf_pr_sum],
+                hole=0.1,
+                marker=dict(line=dict(color="black", width=0.3)),
             )
         ]
     )
@@ -684,6 +686,8 @@ def graficar_mypimes_total_pastel():
             go.Pie(
                 labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
                 values=[sum_pesca_pyme, total_pymes],
+                hole=0.1,
+                marker=dict(line=dict(color="black", width=0.4)),
             )
         ]
     )

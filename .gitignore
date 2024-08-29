@@ -1,8 +1,8 @@
 .env
-
 charts/__pycache__/
 script/__pycache__/
 script/.DS_Store
 __pycache__/
 .ipynb_checkpoints
-.streamlit
+auxiliar/__pycache__/
+secrets.toml

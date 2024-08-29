@@ -88,6 +88,15 @@ def pastel1(año):
     pesca = pib_const_aux_df[año].iloc[1]
     co = contar_año(año)
     total = totales_pib1[co] - pesca
-    fig = go.Figure(data=[go.Pie(labels=["total", "pesca"], values=[total, pesca])])
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                labels=["total", "pesca"],
+                values=[total, pesca],
+                hole=0.1,
+                marker=dict(line=dict(color="black", width=0.1)),
+            )
+        ]
+    )
     fig.update_layout(title=f"Porciento del pib en el año {año}")
     return fig

@@ -82,6 +82,15 @@ def auto(año, df):
 def pastel(año):
     pesca = pib_corriente_df[str(año)].iloc[1]
     total = totales_pib[str(año)] - pesca
-    fig = go.Figure(data=[go.Pie(labels=["total", "pesca"], values=[total, pesca])])
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                labels=["total", "pesca"],
+                values=[total, pesca],
+                hole=0.1,
+                marker=dict(line=dict(color="black", width=0.1)),
+            )
+        ]
+    )
     fig.update_layout(title=f"Porciento del pib en el año {año}")
     return fig
