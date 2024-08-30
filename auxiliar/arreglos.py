@@ -141,6 +141,31 @@ def obtener_grafica_barra_pyme(mypimes, prov):
     return fig
 
 
+def graficar_pastel_mypime(prov, num, mypimesdf):
+
+    def verificar_prov(num):
+        for i, j in enumerate(list(mypimesdf.index)):
+            if i == num:
+                return j
+
+    prov_real = verificar_prov(num)
+    mypimesdf_pr = mypimesdf.loc[prov_real]
+    pesca_mypimes = mypimesdf_pr["Agricultura,Pesca,Ganaderia y Silvicultura"]
+    mypimesdf_pr_sum = np.sum(mypimesdf_pr) - pesca_mypimes
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
+                values=[pesca_mypimes, mypimesdf_pr_sum],
+                hole=0.1,
+                marker=dict(line=dict(color="black", width=0.3)),
+            )
+        ]
+    )
+    fig.update_layout(title=f"{prov_real}")
+    return fig
+
+
 def graficar_mypimes_total_pastel(mypimesdf):
 
     sum_pesca_pyme = np.sum(mypimesdf["Agricultura,Pesca,Ganaderia y Silvicultura"])
@@ -158,3 +183,18 @@ def graficar_mypimes_total_pastel(mypimesdf):
     fig.update_layout(title="Porciento de mypimes de Pesca vs el total")
 
     return fig
+
+
+def contar(df, target):
+    cont = 0
+    for i in df:
+        if i == target:
+            cont += 1
+    return [cont]
+
+
+def llenar_dict(df, aux):
+    dic = {}
+    for i in df:
+        dic[f"{i}"] = contar(aux, i)
+    return dic

@@ -1,8 +1,11 @@
 import telebot
 import os
+import time
 import streamlit as st
 from dotenv import load_dotenv
 from streamlit_feedback import streamlit_feedback
+from charts.pib_const import *
+from charts.pib_corriente import *
 
 
 def postcast():
@@ -196,3 +199,28 @@ def autores():
             </style>""",
         unsafe_allow_html=True,
     )
+
+
+def mostrar_pib():
+    st.subheader("PIB-precios constantes")
+    mostrar_grafica_sin(fig)
+    slider1 = st.slider("selecione un año", 2005, 2022)
+    st.info("linea roja representa la media en cada año")
+    mostrar(f"La media del {slider1} es: {auto1(slider1, pib_const_aux_df)[1]}")
+    mostrar_grafica_sin(auto1(slider1, pib_const_aux_df)[0])
+    mostrar_grafica(pastel1(slider1))
+
+    st.divider()
+
+    st.subheader("PIB-precios corrientes")
+    st.info(
+        "a partir del 2021 se nota un aumento drástico debido a la Tarea Ordenamieto"
+    )
+    mostrar_grafica_sin(fig1)
+
+    slider = st.slider("selecione un año", 2010, 2022)
+    st.info("linea roja representa la media en cada año")
+    mostrar(f"La media del {slider} es: {auto(str(slider), pib_corriente_df)[1]}")
+    mostrar_grafica_sin(auto(str(slider), pib_corriente_df)[0])
+    paste = pastel(slider)
+    mostrar_grafica(paste)

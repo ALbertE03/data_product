@@ -14,10 +14,8 @@ from streamlit_option_menu import option_menu
 
 # locales
 from charts.graficas_plotly import *
-from charts.pib_corriente import *
-from charts.pib_const import *
 from auxiliar.auxiliar import *
-from auxiliar.arreglos import graficar_mypimes_total_pastel
+from auxiliar.arreglos import graficar_mypimes_total_pastel, graficar_pastel_mypime
 
 st.set_page_config(
     page_title="Data Product",
@@ -87,8 +85,15 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             recivir_feedback(feed)
 
     def economico():
-
-        st.title("Captura de diferentes especies en Cuba")
+        st.markdown(
+            """<h1 class = 'titulos'>Captura de diferentes especies en Cuba</h1> <style>
+                .titulos{
+                font-size: 40px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
         opciones = st.selectbox(
             "Seleccione una especie",
             [
@@ -163,8 +168,8 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             mostrar_grafica_sin(moralla)
 
         st.title("Exportaciones e Importaciones")
-        with st.expander("Exportaciones vs importaciones"):
-            mostrar_grafica_sin(toneladas_global_total_line)
+
+        mostrar_grafica_sin(toneladas_global_total_line)
 
         epo = st.checkbox("Exportaciones")
         if epo:
@@ -277,37 +282,24 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 )
                 st.pyplot(matriz3)
 
-        pibruto = st.checkbox("PIB-precios corrientes")
-        if pibruto:
-            st.info(
-                "a partir del 2021 se nota un aumento drástico debido a la Tarea Ordenamieto"
-            )
-            mostrar_grafica_sin(fig1)
-
-            slider = st.slider("selecione un año", 2010, 2022)
-            st.info("linea roja representa la media en cada año")
-            mostrar(
-                f"La media del {slider} es: {auto(str(slider), pib_corriente_df)[1]}"
-            )
-            mostrar_grafica_sin(auto(str(slider), pib_corriente_df)[0])
-            paste = pastel(slider)
-            mostrar_grafica(paste)
-
-        pibrutoC = st.checkbox("PIB-precios constantes")
-        if pibrutoC:
-            mostrar_grafica_sin(fig)
-            slider1 = st.slider("selecione un año", 2005, 2022)
-            st.info("linea roja representa la media en cada año")
-            mostrar(f"La media del {slider1} es: {auto1(slider1, pib_const_aux_df)[1]}")
-            mostrar_grafica_sin(auto1(slider1, pib_const_aux_df)[0])
-            mostrar_grafica(pastel1(slider1))
+        with st.expander("PIB-precios constantes y corrientes"):
+            mostrar_pib()
 
         feed = st.chat_input("Sugerencias")
+
         if feed:
             recivir_feedback(feed)
 
     def leyes():
-        st.title("¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?")
+        st.markdown(
+            """<h1 class = 'titulos'>¿Cómo han cambiado las leyes con respecto a la pesca en Cuba?</h1> <style>
+                .titulos{
+                font-size: 40px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
         ly = st.selectbox(
             "",
             [
@@ -694,53 +686,53 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             o = st.selectbox("", mypimesdf.index)
             if o == "Pinar del Rio":
                 mostrar_grafica_sin(p16)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 0))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 0, mypimesdf))
             if o == "Artemisa":
                 mostrar_grafica_sin(p1)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 1))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 1, mypimesdf))
             if o == "La Habana":
                 mostrar_grafica_sin(p2)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 2))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 2, mypimesdf))
             if o == "Mayabeque":
                 mostrar_grafica_sin(p3)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 3))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 3, mypimesdf))
             if o == "Matanzas":
                 mostrar_grafica_sin(p4)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 4))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 4, mypimesdf))
             if o == "Villa Clara":
                 mostrar_grafica_sin(p5)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 5))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 5, mypimesdf))
             if o == "Cienfuegos":
                 mostrar_grafica_sin(p6)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 6))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 6, mypimesdf))
             if o == "Santi Spiritus":
                 mostrar_grafica_sin(p7)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 7))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 7, mypimesdf))
             if o == "Ciego de Ávila":
                 mostrar_grafica_sin(p8)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 8))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 8, mypimesdf))
             if o == "Camagüey":
                 mostrar_grafica_sin(p9)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 9))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 9, mypimesdf))
             if o == "Las Tunas":
                 mostrar_grafica_sin(p10)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 10))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 10, mypimesdf))
             if o == "Holguín":
                 mostrar_grafica_sin(p11)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 11))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 11, mypimesdf))
             if o == "Granma":
                 mostrar_grafica_sin(p12)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 12))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 12, mypimesdf))
             if o == "Santiago de Cuba":
                 mostrar_grafica_sin(p13)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 13))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 13, mypimesdf))
             if o == "Guantánamo":
                 mostrar_grafica_sin(p14)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 14))
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 14, mypimesdf))
             if o == "La Isla de la Juventud":
                 mostrar_grafica_sin(p15)
-                mostrar_grafica_sin(graficar_pastel_mypime(o, 15))
-            prov = st.checkbox("Totales")
+                mostrar_grafica_sin(graficar_pastel_mypime(o, 15, mypimesdf))
+            prov = st.button("Totales")
             if prov:
                 mostrar_grafica_sin(mypimesdf_bar)
                 mostrar_grafica(graficar_mypimes_total_pastel(mypimesdf))

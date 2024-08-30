@@ -18,10 +18,6 @@ index = [
 exp = llenar(df)
 
 # arreglar primera parte (productos alimenticios y animales vivos) de exportacion
-toneladas = []
-miles_peso = []
-
-
 miles_peso, toneladas = separar(exp, True)
 miles_peso = pd.DataFrame(miles_peso)
 miles_peso = miles_peso.T
@@ -352,36 +348,8 @@ mypimesdf.index = [
     "La Isla de la Juventud",
 ]
 
-
 p15 = px.bar(mypimesdf.T["Pinar del Rio"])
 p15.update_layout(xaxis_title="Empresas", yaxis_title="Cantidad")
-
-
-def graficar_pastel_mypime(prov, num):
-
-    def verificar_prov(num):
-        for i, j in enumerate(list(mypimesdf.index)):
-            if i == num:
-                return j
-
-    prov_real = verificar_prov(num)
-    mypimesdf_pr = mypimesdf.loc[prov_real]
-    pesca_mypimes = mypimesdf_pr["Agricultura,Pesca,Ganaderia y Silvicultura"]
-    mypimesdf_pr_sum = np.sum(mypimesdf_pr) - pesca_mypimes
-    fig = go.Figure(
-        data=[
-            go.Pie(
-                labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
-                values=[pesca_mypimes, mypimesdf_pr_sum],
-                hole=0.1,
-                marker=dict(line=dict(color="black", width=0.3)),
-            )
-        ]
-    )
-    fig.update_layout(title=f"{prov_real}")
-    return fig
-
-
 p1 = obtener_grafica_barra_pyme(mypimesdf.T, "Artemisa")
 p2 = obtener_grafica_barra_pyme(mypimesdf.T, "La Habana")
 p3 = obtener_grafica_barra_pyme(mypimesdf.T, "Mayabeque")
@@ -414,21 +382,6 @@ merge = pd.concat(
 )
 merge.index = [x for x in range(1, len(merge) + 1)]
 a = merge["Año"].unique()
-
-
-def contar(df, target):
-    cont = 0
-    for i in df:
-        if i == target:
-            cont += 1
-    return [cont]
-
-
-def llenar_dict(df, aux):
-    dic = {}
-    for i in df:
-        dic[f"{i}"] = contar(aux, i)
-    return dic
 
 
 dic = llenar_dict(a, merge["Año"])
