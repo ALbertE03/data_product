@@ -52,7 +52,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
         st.write(
             """En Empresas se presenta un listado de las principales empresas pesqueras en Cuba,
                 así como pequeñas y medianas empresas del sector. Además, se incluyen detalles 
-                sobre su localización y las principales zonas de pesca que operan""",
+                sobre su localización.""",
         )
         st.write(
             """En leyes se recopilan las acciones y regulaciones adoptadas por el gobierno de Cuba 
