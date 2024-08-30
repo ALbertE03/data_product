@@ -4,9 +4,9 @@ import time
 import streamlit as st
 
 from streamlit_feedback import streamlit_feedback
-from charts.pib_const import *
-from charts.pib_corriente import *
-from charts.graficas_plotly import (
+from auxiliar.pib_const import *
+from auxiliar.pib_corriente import *
+from auxiliar.graficas_plotly import (
     merge,
     leyes_annos,
     leyes_auto,
