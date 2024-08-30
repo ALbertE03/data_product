@@ -43,7 +43,6 @@ def postcast():
     st.markdown("#### Capítulo 1:")
     st.audio(
         "AUDIO-2024-08-21-21-32-12.m4a",
-        loop=True,
     )
 
     streamlit_feedback("thumbs")

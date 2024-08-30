@@ -5,7 +5,8 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 import pandas as pd
-from charts.graficas_plotly import toneladas_impo_total, toneladas_total
+from charts.graficas_plotly import toneladas_, toneladas_impo_
+import csv
 
 ##############################################################
 # predecir el precio en millones de pesos del pescado en exportaciones (total)
@@ -717,3 +718,131 @@ aaa = list(p) + list(predict24)
 plt.plot(años_peces, Moralla, ".")
 plt.plot([x for x in range(2001, 2024)], aaa)
 plt.show()
+
+#####################################################
+# Exportaciones
+#################################################3####
+años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+
+degree = 4
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años25)
+
+modelo25 = LinearRegression()
+modelo25.fit(poly_x, toneladas_.T["Pescado y marisco fresco y congelado"])
+
+p = modelo25.predict(poly_x)
+r2 = r2_score(toneladas_.T["Pescado y marisco fresco y congelado"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre = np.array([[2023]])
+x_future25 = poly.transform(pre1)
+predict25 = modelo25.predict(x_future25)
+print(predict25)
+aaa25 = list(p) + list(predict25)
+plt.plot(años, toneladas_.T["Pescado y marisco fresco y congelado"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa25)
+plt.show()
+
+
+años26 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+degree = 5
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años26)
+
+modelo26 = LinearRegression()
+modelo26.fit(poly_x, toneladas_.T["Pescado y marisco en conserva"])
+
+p = modelo26.predict(poly_x)
+r2 = r2_score(toneladas_.T["Pescado y marisco en conserva"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre1 = np.array([[2023]])
+x_future26 = poly.transform(pre1)
+predict26 = modelo26.predict(x_future26)
+print(predict26)
+aaa26 = list(p) + list(predict26)
+plt.plot(años, toneladas_.T["Pescado y marisco en conserva"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa26)
+
+
+exporta_predict = {
+    "Pescado y marisco fresco y congelado": predict25,
+    "Pescado y marisco en conserva": predict26,
+}
+
+exporta_predict
+
+
+###########################################################
+# Importaciones
+###########################################################
+años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+
+degree = 4
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años25)
+
+modelo25 = LinearRegression()
+modelo25.fit(poly_x, toneladas_impo_.T["Pescado y marisco fresco y congelado"])
+
+p = modelo25.predict(poly_x)
+r2 = r2_score(toneladas_impo_.T["Pescado y marisco fresco y congelado"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre = np.array([[2023]])
+x_future25 = poly.transform(pre1)
+predict27 = modelo25.predict(x_future25)
+print(predict27)
+aaa25 = list(p) + list(predict27)
+plt.plot(años, toneladas_impo_.T["Pescado y marisco fresco y congelado"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa25)
+plt.show()
+
+
+años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+
+degree = 4
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años25)
+
+modelo25 = LinearRegression()
+modelo25.fit(poly_x, toneladas_impo_.T["Otros pescados, preparados o en conserva"])
+
+p = modelo25.predict(poly_x)
+r2 = r2_score(toneladas_impo_.T["Otros pescados, preparados o en conserva"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre = np.array([[2023]])
+x_future25 = poly.transform(pre1)
+predict28 = modelo25.predict(x_future25)
+print(predict28)
+aaa25 = list(p) + list(predict28)
+plt.plot(años, toneladas_impo_.T["Otros pescados, preparados o en conserva"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa25)
+plt.show()
+
+
+importa_predict = {
+    "Pescado y marisco fresco y congelado": predict27,
+    "Pescado y marisco en conserva": predict28,
+}
+
+importa_predict
+
+
+with open("data/exporta_predict.csv", "w", newline="", encoding="utf-8") as archivo:
+    fieldname = list(exporta_predict.keys())
+    writer = csv.DictWriter(archivo, fieldnames=fieldname)
+    writer.writeheader()
+
+    writer.writerow(exporta_predict)
+    archivo.close()
+
+with open("data/importa_predict.csv", "w", newline="", encoding="utf-8") as archivo1:
+    fieldname = list(importa_predict.keys())
+    writer = csv.DictWriter(archivo1, fieldnames=fieldname)
+    writer.writeheader()
+
+    writer.writerow(importa_predict)
+    archivo.close()
