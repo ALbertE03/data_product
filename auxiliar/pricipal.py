@@ -1,5 +1,5 @@
 from auxiliar.graficas_plotly import *
-from auxiliar.auxiliar import postcast, historia, autores
+from auxiliar.auxiliar import postcast, historia, autores, recivir_feedback
 import streamlit as st
 
 
