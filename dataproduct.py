@@ -3,7 +3,6 @@ import plotly.graph_objects as go
 import streamlit_analytics
 import folium
 import telebot
-import streamlit.components.v1 as components
 import time
 import os
 
@@ -333,11 +332,6 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             mostrar_grafica_sin(leyes_otros)
 
         mostrar_leyes(ly)
-
-        with open("analytics.html", "r") as file:
-            html = file.read()
-
-        components.html(html)
 
         feed = st.chat_input("Sugerencias")
         if feed:
