@@ -16,3 +16,5 @@ matplotlib
 streamlit-option-menu
 selenium
 python-dotenv
+streamlit-extras
+ 

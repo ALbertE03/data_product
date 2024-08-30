@@ -4,13 +4,14 @@ import folium
 
 from streamlit_folium import st_folium
 from streamlit_option_menu import option_menu
+from streamlit_extras.stoggle import stoggle
 
 # locales
 from auxiliar.graficas_plotly import *
 from auxiliar.auxiliar import *
 from auxiliar.arreglos import graficar_mypimes_total_pastel, graficar_pastel_mypime
 from auxiliar.pricipal import mostrar_principal
-
+from streamlit_extras.dataframe_explorer import dataframe_explorer
 
 st.set_page_config(
     page_title="Data Product",
@@ -25,6 +26,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
         mostrar_principal()
 
     def economico():
+
         st.markdown(
             """<h1 class = 'titulos'>Captura de diferentes especies en Cuba</h1> <style>
                 .titulos{
@@ -152,12 +154,10 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                             """,
                         unsafe_allow_html=True,
                     )
-
-                    st.text(
-                        "Los valores cercanos a 1 significan que estan directamente relacionados"
-                    )
-                    st.text(
-                        "Los valores cercanos a -1 significan que estan inversamente relacionados"
+                    stoggle(
+                        "Click",
+                        """Los valores cercanos a 1 significan que estan directamente relacionados,
+                        Los valores cercanos a -1 significan que estan inversamente relacionados.""",
                     )
                     st.pyplot(matriz1)
 
@@ -173,11 +173,10 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                         unsafe_allow_html=True,
                     )
 
-                    st.markdown(
-                        "Los valores cercanos a 1 significan que estan directamente relacionados"
-                    )
-                    st.markdown(
-                        "Los valores cercanos a -1 significan que estan inversamente relacionados"
+                    stoggle(
+                        "Click",
+                        """Los valores cercanos a 1 significan que estan directamente relacionados,
+                        Los valores cercanos a -1 significan que estan inversamente relacionados.""",
                     )
                     st.pyplot(matriz)
             if leg:
@@ -205,20 +204,18 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             )
             if opp == "Pescado y marisco fresco y congelado":
                 mostrar_grafica_sin(toneladas_impo_bar)
-                st.markdown(
-                    "Los valores cercanos a 1 significan que estan directamente relacionados"
-                )
-                st.markdown(
-                    "Los valores cercanos a -1 significan que estan inversamente relacionados"
+                stoggle(
+                    "Click",
+                    """Los valores cercanos a 1 significan que estan directamente relacionados,
+                        Los valores cercanos a -1 significan que estan inversamente relacionados.""",
                 )
                 st.pyplot(matriz2)
             else:
                 mostrar_grafica_sin(toneladas_impo_bar1)
-                st.markdown(
-                    "Los valores cercanos a 1 significan que estan directamente relacionados"
-                )
-                st.markdown(
-                    "Los valores cercanos a -1 significan que estan inversamente relacionados"
+                stoggle(
+                    "Click",
+                    """Los valores cercanos a 1 significan que estan directamente relacionados,
+                        Los valores cercanos a -1 significan que estan inversamente relacionados.""",
                 )
                 st.pyplot(matriz3)
 
@@ -273,6 +270,13 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             mostrar_grafica_sin(leyes_otros)
 
         mostrar_leyes(ly)
+
+        with st.expander("Aca puede filtar más las leyes ⬇️"):
+            try:
+                df_filter = dataframe_explorer(merge, case=False)
+                st.dataframe(df_filter)
+            except Exception as e:
+                st.warning(f"Ocurrió un erro al filtrar: {e}")
 
         feed = st.chat_input("Sugerencias")
         if feed:

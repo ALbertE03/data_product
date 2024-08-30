@@ -1,9 +1,12 @@
 from auxiliar.graficas_plotly import *
 from auxiliar.auxiliar import postcast, historia, autores, recivir_feedback
 import streamlit as st
+from streamlit_extras.annotated_text import annotated_text
+from annotated_text import annotation
 
 
 def mostrar_principal():
+
     st.markdown(
         """<h1 class = 'titulos'>La Pesca en Cuba</h1> <style>
                 .titulos{
@@ -23,19 +26,22 @@ def mostrar_principal():
         unsafe_allow_html=True,
     )
 
-    st.write(
-        """En la pestaña Económico puede acceder a datos sobre las capturas en toneladas de diversas especies de peces. También
-                econtrará comparativas y análisis sobre las relaciones entre Importaciones e Exportaciones en el sector pesquero. """,
+    annotated_text(
+        "En ",
+        "la ",
+        "pestaña ",
+        annotation("Económico", color="#8ef", border="1px blue"),
+        " puede acceder a datos sobre las capturas en toneladas de diversas especies de peces. También econtrará comparativas y análisis sobre las relaciones entre Importaciones e Exportaciones en el sector pesquero. ",
     )
-    st.write(
-        """En Empresas se presenta un listado de las principales empresas pesqueras en Cuba,
-                así como pequeñas y medianas empresas del sector. Además, se incluyen detalles 
-                sobre su localización.""",
+    annotated_text(
+        "En ",
+        annotation("Empresas", color="#8ef", border="1px blue"),
+        " se presenta un listado de las principales empresas pesqueras en Cuba, así como pequeñas y medianas empresas del sector. Además, se incluyen detalles sobre su localización.",
     )
-    st.write(
-        """En leyes se recopilan las acciones y regulaciones adoptadas por el gobierno de Cuba 
-            en relación con la pesca, proporcionando un panorama claro de las políticas implementdas 
-            en este ámbito. """,
+    annotated_text(
+        "En ",
+        annotation("leyes", color="#8ef", border="1px blue"),
+        " se recopilan las acciones y regulaciones adoptadas por el gobierno de Cuba en relación con la pesca, proporcionando un panorama claro de las políticas implementdas en este ámbito.",
     )
     st.divider()
     st.markdown(
