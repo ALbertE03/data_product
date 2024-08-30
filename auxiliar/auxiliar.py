@@ -2,7 +2,7 @@ import telebot
 import os
 import time
 import streamlit as st
-from dotenv import load_dotenv
+
 from streamlit_feedback import streamlit_feedback
 from charts.pib_const import *
 from charts.pib_corriente import *

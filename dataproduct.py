@@ -6,7 +6,6 @@ import telebot
 import time
 import os
 
-from dotenv import load_dotenv
 from streamlit_folium import st_folium
 from streamlit_feedback import streamlit_feedback
 from streamlit_option_menu import option_menu
@@ -22,10 +21,11 @@ st.set_page_config(
     layout="wide",
 )
 st.logo("data/logo/6156312.jpeg")
-load_dotenv()
+
 with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
 
     def principal():
+
         st.markdown(
             """<h1 class = 'titulos'>La Pesca en Cuba</h1> <style>
                 .titulos{

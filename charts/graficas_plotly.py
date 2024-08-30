@@ -62,13 +62,39 @@ toneladas_.index = [
     "Miel natural",
     "Manteca, grasa o aceite de cacao",
 ]
+
+exporta_predict = pd.read_csv("data/exporta_predict.csv")
+exporta_predict.index = [2023]
+
 toneladas_bar = px.bar(
-    toneladas_.T["Pescado y marisco fresco y congelado"], title="Toneladas Exportadas"
+    pd.concat(
+        [
+            toneladas_.T["Pescado y marisco fresco y congelado"],
+            exporta_predict.T.loc["Pescado y marisco fresco y congelado"],
+        ],
+        axis=0,
+    ),
+    title="Toneladas Exportadas",
 )
 toneladas_bar.update_layout(xaxis_title="años", yaxis_title="Cantidad en Toneladas(T)")
 
 toneladas_bar1 = px.bar(
-    toneladas_.T["Pescado y marisco en conserva"], title="Toneladas Exportadas"
+    pd.concat(
+        [
+            toneladas_.T["Pescado y marisco en conserva"],
+            exporta_predict.T.loc["Pescado y marisco en conserva"],
+        ],
+        axis=0,
+    ),
+    title="Toneladas Exportadas",
+)
+
+# para mañana
+exporta_predict_sum = np.sum(
+    [
+        exporta_predict.T.loc["Pescado y marisco en conserva"],
+        exporta_predict.T.loc["Pescado y marisco fresco y congelado"],
+    ]
 )
 toneladas_bar1.update_layout(xaxis_title="años", yaxis_title="Cantidad en Toneladas(T)")
 

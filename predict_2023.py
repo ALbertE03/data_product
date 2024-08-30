@@ -5,6 +5,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 import pandas as pd
+from charts.graficas_plotly import toneladas_impo_total, toneladas_total
 
 ##############################################################
 # predecir el precio en millones de pesos del pescado en exportaciones (total)

@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import csv
 import streamlit as st
 import os
-from dotenv import load_dotenv
 
 
 def scraping(payload, name):
@@ -652,7 +651,7 @@ names = [
 ]
 
 # API_KEY = "RBXGBJ4QGJZW5CJYE42MRF3X765IQZZX4ERWD5EI2QD2YFH1MJ3Y3QV7USZKPVE4MPZ6QROME2GVB1IH"
-load_dotenv()
+
 APIKEY = st.secrets.token_scraping
 for i, name in enumerate(names):
 
