@@ -2,10 +2,12 @@ import telebot
 import os
 import time
 import streamlit as st
-
+from streamlit_extras.annotated_text import annotated_text
+from annotated_text import annotation
 from streamlit_feedback import streamlit_feedback
 from auxiliar.pib_const import *
 from auxiliar.pib_corriente import *
+from streamlit_extras.stoggle import stoggle
 from auxiliar.graficas_plotly import (
     merge,
     leyes_annos,
@@ -42,7 +44,6 @@ def postcast():
     )
     st.markdown("#### Capítulo 1:")
     st.audio(
-        pepe2,
         "AUDIO-2024-08-21-21-32-12.m4a",
     )
 
@@ -108,7 +109,7 @@ def historia():
         unsafe_allow_html=True,
     )
 
-    st.write(
+    annotated_text(
         """
                La pesca en Cuba ha pasado de ser una actividad floreciente a enfrentar 
                serios desafíos debido a la sobreexplotación, la contaminación y el cambio 
@@ -145,7 +146,7 @@ def historia():
                de nuevos mercados como los de Canadá y Francia, para la venta de langostas en lata. 
                El total de las exportaciones pesqueras alcanzaron a $3.385.000 en 1965, dentro de los 
                cuales el 71% corresponde al valor de la langosta.
-               Para revertir esta situación, es crucial implementar medidas de gestión sostenible que 
+                Para revertir esta situación, es crucial implementar medidas de gestión sostenible que 
                incluyan la regulación del esfuerzo pesquero, la protección de los hábitats marinos y l
                a reducción de la contaminación. Uno de los más grandes desafíos que afronta la pesca en 
                Cuba es la sobrepesca y la contaminación. De acuerdo con el VI Informe Nacional al Convenio 
@@ -163,9 +164,10 @@ def historia():
                como crear acciones de rehabilitación y conservación para estos últimos. El documento reconoce que las acciones 
                para la prevención de ilegalidades resultan insuficientes.
                En este sentido, en 2019 el país aprobó la Ley de Pesca y su Reglamento, publicados en la Gaceta Oficial No. 11 
-               Ordinaria de 7 de febrero de 2020 con el objetivo de “establecer las regulaciones para el adecuado ordenamiento, 
+               Ordinaria de 7 de febrero de 2020 con el objetivo de "establecer las regulaciones para el adecuado ordenamiento, 
                administración y control de la pesca, en función de la conservación y el aprovechamiento racional de los recursos 
-               hidrobiológicos."""
+               hidrobiológicos".
+               """,
     )
 
 

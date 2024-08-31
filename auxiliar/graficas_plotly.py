@@ -308,6 +308,7 @@ peces = peces.T
 
 pescados_predict = pd.read_json("./data/predi_pez.json")
 pescados_predict.index = [2023]
+variable = pd.concat([peces, pescados_predict])
 fish = px.line(
     pd.concat([peces, pescados_predict]), title="capturas de peces en toneladas"
 )

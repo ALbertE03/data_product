@@ -57,6 +57,7 @@ def mostrar_principal():
     st.write("⬇️")
     if st.checkbox("Historias de Pesca"):
         historia()
+    st.write("")
     st.write("⬇️")
     if st.checkbox("¿Quiénes somos?"):
         autores()

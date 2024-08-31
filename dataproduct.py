@@ -11,6 +11,7 @@ from streamlit_extras.stoggle import stoggle
 from auxiliar.graficas_plotly import *
 from auxiliar.auxiliar import *
 from auxiliar.arreglos import graficar_mypimes_total_pastel, graficar_pastel_mypime
+
 from auxiliar.pricipal import mostrar_principal
 from streamlit_extras.dataframe_explorer import dataframe_explorer
 
@@ -109,7 +110,12 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             mostrar_grafica_sin(camaronicultura)
         elif opciones == "Morallas":
             mostrar_grafica_sin(moralla)
-
+        with st.expander("otros filtros a los diferentes especies"):
+            try:
+                df_filter_pescado = dataframe_explorer(variable)
+                st.dataframe(df_filter_pescado)
+            except Exception as e:
+                st.warning(f"Error al filtrar los datos: {e}")
         st.title("Exportaciones e Importaciones")
 
         mostrar_grafica_sin(toneladas_global_total_line)
@@ -220,7 +226,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 )
                 st.pyplot(matriz3)
 
-        with st.expander("PIB-precios constantes y corrientes"):
+        with st.expander("PIB-precios constantes y corrientes", expanded=True):
             mostrar_pib()
 
         feed = st.chat_input("Sugerencias")
@@ -356,6 +362,8 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             if o == "La Isla de la Juventud":
                 mostrar_grafica_sin(p15)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 15, mypimesdf))
+
+            st.divider()
             with st.expander("filtros"):
                 try:
                     datafiltrada = dataframe_explorer(mypimesdf, case=False)
