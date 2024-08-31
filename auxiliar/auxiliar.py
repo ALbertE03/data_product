@@ -36,11 +36,13 @@ def postcast():
             </style>""",
         unsafe_allow_html=True,
     )
-    st.write(
+    annotated_text(
         """Bienvenidos a nuestro podcast Redes de Pesca Cubanas en el cual te invimitamos a sumergirte en las aguas de nuestro país 
-            y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio 'Economía de Pesca' 
+            y conocer sobre el maravilloso arte de la pesca en nuestro primer episodio """,
+        annotation("'Economía de Pesca'", color="#38cec6", border="1px blue"),
+        """ 
             conversaremos sobre el impacto económico del sector pesquero en nuestra Isla, 
-            sin más, los exorto a que se adentren y conozcan nuestro podcast."""
+            sin más, los exorto a que se adentren y conozcan nuestro podcast.""",
     )
     st.markdown("#### Capítulo 1:")
     st.audio(
@@ -64,9 +66,9 @@ def recivir_feedback(feedback):
     chat_id = st.secrets.chat_id
     try:
         bot.send_message(chat_id=chat_id, text=feedback)
-        st.success("Recibido ✅, si es posible será agregado. Gracias")
+        st.toast("Recibido ✅, si es posible será agregado. Gracias")
     except Exception as e:
-        st.error(f"Error al enviar el mensaje: {e}")
+        st.toast(f"Error al enviar el mensaje: {e}")
 
 
 def mostrar(a):
@@ -146,7 +148,7 @@ def historia():
                de nuevos mercados como los de Canadá y Francia, para la venta de langostas en lata. 
                El total de las exportaciones pesqueras alcanzaron a $3.385.000 en 1965, dentro de los 
                cuales el 71% corresponde al valor de la langosta.
-                Para revertir esta situación, es crucial implementar medidas de gestión sostenible que 
+               Para revertir esta situación, es crucial implementar medidas de gestión sostenible que 
                incluyan la regulación del esfuerzo pesquero, la protección de los hábitats marinos y l
                a reducción de la contaminación. Uno de los más grandes desafíos que afronta la pesca en 
                Cuba es la sobrepesca y la contaminación. De acuerdo con el VI Informe Nacional al Convenio 

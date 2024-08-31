@@ -6,7 +6,6 @@ from streamlit_folium import st_folium
 from streamlit_option_menu import option_menu
 from streamlit_extras.stoggle import stoggle
 
-
 # locales
 from auxiliar.graficas_plotly import *
 from auxiliar.auxiliar import *
@@ -110,14 +109,24 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             mostrar_grafica_sin(camaronicultura)
         elif opciones == "Morallas":
             mostrar_grafica_sin(moralla)
+
         with st.expander("otros filtros a los diferentes especies"):
             try:
                 df_filter_pescado = dataframe_explorer(variable)
                 st.dataframe(df_filter_pescado)
             except Exception as e:
                 st.warning(f"Error al filtrar los datos: {e}")
-        st.title("Exportaciones e Importaciones")
 
+        st.markdown(
+            """<h1 class = 'exporta'>Exportaciones e Importaciones</h1> <style>
+                .exporta{
+                font-size: 30px;
+                text-align: center;
+                }
+            </style>""",
+            unsafe_allow_html=True,
+        )
+        st.divider()
         mostrar_grafica_sin(toneladas_global_total_line)
 
         epo = st.checkbox("Exportaciones")
@@ -299,6 +308,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             </style>""",
             unsafe_allow_html=True,
         )
+        st.divider()
         option = st.selectbox(
             "",
             [

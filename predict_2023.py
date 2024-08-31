@@ -8,6 +8,7 @@ import pandas as pd
 from charts.graficas_plotly import toneladas_, toneladas_impo_
 import csv
 
+#### usarlo en un jupyter notebook y separarlos en celdas.
 ##############################################################
 # predecir el precio en millones de pesos del pescado en exportaciones (total)
 ##############################################################

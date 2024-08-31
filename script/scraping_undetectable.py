@@ -311,6 +311,7 @@ def scraping(payload, name):
                             "Normas que deroga": normas_que_deroga,
                         }
                     )
+
                 if paginas is not None:
                     otras_paginas = paginas.find("ul", class_="pager").find_all(
                         "li", class_="pager-item"
