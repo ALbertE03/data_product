@@ -61,6 +61,3 @@ def mostrar_principal():
     st.write("⬇️")
     if st.checkbox("¿Quiénes somos?"):
         autores()
-    feed = st.chat_input("Sugerencias")
-    if feed:
-        recivir_feedback(feed)

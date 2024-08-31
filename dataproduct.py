@@ -5,14 +5,13 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_option_menu import option_menu
 from streamlit_extras.stoggle import stoggle
+from streamlit_extras.dataframe_explorer import dataframe_explorer
 
 # locales
 from auxiliar.graficas_plotly import *
 from auxiliar.auxiliar import *
 from auxiliar.arreglos import graficar_mypimes_total_pastel, graficar_pastel_mypime
-
 from auxiliar.pricipal import mostrar_principal
-from streamlit_extras.dataframe_explorer import dataframe_explorer
 
 st.set_page_config(
     page_title="Data Product",
@@ -26,8 +25,10 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
     def principal():
         espacio = st.empty()
         with espacio.container():
-
             mostrar_principal()
+            feed = st.chat_input("Sugerencias")
+            if feed:
+                recivir_feedback(feed)
 
     def economico():
         espacio_economico = st.empty()
@@ -239,7 +240,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                     )
                     st.pyplot(matriz3)
 
-            with st.expander("PIB-precios constantes y corrientes", expanded=True):
+            with st.expander("PIB-precios constantes y corrientes"):
                 mostrar_pib()
 
             feed = st.chat_input("Sugerencias")
