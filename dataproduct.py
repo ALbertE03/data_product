@@ -6,6 +6,7 @@ from streamlit_folium import st_folium
 from streamlit_option_menu import option_menu
 from streamlit_extras.stoggle import stoggle
 
+
 # locales
 from auxiliar.graficas_plotly import *
 from auxiliar.auxiliar import *
@@ -355,10 +356,19 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
             if o == "La Isla de la Juventud":
                 mostrar_grafica_sin(p15)
                 mostrar_grafica_sin(graficar_pastel_mypime(o, 15, mypimesdf))
+            with st.expander("filtros"):
+                try:
+                    datafiltrada = dataframe_explorer(mypimesdf, case=False)
+                    st.dataframe(datafiltrada)
+                except Exception as e:
+                    st.warning(
+                        f"Erorr al filtrar los datos, compruebe los filtros: {e}"
+                    )
             prov = st.button("Totales")
             if prov:
                 mostrar_grafica_sin(mypimesdf_bar)
                 mostrar_grafica(graficar_mypimes_total_pastel(mypimesdf))
+
         elif option == "EpiGram":
             st.subheader("EpiGram")
             st_folium(m, width=700, height=700)
