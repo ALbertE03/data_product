@@ -5,7 +5,12 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 import pandas as pd
-from charts.graficas_plotly import toneladas_, toneladas_impo_
+from charts.graficas_plotly import (
+    toneladas_,
+    toneladas_impo_,
+    miles_peso_,
+    miles_peso_impo,
+)
 import csv
 
 #### usarlo en un jupyter notebook y separarlos en celdas.
@@ -847,3 +852,116 @@ with open("data/importa_predict.csv", "w", newline="", encoding="utf-8") as arch
 
     writer.writerow(importa_predict)
     archivo.close()
+
+
+##########################################################
+# precios de las exportaciones
+##########################################################
+años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+
+degree = 4
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años25)
+
+modelo25 = LinearRegression()
+modelo25.fit(poly_x, miles_peso_["Pescado y marisco fresco y congelado"])
+
+p = modelo25.predict(poly_x)
+r2 = r2_score(miles_peso_["Pescado y marisco fresco y congelado"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre1 = np.array([[2023]])
+x_future25 = poly.transform(pre1)
+predict29 = modelo25.predict(x_future25)
+print(predict29)
+aaa25 = list(p) + list(predict29)
+plt.plot(años25, miles_peso_["Pescado y marisco fresco y congelado"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa25)
+plt.show()
+
+
+años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+
+degree = 4
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años25)
+
+modelo25 = LinearRegression()
+modelo25.fit(poly_x, miles_peso_["Pescado y marisco en conserva"])
+
+p = modelo25.predict(poly_x)
+r2 = r2_score(miles_peso_["Pescado y marisco en conserva"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre1 = np.array([[2023]])
+x_future25 = poly.transform(pre1)
+predict30 = modelo25.predict(x_future25)
+print(predict30)
+aaa25 = list(p) + list(predict30)
+plt.plot(años25, miles_peso_["Pescado y marisco en conserva"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa25)
+plt.show()
+
+
+predict_precios_exporta = {
+    "Pescado y marisco en conserva": predict30,
+    "Pescado y marisco fresco y congelado": predict29,
+}
+
+
+#########################################################
+# precios de las importaciones
+#########################################################
+años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+
+degree = 2
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años25)
+
+modelo25 = LinearRegression()
+modelo25.fit(poly_x, miles_peso_impo["Pescado y marisco fresco y congelado"])
+
+p = modelo25.predict(poly_x)
+r2 = r2_score(miles_peso_impo["Pescado y marisco fresco y congelado"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre1 = np.array([[2023]])
+x_future25 = poly.transform(pre1)
+predict31 = modelo25.predict(x_future25)
+print(predict31)
+aaa25 = list(p) + list(predict31)
+plt.plot(años25, miles_peso_impo["Pescado y marisco fresco y congelado"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa25)
+plt.show()
+
+
+años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
+
+degree = 4
+poly = PolynomialFeatures(degree=degree)
+poly_x = poly.fit_transform(años25)
+
+modelo25 = LinearRegression()
+modelo25.fit(poly_x, miles_peso_impo["Otros pescados, preparados o en conserva"])
+
+p = modelo25.predict(poly_x)
+r2 = r2_score(miles_peso_impo["Otros pescados, preparados o en conserva"], p)
+print(f"r2_score: {r2:.2f}")
+
+pre1 = np.array([[2023]])
+x_future25 = poly.transform(pre1)
+predict32 = modelo25.predict(x_future25)
+print(predict32)
+aaa25 = list(p) + list(predict32)
+plt.plot(años25, miles_peso_impo["Otros pescados, preparados o en conserva"], ".")
+plt.plot([x for x in range(1998, 2024)], aaa25)
+plt.show()
+
+precios_predict_importa = {
+    "Otros pescados, preparados o en conserva": predict32,
+    "Pescado y marisco fresco y congelado": predict31,
+}
+
+precios_predict_importa
+
+
