@@ -137,6 +137,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 unsafe_allow_html=True,
             )
             st.divider()
+
             mostrar_grafica_sin(toneladas_global_total_line)
 
             epo = st.checkbox("Exportaciones")
@@ -222,7 +223,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 else:
                     mostrar_grafica_sin(miles_peso_impo_line)
                 opp = st.selectbox(
-                    "Toneladas de los Diferentes productos",
+                    "Toneladas de los Diferentes productos de pescado",
                     [
                         "Pescado y marisco fresco y congelado",
                         "Otros pescados, preparados o en conserva",

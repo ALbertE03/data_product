@@ -90,23 +90,32 @@ toneladas_bar1 = px.bar(
 )
 
 # para mañana
-exporta_predict_sum = np.sum(
-    [
-        exporta_predict.T.loc["Pescado y marisco en conserva"],
-        exporta_predict.T.loc["Pescado y marisco fresco y congelado"],
-    ]
-)
+exporta_predict_sum = [
+    np.sum(
+        [
+            exporta_predict.T.loc["Pescado y marisco en conserva"],
+            exporta_predict.T.loc["Pescado y marisco fresco y congelado"],
+        ]
+    )
+]
 toneladas_bar1.update_layout(xaxis_title="años", yaxis_title="Cantidad en Toneladas(T)")
 
-toneladas_total = np.sum(
-    pd.concat(
-        [
-            toneladas_.T["Pescado y marisco en conserva"],
-            toneladas_.T["Pescado y marisco fresco y congelado"],
-        ],
-        axis=1,
-    ).T
+toneladas_total = pd.DataFrame(
+    list(
+        np.sum(
+            pd.concat(
+                [
+                    toneladas_.T["Pescado y marisco en conserva"],
+                    toneladas_.T["Pescado y marisco fresco y congelado"],
+                ],
+                axis=1,
+            ).T
+        )
+    )
+    + exporta_predict_sum
 )
+toneladas_total.index = [x for x in range(1998, 2024)]
+toneladas_total.columns = ["exportaciones"]
 # toneladas_total_line = px.line(toneladas_total, title="total de toneladas exportadas")
 
 # por grupos, exportacion
@@ -209,7 +218,8 @@ miles_peso_impo_line = px.line(
             "Pescado y marisco fresco y congelado",
             "Otros pescados, preparados o en conserva",
         ]
-    ]
+    ],
+    title="Precios en millones de pesos",
 )
 
 # barras importacion
@@ -230,21 +240,38 @@ toneladas_impo_.index = [
     "Arroz consumo",
     "Cebada sin moler",
 ]
-toneladas_impo_bar = px.bar(toneladas_impo_.T["Pescado y marisco fresco y congelado"])
 
-toneladas_impo_bar1 = px.bar(
-    toneladas_impo_.T["Otros pescados, preparados o en conserva"]
+importa_predict = pd.read_csv("data/importa_predict.csv")
+importa_predict.index = [2023]
+
+importa_predict_mariscofresco = pd.concat(
+    [
+        toneladas_impo_.T["Pescado y marisco fresco y congelado"],
+        importa_predict["Pescado y marisco fresco y congelado"],
+    ],
+    axis=0,
 )
+toneladas_impo_bar = px.bar(importa_predict_mariscofresco)
+
+importa_predict_pescadopreparao = pd.concat(
+    [
+        toneladas_impo_.T["Otros pescados, preparados o en conserva"],
+        importa_predict["Pescado y marisco en conserva"],
+    ]
+)
+
+toneladas_impo_bar1 = px.bar(importa_predict_pescadopreparao)
 
 toneladas_impo_total = np.sum(
     pd.concat(
         [
-            toneladas_impo_.T["Otros pescados, preparados o en conserva"],
-            toneladas_impo_.T["Pescado y marisco fresco y congelado"],
+            importa_predict_pescadopreparao,
+            importa_predict_mariscofresco,
         ],
         axis=1,
     ).T
 )
+
 toneladas_global_total = pd.concat([toneladas_impo_total, toneladas_total], axis=1)
 toneladas_global_total.columns = ["importaciones", "exportaciones"]
 toneladas_global_total_line = px.line(
