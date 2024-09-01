@@ -45,7 +45,7 @@ def mostrar_principal():
     st.markdown(
         """<h4 class = 'sub'>Extras</h4> <style>
                     .sub{
-                    font-size: 30px;
+                    font-size: 40px;
                     text-align: center;
                     }
                 </style>""",

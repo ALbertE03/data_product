@@ -198,3 +198,10 @@ def llenar_dict(df, aux):
     for i in df:
         dic[f"{i}"] = contar(aux, i)
     return dic
+
+
+def graficar_pastel_leyes(df_partial, df_completo, name):
+    parcial = len(df_partial)
+    total = len(df_completo) - parcial
+    fig = go.Figure(data=[go.Pie(labels=[name, "total"], values=[parcial, total])])
+    return fig

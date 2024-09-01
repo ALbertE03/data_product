@@ -10,7 +10,11 @@ from streamlit_extras.dataframe_explorer import dataframe_explorer
 # locales
 from auxiliar.graficas_plotly import *
 from auxiliar.auxiliar import *
-from auxiliar.arreglos import graficar_mypimes_total_pastel, graficar_pastel_mypime
+from auxiliar.arreglos import (
+    graficar_mypimes_total_pastel,
+    graficar_pastel_mypime,
+    graficar_pastel_leyes,
+)
 from auxiliar.pricipal import mostrar_principal
 
 st.set_page_config(
@@ -117,6 +121,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
 
             with st.expander("otros filtros a los diferentes especies"):
                 try:
+                    st.info("Los filtros tienen prioridad de arriba hacia abajo")
                     df_filter_pescado = dataframe_explorer(variable)
                     st.dataframe(df_filter_pescado)
                 except Exception as e:
@@ -277,25 +282,39 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
 
             elif "sobre pesca ilegal" == ly:
                 mostrar(leyes_ilegal)
+                mostrar_grafica(
+                    graficar_pastel_leyes(pesca_ilegal, merge, "sobre pesca ilegal")
+                )
 
             elif "sobre prohibición" == ly:
                 mostrar_grafica_sin(leyes_prohi)
-
+                mostrar_grafica(
+                    graficar_pastel_leyes(prohibicion, merge, "sobre prohibición")
+                )
             elif "sobre periodos de pesca" == ly:
                 mostrar_grafica_sin(leyes_periodo)
-
+                mostrar_grafica(
+                    graficar_pastel_leyes(periodos, merge, "sobre periodos de pesca")
+                )
             elif "sobre autorizacion" == ly:
                 mostrar_grafica_sin(leyes_auto)
-
+                mostrar_grafica(
+                    graficar_pastel_leyes(autorizacion, merge, "sobre autorizacion")
+                )
             elif "sobre arte de pesca" == ly:
                 mostrar_grafica_sin(leyes_arte)
+                mostrar_grafica(
+                    graficar_pastel_leyes(artes_pesca, merge, "sobre arte de pesca")
+                )
             elif "otros" == ly:
                 mostrar_grafica_sin(leyes_otros)
+                mostrar_grafica(graficar_pastel_leyes(pesca, merge, "otros"))
 
             mostrar_leyes(ly)
 
             with st.expander("Aca puede filtar más las leyes ⬇️"):
                 try:
+                    st.info("Los filtros tienen prioridad de arriba hacia abajo")
                     df_filter = dataframe_explorer(merge, case=False)
                     st.dataframe(df_filter)
                 except Exception as e:
@@ -385,6 +404,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 st.divider()
                 with st.expander("filtros"):
                     try:
+                        st.info("Los filtros tienen prioridad de arriba hacia abajo")
                         datafiltrada = dataframe_explorer(mypimesdf, case=False)
                         st.dataframe(datafiltrada)
                     except Exception as e:

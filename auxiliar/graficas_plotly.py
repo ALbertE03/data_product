@@ -440,7 +440,6 @@ dic6 = llenar_dict(pesca["Año"].unique(), pesca["Año"])
 values6 = [values6[0] for values6 in dic6.values()]
 years6 = list(dic6.keys())
 
-
 leyes_annos = go.Figure(data=[go.Bar(x=years, y=values)])
 leyes_auto = go.Figure(data=[go.Bar(x=years1, y=values1)])
 leyes_ilegal = go.Figure(data=[go.Bar(x=years2, y=values2)])
