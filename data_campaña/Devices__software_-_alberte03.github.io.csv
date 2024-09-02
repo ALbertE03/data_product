@@ -1,0 +1,6 @@
+Device type,Device type ID,Visitors,Sessions,Bounce rate,Goal conversions,Goal conversion rate,Sum of goal revenue
+Smartphone,1,30,44,0.5681818181818182,0,0.0,
+Desktop,0,20,30,0.36666666666666664,0,0.0,
+Phablet,10,5,5,0.4,0,0.0,
+,,2,2,0.0,0,0.0,
+Tablet,2,1,1,1.0,0,0.0,
