@@ -750,7 +750,7 @@ plt.plot(años, toneladas_.T["Pescado y marisco fresco y congelado"], ".")
 plt.plot([x for x in range(1998, 2024)], aaa25)
 plt.show()
 
-
+#####################################################################
 años26 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
 degree = 5
 poly = PolynomialFeatures(degree=degree)
@@ -805,7 +805,7 @@ plt.plot(años, toneladas_impo_.T["Pescado y marisco fresco y congelado"], ".")
 plt.plot([x for x in range(1998, 2024)], aaa25)
 plt.show()
 
-
+############################################################
 años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
 
 degree = 4
@@ -879,7 +879,7 @@ plt.plot(años25, miles_peso_["Pescado y marisco fresco y congelado"], ".")
 plt.plot([x for x in range(1998, 2024)], aaa25)
 plt.show()
 
-
+################################################################
 años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
 
 degree = 4
@@ -934,7 +934,7 @@ plt.plot(años25, miles_peso_impo["Pescado y marisco fresco y congelado"], ".")
 plt.plot([x for x in range(1998, 2024)], aaa25)
 plt.show()
 
-
+##############################################################
 años25 = np.array([x for x in range(1998, 2023)]).reshape(-1, 1)
 
 degree = 4
@@ -962,4 +962,22 @@ precios_predict_importa = {
     "Pescado y marisco fresco y congelado": predict31,
 }
 
-precios_predict_importa
+with open(
+    "data/exporta_predict_precios.csv", "w", newline="", encoding="utf-8"
+) as archivo:
+    fieldname = list(predict_precios_exporta.keys())
+    writer = csv.DictWriter(archivo, fieldnames=fieldname)
+    writer.writeheader()
+
+    writer.writerow(predict_precios_exporta)
+    archivo.close()
+
+with open(
+    "data/importa_predict_precios.csv", "w", newline="", encoding="utf-8"
+) as archivo1:
+    fieldname = list(precios_predict_importa.keys())
+    writer = csv.DictWriter(archivo1, fieldnames=fieldname)
+    writer.writeheader()
+
+    writer.writerow(precios_predict_importa)
+    archivo1.close()

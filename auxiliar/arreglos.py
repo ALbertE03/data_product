@@ -155,7 +155,10 @@ def graficar_pastel_mypime(prov, num, mypimesdf):
     fig = go.Figure(
         data=[
             go.Pie(
-                labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
+                labels=[
+                    "Agricultura,Pesca,Ganaderia y Silvicultura",
+                    "Mypimes restantes",
+                ],
                 values=[pesca_mypimes, mypimesdf_pr_sum],
                 hole=0.1,
                 marker=dict(line=dict(color="black", width=0.3)),
@@ -173,7 +176,10 @@ def graficar_mypimes_total_pastel(mypimesdf):
     fig = go.Figure(
         data=[
             go.Pie(
-                labels=["Agricultura,Pesca,Ganaderia y Silvicultura", "total"],
+                labels=[
+                    "Agricultura,Pesca,Ganaderia y Silvicultura",
+                    "Mypimes restantes",
+                ],
                 values=[sum_pesca_pyme, total_pymes],
                 hole=0.1,
                 marker=dict(line=dict(color="black", width=0.4)),
@@ -203,5 +209,9 @@ def llenar_dict(df, aux):
 def graficar_pastel_leyes(df_partial, df_completo, name):
     parcial = len(df_partial)
     total = len(df_completo) - parcial
-    fig = go.Figure(data=[go.Pie(labels=[name, "total"], values=[parcial, total])])
+    fig = go.Figure(
+        data=[
+            go.Pie(labels=[name, "Leyes restantes"], values=[parcial, total], hole=0.3)
+        ]
+    )
     return fig

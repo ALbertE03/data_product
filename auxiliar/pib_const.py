@@ -91,7 +91,7 @@ def pastel1(año):
     fig = go.Figure(
         data=[
             go.Pie(
-                labels=["total", "pesca"],
+                labels=["restantes", "pesca"],
                 values=[total, pesca],
                 hole=0.1,
                 marker=dict(line=dict(color="black", width=0.1)),

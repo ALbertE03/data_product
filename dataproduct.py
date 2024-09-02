@@ -27,6 +27,7 @@ st.logo("data/logo/6156312.jpeg")
 with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
 
     def principal():
+
         espacio = st.empty()
         with espacio.container():
             mostrar_principal()
@@ -46,6 +47,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 </style>""",
                 unsafe_allow_html=True,
             )
+            st.divider()
             opciones = st.selectbox(
                 "Seleccione una especie",
                 [
@@ -266,6 +268,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 </style>""",
                 unsafe_allow_html=True,
             )
+            st.divider()
             ly = st.selectbox(
                 "",
                 [

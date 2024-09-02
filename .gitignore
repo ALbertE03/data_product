@@ -7,3 +7,5 @@ __pycache__/
 auxiliar/__pycache__/
 secrets.toml
 .DS_Store
+Untitled.ipynb
+.vscode

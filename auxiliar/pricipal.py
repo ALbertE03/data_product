@@ -41,6 +41,11 @@ def mostrar_principal():
         annotation("leyes", color="#38cec6", border="1px blue"),
         " se recopilan las acciones y regulaciones adoptadas por el gobierno de Cuba en relación con la pesca, proporcionando un panorama claro de las políticas implementdas en este ámbito.",
     )
+    annotated_text(
+        "En caso de alguna sugerencia o duda, nos lo puede hacer llegar utilizando los mensajes de ",
+        annotation("sugerencias", color="#38cec6", border="1px blue"),
+        ". Se encuentra al final de cada página. Gracias.",
+    )
     st.divider()
     st.markdown(
         """<h4 class = 'sub'>Extras</h4> <style>

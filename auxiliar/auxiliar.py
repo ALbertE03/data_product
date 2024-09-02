@@ -111,63 +111,43 @@ def historia():
             </style>""",
         unsafe_allow_html=True,
     )
-    option = st.selectbox(
-        "Selecciona un tema para explorar:",
-        [
-            "Introducción",
-            "Importaciones y Comercio",
-            "Exportaciones",
-            "Desafíos Actuales",
-            "Medidas y Legislación",
-        ],
+
+    annotated_text(
+        "La pesca en Cuba ha pasado de ser una actividad floreciente a enfrentar serios desafíos debido a la sobreexplotación, "
+        "la contaminación y el cambio climático. En los años 60 y 70, las capturas aumentaron significativamente, "
+        "impulsadas por políticas gubernamentales que promovían la explotación de los recursos marinos. Sin embargo, "
+        "a partir de los años 80, la tasa de crecimiento de las capturas comenzó a disminuir, y en los 90, varias pesquerías "
+        "importantes entraron en decadencia. De 1990 a 2023, la producción de pescados y mariscos se redujo de ",
+        annotation("188000", color="#38cec6", border="1px blue"),
+        " a ",
+        annotation("31933.07", color="#38cec6", border="1px blue"),
+        " toneladas. "
+        "Durante los años 1960, 1961 y 1962, las importaciones de productos pesqueros en Cuba sufrieron una drástica disminución "
+        "como consecuencia de la reorientación que estaba tomando el comercio exterior. En esos años las principales importaciones "
+        "fueron el bacalao seco y la sardina enlatada. A partir del año 1963, se observa una fuerte recuperación de las importaciones "
+        "debido al convenio con la Unión Soviética. En 1964, las importaciones incluyeron 10.721 toneladas de pescado congelado, "
+        "13.330 toneladas de bacalao y 8.350 de sardinas en lata, con un costo de 14 millones de dólares."
+        "El valor de las importaciones de productos pesqueros siempre ha superado al de las exportaciones, con un saldo negativo creciente "
+        "desde ",
+        annotation("\$1.314.000", color="#38cec6", border="1px blue"),
+        " en 1960 hasta ",
+        annotation("\$12.702.000", color="#38cec6", border="1px blue"),
+        " en 1964. Esta tendencia desfavorable se explica por la eliminación de la colocación "
+        "de productos cubanos en los mercados americanos. Las exportaciones han sufrido una violenta contracción por la pérdida de mercados "
+        "tradicionales, aunque en 1965 se observó una recuperación gracias a la apertura de nuevos mercados como Canadá y Francia. "
+        "Las exportaciones pesqueras alcanzaron ",
+        annotation("\$3.385.000", color="#38cec6", border="1px blue"),
+        " en 1965, con un 71% correspondiente al valor de la langosta."
+        " Uno de los más grandes desafíos que afronta la pesca en Cuba es la sobrepesca y la contaminación. Según el VI Informe Nacional "
+        "al Convenio sobre la Diversidad Biológica (CDB), las actividades excesivas de captura suponen una fuerte presión sobre los "
+        "ecosistemas marinos y reducen drásticamente las poblaciones de peces, invertebrados y plantas acuáticas. En 2018, el 74,4% "
+        "de los recursos pesqueros cubanos estaban sobreexplotados y el 5,2% colapsados. La contaminación de los acuíferos y la presencia "
+        "de especies invasoras han contribuido a la degradación de los ecosistemas marinos. El país necesita identificar las especies de "
+        "peces más vulnerables, establecer límites de captura, y fortalecer los mecanismos de control de la pesca."
+        " En 2019, Cuba aprobó la Ley de Pesca y su Reglamento, publicados en la Gaceta Oficial No. 11 Ordinaria de 7 de febrero de 2020. "
+        "El objetivo de esta ley es establecer regulaciones para el adecuado ordenamiento, administración y control de la pesca, "
+        "en función de la conservación y el aprovechamiento racional de los recursos hidrobiológicos.",
     )
-    if option == "Introducción":
-        st.subheader("Introducción")
-        st.write(
-            "La pesca en Cuba ha pasado de ser una actividad floreciente a enfrentar serios desafíos debido a la sobreexplotación, "
-            "la contaminación y el cambio climático. En los años 60 y 70, las capturas aumentaron significativamente, "
-            "impulsadas por políticas gubernamentales que promovían la explotación de los recursos marinos. Sin embargo, "
-            "a partir de los años 80, la tasa de crecimiento de las capturas comenzó a disminuir, y en los 90, varias pesquerías "
-            "importantes entraron en decadencia. De 1990 a 2023, la producción de pescados y mariscos se redujo de 188000 a 31933.07 toneladas."
-        )
-    elif option == "Importaciones y Comercio":
-        st.subheader("Importaciones y Comercio")
-        st.write(
-            "Durante los años 1960, 1961 y 1962, las importaciones de productos pesqueros en Cuba sufrieron una drástica disminución "
-            "como consecuencia de la reorientación que estaba tomando el comercio exterior. En esos años las principales importaciones "
-            "fueron el bacalao seco y la sardina enlatada. A partir del año 1963, se observa una fuerte recuperación de las importaciones "
-            "debido al convenio con la Unión Soviética. En 1964, las importaciones incluyeron 10.721 toneladas de pescado congelado, "
-            "13.330 toneladas de bacalao y 8.350 de sardinas en lata, con un costo de 14 millones de dólares."
-        )
-
-    elif option == "Exportaciones":
-        st.subheader("Exportaciones")
-        st.write(
-            "El valor de las importaciones de productos pesqueros siempre ha superado al de las exportaciones, con un saldo negativo creciente "
-            "desde $1.314.000 en 1960 hasta $12.702.000 en 1964. Esta tendencia desfavorable se explica por la eliminación de la colocación "
-            "de productos cubanos en los mercados americanos. Las exportaciones han sufrido una violenta contracción por la pérdida de mercados "
-            "tradicionales, aunque en 1965 se observó una recuperación gracias a la apertura de nuevos mercados como Canadá y Francia. "
-            "Las exportaciones pesqueras alcanzaron $3.385.000 en 1965, con un 71% correspondiente al valor de la langosta."
-        )
-
-    elif option == "Desafíos Actuales":
-        st.subheader("Desafíos Actuales")
-        st.write(
-            "Uno de los más grandes desafíos que afronta la pesca en Cuba es la sobrepesca y la contaminación. Según el VI Informe Nacional "
-            "al Convenio sobre la Diversidad Biológica (CDB), las actividades excesivas de captura suponen una fuerte presión sobre los "
-            "ecosistemas marinos y reducen drásticamente las poblaciones de peces, invertebrados y plantas acuáticas. En 2018, el 74,4% "
-            "de los recursos pesqueros cubanos estaban sobreexplotados y el 5,2% colapsados. La contaminación de los acuíferos y la presencia "
-            "de especies invasoras han contribuido a la degradación de los ecosistemas marinos. El país necesita identificar las especies de "
-            "peces más vulnerables, establecer límites de captura, y fortalecer los mecanismos de control de la pesca."
-        )
-
-    elif option == "Medidas y Legislación":
-        st.subheader("Medidas y Legislación")
-        st.write(
-            "En 2019, Cuba aprobó la Ley de Pesca y su Reglamento, publicados en la Gaceta Oficial No. 11 Ordinaria de 7 de febrero de 2020. "
-            "El objetivo de esta ley es establecer regulaciones para el adecuado ordenamiento, administración y control de la pesca, "
-            "en función de la conservación y el aprovechamiento racional de los recursos hidrobiológicos."
-        )
 
 
 def autores():

@@ -36,12 +36,22 @@ miles_peso.index = [
     "Miel natural",
     "Manteca, grasa o aceite de cacao",
 ]
+
+miles_peso_exporta_predict = pd.read_csv("data/exporta_predict_precios.csv")
+miles_peso_exporta_predict.index = [2023]
+
 miles_peso_ = miles_peso.T
+miles_peso_exporta_predict_ = pd.concat(
+    [
+        miles_peso_[
+            ["Pescado y marisco fresco y congelado", "Pescado y marisco en conserva"]
+        ],
+        miles_peso_exporta_predict,
+    ]
+)
 
 miles_peso_line = px.line(
-    miles_peso_[
-        ["Pescado y marisco fresco y congelado", "Pescado y marisco en conserva"]
-    ],
+    miles_peso_exporta_predict_,
     title="Precios de CUCI",
 )
 miles_peso_line.update_layout(xaxis_title="años", yaxis_title="Millones de pesos (MP)")
@@ -211,14 +221,25 @@ miles_peso_impo.index = [
     "Arroz consumo",
     "Cebada sin moler",
 ]
+###### aqui estoy
+miles_peso_impo_predict = pd.read_csv("data/importa_predict_precios.csv")
+miles_peso_impo_predict.index = [2023]
+
 miles_peso_impo = miles_peso_impo.T
+
+miles_peso_impo_ = pd.concat(
+    [
+        miles_peso_impo[
+            [
+                "Otros pescados, preparados o en conserva",
+                "Pescado y marisco fresco y congelado",
+            ]
+        ],
+        miles_peso_impo_predict,
+    ]
+)
 miles_peso_impo_line = px.line(
-    miles_peso_impo[
-        [
-            "Pescado y marisco fresco y congelado",
-            "Otros pescados, preparados o en conserva",
-        ]
-    ],
+    miles_peso_impo_,
     title="Precios en millones de pesos",
 )
 
