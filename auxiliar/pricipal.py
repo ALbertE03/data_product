@@ -47,22 +47,11 @@ def mostrar_principal():
         ". Se encuentra al final de cada página. Gracias.",
     )
     st.divider()
-    st.markdown(
-        """<h4 class = 'sub'>Extras</h4> <style>
-                    .sub{
-                    font-size: 40px;
-                    text-align: center;
-                    }
-                </style>""",
-        unsafe_allow_html=True,
-    )
-    st.write("⬇️")
-    if st.checkbox("sobre nuestro postcast"):
-        postcast()
-    st.write("⬇️")
-    if st.checkbox("Historias de Pesca"):
-        historia()
-    st.write("")
-    st.write("⬇️")
-    if st.checkbox("¿Quiénes somos?"):
+    with st.expander("Extras."):
+        if st.checkbox("⬅︎ nuestro postcast"):
+            postcast()
+
+        if st.checkbox("⬅︎ Historias de Pesca"):
+            historia()
+    if st.checkbox("⬅︎ ¿Quiénes somos?"):
         autores()

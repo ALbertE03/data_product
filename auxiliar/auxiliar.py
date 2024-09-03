@@ -161,7 +161,7 @@ def autores():
         unsafe_allow_html=True,
     )
     st.markdown(
-        """<h2 class = 'facu'>Facultad: MATCOM </h2> <style>
+        """<h2 class = 'facu'>Facultad: MATCOM👨‍💻 </h2> <style>
                 .facu{
                 font-size: 45px;
                 text-align: center;

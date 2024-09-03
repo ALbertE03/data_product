@@ -142,11 +142,11 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
 
             mostrar_grafica_sin(toneladas_global_total_line)
 
-            epo = st.checkbox("Exportaciones")
+            epo = st.checkbox("⬅︎ Exportaciones")
             if epo:
-                precios = st.checkbox("Precios y Toneladas CUCI")
+                precios = st.checkbox("⬅︎ Precios y Toneladas CUCI")
                 leg = st.checkbox(
-                    "Mostrar leyendas (Exportaciones)",
+                    "⬅︎ Mostrar leyendas (Exportaciones)",
                     help="En movil, usar el modo horizontal",
                 )
 
@@ -171,7 +171,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                         mostrar_grafica_sin(toneladas_bar1)
                     else:
                         mostrar_grafica_sin(toneladas_bar)
-                    correla = st.checkbox("Correlación precio-volumen")
+                    correla = st.checkbox("⬅︎ Correlación precio-volumen")
                     if correla and ton == "Pescado y marisco en conserva":
                         st.markdown(
                             """<h3 class = 'corr1'> Precio-Volumen de Pescado y marisco en conserva</h3>
@@ -213,11 +213,11 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 else:
                     mostrar_grafica_sin(grupos_exp_line)
 
-            impo = st.checkbox("Importaciones")
+            impo = st.checkbox("⬅︎ Importaciones")
 
             if impo:
                 leg1 = st.checkbox(
-                    "Mostrar leyendas (Importaciones)",
+                    "⬅︎ Mostrar leyendas (Importaciones)",
                     help="En movil, usar el modo horizontal",
                 )
                 if leg1:
