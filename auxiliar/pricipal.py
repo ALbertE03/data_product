@@ -47,7 +47,7 @@ def mostrar_principal():
         ". Se encuentra al final de cada página. Gracias.",
     )
     st.divider()
-    with st.expander("Extras."):
+    with st.expander("Extras"):
         if st.checkbox("⬅︎ nuestro postcast"):
             postcast()
 

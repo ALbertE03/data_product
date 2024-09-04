@@ -9,7 +9,7 @@ git clone ...
 pip install requirements.txt
 pip install scikit-learn
 
-en la carpeta .streamlit crear un archivo secrets.toml y configurar las variables de entorno:
+en la carpeta .streamlit crear un archivo secrets.toml y para configurar las variables de entorno:
 
 token = "..."
 chat_id = "..."

@@ -27,7 +27,6 @@ st.logo("data/logo/6156312.jpeg")
 with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
 
     def principal():
-
         espacio = st.empty()
         with espacio.container():
             mostrar_principal()
@@ -452,7 +451,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
         menu_title=None,
         options=["Inicio", "Económico", "Empresas", "Leyes"],
         icons=[
-            "house",
+            "houses",
             "currency-dollar",
             "building",
             "clipboard",
