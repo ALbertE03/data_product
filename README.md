@@ -20,13 +20,13 @@ token_scraping= "..."
 
 pesca = "..."
 
--token: se obtiene creando un bot en telegram (@BotFhater).
+-- token: se obtiene creando un bot en telegram (@BotFhater).
 
--chat_id: se obtiene usado el bot '@userinfobot' en telegram y obtenga su chat_id
+-- chat_id: se obtiene usado el bot '@userinfobot' en telegram y obtenga su chat_id
 
--token_scraping: se obtiene creandose una cuenta en <https://api.scraperapi.com>
+-- token_scraping: se obtiene creandose una cuenta en <https://api.scraperapi.com>
 
--pesca: puede poner la que guste
+-- pesca: puede poner la que guste
 
 streamlit run dataproduct.py
 
