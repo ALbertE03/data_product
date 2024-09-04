@@ -1,4 +1,4 @@
-# LA Pesca en Cuba
+# La Pesca en Cuba
 
 aca puede verlo: <https://albert03.streamlit.app>
 
@@ -13,11 +13,11 @@ en la carpeta .streamlit crear un archivo secrets.toml y configurar las variable
 
 token = "..."
 chat_id = "..."
-token_scraping="..."
+token_scraping= "..."
 pesca = "..."
 
--token: se obtiene creando un bot en telegram.
--chat_id: se obtiene usado el bot @userinfobot en telegram y obtenga su chat_id
+-token: se obtiene creando un bot en telegram (@BotFhater).
+-chat_id: se obtiene usado el bot '@userinfobot' en telegram y obtenga su chat_id
 -token_scraping: se obtiene creandose una cuenta en <https://api.scraperapi.com>
 -pesca: puede poner la que guste
 
