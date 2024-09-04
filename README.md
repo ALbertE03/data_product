@@ -6,9 +6,9 @@ para abrirlo local:
 
 git clone <https://github.com/ALbertE03/data_product.git>
 
-pip install requirements.txt
+## pip install requirements.txt
 
-pip install scikit-learn
+## pip install scikit-learn
 
 en la carpeta .streamlit crear un archivo secrets.toml y para configurar las variables de entorno:
 
@@ -30,6 +30,6 @@ pesca = "..."
 
 streamlit run dataproduct.py
 
-## nota
+### nota
 
 es posible que tenga que configurar las rutas de los archivos que se abren en los diferentes archivos .py
