@@ -405,7 +405,30 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                     mostrar_grafica_sin(graficar_pastel_mypime(o, 15, mypimesdf))
 
                 st.divider()
-                with st.expander("filtros"):
+
+                with st.expander("Comparación entre provicias"):
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        primera = st.selectbox(
+                            "Seleccione primera provincia", mypimesdf.index
+                        )
+                        mostrar(
+                            f"""{
+                            mypimesdf.loc[primera].loc[
+                                "Agricultura,Pesca,Ganaderia y Silvicultura"
+                            ]} mypimes dedicadas a la pesca"""
+                        )
+                    with col2:
+                        segunda = st.selectbox(
+                            "Seleccione segunda provincia", mypimesdf.index
+                        )
+                        mostrar(
+                            f"""{
+                            mypimesdf.loc[segunda].loc[
+                                "Agricultura,Pesca,Ganaderia y Silvicultura"
+                            ]} mypimes dedicadas a la pesca"""
+                        )
+                with st.expander("filtros por tipo de empresa"):
                     try:
                         st.info("Los filtros tienen prioridad de arriba hacia abajo")
                         datafiltrada = dataframe_explorer(mypimesdf, case=False)
