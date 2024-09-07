@@ -290,6 +290,7 @@ def mostrar_leyes(ly):
     elif check1:
         if "cantidad de Resoluciones por año" == ly:
             st.subheader("Resoluciones Modificadas")
+            st.info("la Resoluciones en estado 'copia corregida' aparecerán aquí")
             mostrar(
                 merge[
                     (merge["Estado"] == "Modificada")
