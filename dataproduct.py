@@ -6,6 +6,8 @@ from streamlit_folium import st_folium
 from streamlit_option_menu import option_menu
 from streamlit_extras.stoggle import stoggle
 from streamlit_extras.dataframe_explorer import dataframe_explorer
+from streamlit_extras.annotated_text import annotated_text
+from annotated_text import annotation
 
 # locales
 from auxiliar.graficas_plotly import *
@@ -314,7 +316,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 mostrar_grafica(graficar_pastel_leyes(pesca, merge, "otros"))
 
             mostrar_leyes(ly)
-
+            st.divider()
             with st.expander("Aca puede filtar más las leyes ⬇️"):
                 try:
                     st.info("Los filtros tienen prioridad de arriba hacia abajo")
@@ -406,28 +408,40 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
 
                 st.divider()
 
-                with st.expander("Comparación entre provicias"):
+                with st.expander(
+                    "Comparación entre provicias según empresas de pescas"
+                ):
                     col1, col2 = st.columns(2)
                     with col1:
                         primera = st.selectbox(
                             "Seleccione primera provincia", mypimesdf.index
                         )
-                        mostrar(
-                            f"""{
+                        annotated_text(
+                            annotation(
+                                f"""{
                             mypimesdf.loc[primera].loc[
                                 "Agricultura,Pesca,Ganaderia y Silvicultura"
-                            ]} mypimes dedicadas a la pesca"""
+                            ]}""",
+                                color="red",
+                            ),
+                            """ mypimes dedicadas a la pesca""",
                         )
                     with col2:
                         segunda = st.selectbox(
                             "Seleccione segunda provincia", mypimesdf.index
                         )
-                        mostrar(
-                            f"""{
+
+                        annotated_text(
+                            annotation(
+                                f"""{
                             mypimesdf.loc[segunda].loc[
                                 "Agricultura,Pesca,Ganaderia y Silvicultura"
-                            ]} mypimes dedicadas a la pesca"""
+                            ]}""",
+                                color="red",
+                            ),
+                            """ mypimes dedicadas a la pesca""",
                         )
+
                 with st.expander("filtros por tipo de empresa"):
                     try:
                         st.info("Los filtros tienen prioridad de arriba hacia abajo")
