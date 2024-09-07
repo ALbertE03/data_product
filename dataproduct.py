@@ -424,7 +424,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                 st.divider()
 
                 with st.expander(
-                    "Comparación entre provicias según empresas de pescas"
+                    "Comparación entre provincias según empresas de pescas"
                 ):
                     col1, col2 = st.columns(2)
                     with col1:
