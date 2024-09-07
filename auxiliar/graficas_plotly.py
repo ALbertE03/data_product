@@ -272,7 +272,9 @@ importa_predict_mariscofresco = pd.concat(
     ],
     axis=0,
 )
-toneladas_impo_bar = px.bar(importa_predict_mariscofresco)
+toneladas_impo_bar = px.bar(
+    importa_predict_mariscofresco, title="Pescado y marisco fresco y congelado"
+)
 
 importa_predict_pescadopreparao = pd.concat(
     [
@@ -281,7 +283,9 @@ importa_predict_pescadopreparao = pd.concat(
     ]
 )
 
-toneladas_impo_bar1 = px.bar(importa_predict_pescadopreparao)
+toneladas_impo_bar1 = px.bar(
+    importa_predict_pescadopreparao, title="Pescado y marisco en conserva"
+)
 
 toneladas_impo_total = np.sum(
     pd.concat(

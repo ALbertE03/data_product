@@ -172,7 +172,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                         mostrar_grafica_sin(toneladas_bar1)
                     else:
                         mostrar_grafica_sin(toneladas_bar)
-                    with st.expander("Coparar toneladas de ambas variables"):
+                    with st.expander("Para Comparar toneladas de ambas variables"):
                         c1, c2 = st.columns(2)
                         with c1:
                             mostrar_grafica_sin(toneladas_bar1)
@@ -257,6 +257,13 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                     )
                     st.pyplot(matriz3)
 
+                with st.expander("Para Comparar toneladas de ambas variables"):
+                    c11, c22 = st.columns(2)
+                    with c11:
+                        mostrar_grafica_sin(toneladas_impo_bar)
+                    with c22:
+
+                        mostrar_grafica_sin(toneladas_impo_bar1)
             with st.expander("PIB-precios constantes y corrientes"):
                 mostrar_pib()
 
