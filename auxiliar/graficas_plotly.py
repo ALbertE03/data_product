@@ -84,7 +84,7 @@ toneladas_bar = px.bar(
         ],
         axis=0,
     ),
-    title="Toneladas Exportadas",
+    title="Pescado y marisco fresco y congelado",
 )
 toneladas_bar.update_layout(xaxis_title="años", yaxis_title="Cantidad en Toneladas(T)")
 
@@ -96,7 +96,7 @@ toneladas_bar1 = px.bar(
         ],
         axis=0,
     ),
-    title="Toneladas Exportadas",
+    title="Pescado y marisco en conserva",
 )
 
 # para mañana

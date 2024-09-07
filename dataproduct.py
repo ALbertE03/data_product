@@ -172,6 +172,14 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                         mostrar_grafica_sin(toneladas_bar1)
                     else:
                         mostrar_grafica_sin(toneladas_bar)
+                    with st.expander("Coparar toneladas de ambas variables"):
+                        c1, c2 = st.columns(2)
+                        with c1:
+                            mostrar_grafica_sin(toneladas_bar1)
+                        with c2:
+
+                            mostrar_grafica_sin(toneladas_bar)
+
                     correla = st.checkbox("⬅︎ Correlación precio-volumen")
                     if correla and ton == "Pescado y marisco en conserva":
                         st.markdown(
