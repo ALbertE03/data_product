@@ -463,9 +463,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                         datafiltrada = dataframe_explorer(mypimesdf, case=False)
                         st.dataframe(datafiltrada)
                     except Exception as e:
-                        st.warning(
-                            f"Erorr al filtrar los datos, compruebe los filtros: {e}"
-                        )
+                        st.warning(f"Erorr al filtrar los datos: {e}")
                 prov = st.button("Totales")
                 if prov:
                     mostrar_grafica_sin(mypimesdf_bar)

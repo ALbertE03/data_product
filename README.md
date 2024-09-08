@@ -30,8 +30,8 @@ pesca = "..."
 
 ### iniciarlo
 
-streamlit run dataproduct.py
+#### streamlit run dataproduct.py
 
-### nota
+##### nota
 
 es posible que tenga que configurar las rutas de los archivos que se abren en los diferentes archivos .py
