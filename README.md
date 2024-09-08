@@ -6,7 +6,7 @@ para abrirlo local:
 
 git clone <https://github.com/ALbertE03/data_product.git>
 
-## pip install requirements.txt
+## pip install -r requirements.txt
 
 ## pip install scikit-learn
 
@@ -27,6 +27,8 @@ pesca = "..."
 -- token_scraping: se obtiene creandose una cuenta en <https://api.scraperapi.com>
 
 -- pesca: puede poner la que guste
+
+### iniciarlo
 
 streamlit run dataproduct.py
 
