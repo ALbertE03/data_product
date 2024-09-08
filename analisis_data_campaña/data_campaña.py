@@ -91,5 +91,5 @@ plt.title("1 de agosto a 1 de septiembre")
 plt.grid(which="major")
 plt.xticks([x[0] for x in total])
 plt.show()
-
+print(sum(x[1] for x in total))
 print(sum([x[1] for x in total]) - sum(porciento))
