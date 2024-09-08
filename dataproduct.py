@@ -338,7 +338,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
                     df_filter = dataframe_explorer(merge, case=False)
                     st.dataframe(df_filter)
                 except Exception as e:
-                    st.warning(f"Ocurrió un erro al filtrar: {e}")
+                    st.warning(f"Ocurrió un error al filtrar: {e}")
 
             feed = st.chat_input("Sugerencias")
             if feed:
