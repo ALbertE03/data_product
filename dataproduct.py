@@ -40,7 +40,7 @@ with streamlit_analytics.track(unsafe_password=st.secrets.pesca, verbose=True):
         espacio_economico = st.empty()
         with espacio_economico.container(border=True):
             st.markdown(
-                """<h1 class = 'titulos'>Captura de diferentes especies en Cuba</h1> <style>
+                """<h1 class = 'titulos'>Captura de diferentes especies de peces en Cuba</h1> <style>
                     .titulos{
                     font-size: 40px;
                     text-align: center;
