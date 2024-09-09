@@ -92,4 +92,5 @@ plt.grid(which="major")
 plt.xticks([x[0] for x in total])
 plt.show()
 print(sum(x[1] for x in total))
+# obtener usuarios unicos.
 print(sum([x[1] for x in total]) - sum(porciento))
