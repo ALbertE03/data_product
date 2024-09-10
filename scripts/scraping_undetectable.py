@@ -655,6 +655,5 @@ names = [
 
 APIKEY = st.secrets.token_scraping
 for i, name in enumerate(names):
-
     payload = {"api_key": APIKEY, "url": url[i]}
     scraping(payload, name)
