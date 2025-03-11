@@ -89,8 +89,7 @@ def mostrar_grafica_sin(g):
 def warning(a):
     st.warning(a)
 
-
-def historia():
+    # def historia():
 
     st.markdown(
         """<h1 class = 'hist'>Aguas de Esperanza </h1> <style>

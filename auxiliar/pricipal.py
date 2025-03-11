@@ -1,5 +1,5 @@
 from auxiliar.graficas_plotly import *
-from auxiliar.auxiliar import postcast, historia, autores, recivir_feedback
+from auxiliar.auxiliar import postcast, autores, recivir_feedback
 import streamlit as st
 from streamlit_extras.annotated_text import annotated_text
 from annotated_text import annotation
@@ -51,7 +51,7 @@ def mostrar_principal():
         if st.checkbox("⬅︎ nuestro postcast"):
             postcast()
 
-        if st.checkbox("⬅︎ Historias de Pesca"):
-            historia()
+        # if st.checkbox("⬅︎ Historias de Pesca"):
+        #   historia()
     if st.checkbox("⬅︎ ¿Quiénes somos?"):
         autores()
